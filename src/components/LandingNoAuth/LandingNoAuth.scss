@@ -1,0 +1,22 @@
+.landing {
+    &__background {
+        background-image: url(../../assets/accueil.jpeg);
+        height: 100vh;
+        width: 100%;
+        background-size: cover;
+        background-position: center center;
+    }
+
+    &__wrapper {
+        width: 50%;
+        height: 100%;
+
+    } 
+}
+
+@media screen and (max-width: 769px) {
+    .landing__wrapper {
+     width: 100%;
+    }
+  }
+  

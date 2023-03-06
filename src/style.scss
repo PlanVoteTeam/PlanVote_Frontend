@@ -1,5 +1,16 @@
 @charset "utf-8";
 
+$blue-100: #dbe9ee;
+$blue-200: #c0d6df;
+$blue-300: #166088;
+$black: #191919;
+
+html, body, #root, #root>div {
+  height: 100%;
+  font-family: "Poppins" ;
+  color: $black;
+}
+
 // Set your brand colors
 $blue: #73a9df;
 $purple: #8a4d76;
@@ -11,22 +22,19 @@ $beige-lighter: #eff0eb;
 // Update Bulma's global variables
 $grey-dark: $brown;
 $grey-light: $beige-light;
-$primary: $blue;
+$primary: $blue-300;
 $link: $pink;
 
 // Update some of Bulma's component variables
-$body-background-color: $beige-lighter;
-$control-border-width: 2px;
 $input-border-color: transparent;
 $input-shadow: none;
 
 // Import only what you need from Bulma
 @import "../node_modules/bulma/sass/utilities/_all.sass";
 @import "../node_modules/bulma/sass/base/_all.sass";
-@import "../node_modules/bulma/sass/elements/button.sass";
-@import "../node_modules/bulma/sass/elements/container.sass";
-@import "../node_modules/bulma/sass/elements/title.sass";
+@import "../node_modules/bulma/sass/elements/_all.sass";
+@import "../node_modules/bulma/sass/helpers/_all.sass";
 @import "../node_modules/bulma/sass/form/_all.sass";
-@import "../node_modules/bulma/sass/components/navbar.sass";
-@import "../node_modules/bulma/sass/layout/hero.sass";
-@import "../node_modules/bulma/sass/layout/section.sass";
+@import "../node_modules/bulma/sass/grid/_all.sass";
+@import "../node_modules/bulma/sass/layout/_all.sass";
+@import "../node_modules/bulma/sass/components/_all.sass";
