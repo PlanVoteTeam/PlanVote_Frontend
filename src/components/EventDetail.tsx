@@ -36,6 +36,11 @@ const EventDetail = () => {
 
           <hr />
 
+          {/* Share Event
+            - [ ] Générate magic link
+            - [ ] Copy To ClipBoard
+            - [ ] Share on social media
+          */}
           <div className="buttons">
             {/* Choose Identity / Open Modal */}
             <button className="button is-primary" onClick={toggleModal}>
@@ -44,15 +49,6 @@ const EventDetail = () => {
             <button className="button is-primary">Partager 🏹</button>
           </div>
         </div>
-      </div>
-
-      {/* Share Event
-        - [ ] Générate magic link
-        - [ ] Copy To ClipBoard
-        - [ ] Share on social media
-      */}
-      <div className="column is-half">
-        <div className="buttons"></div>
       </div>
 
       {/* Modal */}
