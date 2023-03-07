@@ -7,7 +7,13 @@ interface Event {
   id: number;
   name: string;
   description: string;
+  participants: Participant[];
   // ...
+}
+
+interface Participant {
+  id: number;
+  name: string;
 }
 
 const EventDetail = () => {
@@ -97,6 +103,7 @@ const EventDetail = () => {
       <EventDetail_ModalChooseidentity
         closeModal={toggleModal}
         modalState={modalState}
+        participantsList={event.participants}
       ></EventDetail_ModalChooseidentity>
     </section>
   );

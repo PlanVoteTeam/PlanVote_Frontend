@@ -3,6 +3,7 @@ import React from "react";
 interface ModalProps {
   closeModal: () => void;
   modalState: boolean;
+  participantsList: Participant[];
 }
 
 interface Participant {
@@ -10,13 +11,10 @@ interface Participant {
   name: string;
 }
 
-interface ParticipantList {
-  participants: Participant[];
-}
-
 const EventDetail_ModalChooseIdentity: React.FC<ModalProps> = ({
   closeModal,
   modalState,
+  participantsList,
 }) => {
   if (!modalState) {
     return null;
@@ -43,12 +41,15 @@ const EventDetail_ModalChooseIdentity: React.FC<ModalProps> = ({
         */}
             <div id="ChooseYourIdentity">
               <div className="buttons">
-                <button className="button is-primary is-outlined">
-                  Pierre
-                </button>
-                <button className="button is-primary is-outlined">Remy</button>
-                <button className="button is-primary is-outlined">Dylan</button>
-                <button className="button is-primary is-outlined">Julie</button>
+                {participantsList.map((participant) => (
+                  <button
+                    className="button is-primary is-outlined"
+                    key={participant.id}
+                    onClick={closeModal}
+                  >
+                    {participant.name}
+                  </button>
+                ))}
                 <button className="button is-primary is-outlined">+</button>
               </div>
             </div>
