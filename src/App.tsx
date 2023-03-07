@@ -10,7 +10,7 @@ function App() {
         <Routes>
           <Route path="" element={<LoginPage />} />
           <Route path="/" element={<LoginPage />} />
-          <Route path="/event/id" element={<EventDetail />} />
+          <Route path="/events/:eventId" element={<EventDetail />} />
         </Routes>
       </Router>
     </div>
