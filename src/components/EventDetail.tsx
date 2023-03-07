@@ -18,10 +18,10 @@ const EventDetail = () => {
   const [modalState, setModalState] = useState(true);
 
   useEffect(() => {
-    axios
-      .get(`http://localhost/api/events/${eventId}`)
+    fetch(`http://localhost:3000/events/${eventId}`, { mode: "cors" })
+      .then((blob) => blob.json())
       .then((response) => {
-        setEvent(response.data);
+        setEvent(response);
       })
       .catch((error) => {
         console.error(error);
