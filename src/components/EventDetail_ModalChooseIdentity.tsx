@@ -5,6 +5,15 @@ interface ModalProps {
   modalState: boolean;
 }
 
+interface Participant {
+  id: number;
+  name: string;
+}
+
+interface ParticipantList {
+  participants: Participant[];
+}
+
 const EventDetail_ModalChooseIdentity: React.FC<ModalProps> = ({
   closeModal,
   modalState,

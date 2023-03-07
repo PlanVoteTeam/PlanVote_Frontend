@@ -1,16 +1,57 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
 import EventDetail_ModalChooseidentity from "./EventDetail_ModalChooseIdentity";
+
+interface Event {
+  id: number;
+  name: string;
+  description: string;
+  // ...
+}
 
 const EventDetail = () => {
   const { eventId } = useParams();
   // Fetch event data using eventId
 
+  const [event, setEvent] = useState<Event | null>(null);
   const [modalState, setModalState] = useState(true);
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost/api/events/${eventId}`)
+      .then((response) => {
+        setEvent(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, [eventId]);
 
   const toggleModal = () => {
     setModalState(!modalState);
   };
+
+  if (!event) {
+    return (
+      <section className="section">
+        <div className="container">
+          <div className="content">
+            {/* Title of page */}
+            <p className="title">
+              <span>Chargement de </span>
+              <span className="has-text-primary	is-large is-lowercase">
+                l'évenement
+              </span>
+            </p>
+            <progress className="progress is-large is-info" max="100">
+              60%
+            </progress>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="section">
@@ -20,7 +61,7 @@ const EventDetail = () => {
           <p className="title">
             <span>Votre évenement : </span>
             <span className="has-text-primary	is-large is-lowercase">
-              event.name
+              {event.name}
             </span>
           </p>
 
@@ -32,6 +73,7 @@ const EventDetail = () => {
           */}
           <a className="subtitle mt-5">
             La description de votre évenement... modifie la maintenant
+            {event.description}
           </a>
 
           <hr />
