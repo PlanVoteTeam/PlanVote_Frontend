@@ -1,9 +1,11 @@
 import { useState } from 'react';
+import { apiUrl } from '../../../config';
 import './LandingNoAuth.scss'
+import { useNavigate } from "react-router-dom";
 
 const LandingNoAuth = () => {
-
-  const [nameEvent, setNameEvent] = useState<string>();
+  const navigate = useNavigate();
+  const [nameEvent, setNameEvent] = useState<string>('');
 
   const handleChangeEvent = (event: any) => {
     setNameEvent(event.currentTarget.value)
@@ -11,7 +13,26 @@ const LandingNoAuth = () => {
 
   const handleSumbit = (event: any) => {
     event.preventDefault();
-    alert(nameEvent)
+
+    const formData = new URLSearchParams();
+    formData.append('name', nameEvent);
+
+    fetch(apiUrl + `events`, {  
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+      },
+      body: formData.toString(),
+      mode: "cors" 
+    })
+      .then((blob) => blob.json())
+      .then((response) => {
+        console.log(response);
+        navigate('/events/' + response._id);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }
 
   return (
