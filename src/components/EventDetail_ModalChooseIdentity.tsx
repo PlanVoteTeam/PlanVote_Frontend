@@ -1,9 +1,12 @@
 import React, { useState, useRef } from "react";
+import { apiUrl } from "../../config";
 
 interface ModalProps {
   closeModal: () => void;
   modalState: boolean;
+  eventId: string;
   participantsList: Participant[];
+  setParticipantsList: React.Dispatch<React.SetStateAction<Participant[]>>;
 }
 
 interface Participant {
@@ -14,7 +17,9 @@ interface Participant {
 const EventDetail_ModalChooseIdentity: React.FC<ModalProps> = ({
   closeModal,
   modalState,
+  eventId,
   participantsList,
+  setParticipantsList,
 }) => {
   if (!modalState) {
     return null;
@@ -37,10 +42,39 @@ const EventDetail_ModalChooseIdentity: React.FC<ModalProps> = ({
 
       return;
     }
-
-    console.log("Ajout d'un participant", newParticipant);
+    // Call addParticipantToEvent function with event ID and newParticipant value
+    addParticipantToEvent(eventId, newParticipant);
     setShowFormAddParticipant(false);
     setNewParticipant("");
+  };
+
+  const addParticipantToEvent = async (
+    eventId: string,
+    newParticipant: string
+  ) => {
+    try {
+      const response = await fetch(apiUrl + `events/${eventId}/participants`, {
+        mode: "cors",
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name: newParticipant }),
+      });
+
+      const data = await response.json();
+      // Ajouter dans participantsList le nouveau participant
+      const updatedParticipantsList = [
+        ...participantsList,
+        { id: data.id, name: newParticipant },
+      ];
+      setParticipantsList(updatedParticipantsList);
+    } catch (error) {
+      console.error(
+        "Erreur lors de l'ajout du participant à l'événement",
+        error
+      );
+    }
   };
 
   return (

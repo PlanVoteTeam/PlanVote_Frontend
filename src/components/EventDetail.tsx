@@ -4,7 +4,7 @@ import EventDetail_ModalChooseidentity from "./EventDetail_ModalChooseIdentity";
 import { apiUrl } from "../../config";
 
 interface Event {
-  id: number;
+  _id: string;
   name: string;
   description: string;
   participants: Participant[];
@@ -21,6 +21,7 @@ const EventDetail = () => {
   // Fetch event data using eventId
 
   const [event, setEvent] = useState<Event | null>(null);
+  const [participantsList, setParticipantsList] = useState<Participant[]>([]);
   const [modalState, setModalState] = useState(true);
 
   useEffect(() => {
@@ -28,6 +29,7 @@ const EventDetail = () => {
       .then((blob) => blob.json())
       .then((response) => {
         setEvent(response);
+        setParticipantsList(response.participants);
       })
       .catch((error) => {
         console.error(error);
@@ -103,7 +105,9 @@ const EventDetail = () => {
       <EventDetail_ModalChooseidentity
         closeModal={toggleModal}
         modalState={modalState}
-        participantsList={event.participants}
+        eventId={eventId!}
+        participantsList={participantsList!}
+        setParticipantsList={setParticipantsList}
       ></EventDetail_ModalChooseidentity>
     </section>
   );
