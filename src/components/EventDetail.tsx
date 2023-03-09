@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import axios from "axios";
 import EventDetail_ModalChooseidentity from "./EventDetail_ModalChooseIdentity";
 import { apiUrl } from "../../config";
 
