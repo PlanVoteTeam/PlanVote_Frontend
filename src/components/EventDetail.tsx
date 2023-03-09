@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import EventDetail_ModalChooseidentity from "./EventDetail_ModalChooseIdentity";
+import { apiUrl } from "../../config";
 
 interface Event {
   id: number;
@@ -24,7 +25,7 @@ const EventDetail = () => {
   const [modalState, setModalState] = useState(true);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/events/${eventId}`, { mode: "cors" })
+    fetch(apiUrl + `events/${eventId}`, { mode: "cors" })
       .then((blob) => blob.json())
       .then((response) => {
         setEvent(response);
@@ -45,9 +46,9 @@ const EventDetail = () => {
           <div className="content">
             {/* Title of page */}
             <p className="title">
-              <span>Chargement de </span>
+              <span>Votre évenement : </span>
               <span className="has-text-primary	is-large is-lowercase">
-                l'évenement
+                chargement ...
               </span>
             </p>
             <progress className="progress is-large is-info" max="100">
