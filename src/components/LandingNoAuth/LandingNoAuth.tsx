@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 const LandingNoAuth = () => {
   const navigate = useNavigate();
   const [nameEvent, setNameEvent] = useState<string>('');
+  const [isError, setIsError] = useState<boolean>(false);
 
   const handleChangeEvent = (event: any) => {
     setNameEvent(event.currentTarget.value)
@@ -27,17 +28,23 @@ const LandingNoAuth = () => {
     })
       .then((blob) => blob.json())
       .then((response) => {
-        console.log(response);
         navigate('/events/' + response._id);
       })
       .catch((error) => {
-        console.error(error);
+        setIsError(true)
       });
   }
 
   return (
       <div>
         <div className='landing__background'>
+          {isError ? 
+            (
+              <div className="notification is-danger">
+                Une erreur est survenu, veuillez réessayer plus tard.
+              </div>
+            ) : (<div></div>)
+          }
           <div className='px-5 is-flex is-flex-direction-column is-justify-content-center is-align-items-center landing__wrapper'>
             <h1 className='mb-2 title is-1'>Plan & Vote</h1>
             <p className='mb-4 content is-small has-text-weight-light has-text-centered'>Organiser des vacances entre amis c'est compliqué. C'est pourquoi nous avons conçu Plan&nbsp;&&nbsp;Vote, la solution idéale pour planifier des vacances.</p>
