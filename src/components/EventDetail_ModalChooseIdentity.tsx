@@ -10,7 +10,7 @@ interface ModalProps {
 }
 
 interface Participant {
-  id: number;
+  _id: number;
   name: string;
 }
 
@@ -63,10 +63,9 @@ const EventDetail_ModalChooseIdentity: React.FC<ModalProps> = ({
       });
 
       const data = await response.json();
-      // Ajouter dans participantsList le nouveau participant
       const updatedParticipantsList = [
         ...participantsList,
-        { id: data.id, name: newParticipant },
+        { _id: data._id, name: newParticipant },
       ];
       setParticipantsList(updatedParticipantsList);
     } catch (error) {
@@ -87,20 +86,19 @@ const EventDetail_ModalChooseIdentity: React.FC<ModalProps> = ({
         <section className="modal-card-body">
           <div className="content">
             {/* Add participant
-
           - [x] Modal
           - [x] Fetch all user
-          - [ ] Add user
+          - [x] Add user
           - [ ] If isn't in local storage
           - [ ] Button validate : save choice in local storage
-          - [ ] Button cancel : close pop up
+          - [x] Button cancel : close pop up
         */}
             <div id="ChooseYourIdentity">
               <div className="buttons">
                 {participantsList.map((participant) => (
                   <button
                     className="button is-primary is-outlined"
-                    key={participant.id}
+                    key={participant._id}
                     onClick={closeModal}
                   >
                     {participant.name}

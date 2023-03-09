@@ -12,7 +12,7 @@ interface Event {
 }
 
 interface Participant {
-  id: number;
+  _id: number;
   name: string;
 }
 
