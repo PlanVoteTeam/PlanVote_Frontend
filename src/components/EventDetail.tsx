@@ -22,6 +22,8 @@ const EventDetail = () => {
 
   const [event, setEvent] = useState<Event | null>(null);
   const [participantsList, setParticipantsList] = useState<Participant[]>([]);
+  const [currentParticipant, setCurrentParticipant] =
+    useState<Participant | null>(null);
   const [modalState, setModalState] = useState(true);
 
   useEffect(() => {
@@ -65,6 +67,11 @@ const EventDetail = () => {
     <section className="section">
       <div className="container">
         <div className="content">
+          {currentParticipant && (
+            <div className="field">
+              JE SUIS AUTHENTIFIÉ : {currentParticipant.name}
+            </div>
+          )}
           {/* Title of page */}
           <p className="title">
             <span>Votre évenement : </span>
@@ -108,6 +115,7 @@ const EventDetail = () => {
         eventId={eventId!}
         participantsList={participantsList!}
         setParticipantsList={setParticipantsList}
+        setCurrentParticipant={setCurrentParticipant}
       ></EventDetail_ModalChooseidentity>
     </section>
   );

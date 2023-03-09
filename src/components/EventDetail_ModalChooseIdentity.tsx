@@ -7,6 +7,9 @@ interface ModalProps {
   eventId: string;
   participantsList: Participant[];
   setParticipantsList: React.Dispatch<React.SetStateAction<Participant[]>>;
+  setCurrentParticipant: React.Dispatch<
+    React.SetStateAction<Participant | null>
+  >;
 }
 
 interface Participant {
@@ -20,6 +23,7 @@ const EventDetail_ModalChooseIdentity: React.FC<ModalProps> = ({
   eventId,
   participantsList,
   setParticipantsList,
+  setCurrentParticipant,
 }) => {
   if (!modalState) {
     return null;
@@ -99,7 +103,10 @@ const EventDetail_ModalChooseIdentity: React.FC<ModalProps> = ({
                   <button
                     className="button is-primary is-outlined"
                     key={participant._id}
-                    onClick={closeModal}
+                    onClick={() => {
+                      setCurrentParticipant(participant);
+                      closeModal();
+                    }}
                   >
                     {participant.name}
                   </button>
