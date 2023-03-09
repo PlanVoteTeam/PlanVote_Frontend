@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 interface ModalProps {
   closeModal: () => void;
@@ -19,6 +19,15 @@ const EventDetail_ModalChooseIdentity: React.FC<ModalProps> = ({
   if (!modalState) {
     return null;
   }
+
+  const [showFormAddParticipant, setShowFormAddParticipant] = useState(false);
+  const [newParticipant, setNewParticipant] = useState("");
+
+  const handleAddParticipant = () => {
+    // Ajoutez ici la logique pour ajouter un participant
+    console.log("Ajout d'un participant", newParticipant);
+    setShowFormAddParticipant(false);
+  };
 
   return (
     <div className="modal is-active">
@@ -49,7 +58,36 @@ const EventDetail_ModalChooseIdentity: React.FC<ModalProps> = ({
                     {participant.name}
                   </button>
                 ))}
-                <button className="button is-primary is-outlined">+</button>
+
+                {!showFormAddParticipant && (
+                  <button
+                    className="button is-primary is-outlined"
+                    onClick={() => setShowFormAddParticipant(true)}
+                  >
+                    +
+                  </button>
+                )}
+
+                {showFormAddParticipant && (
+                  <form onSubmit={handleAddParticipant}>
+                    <div className="field has-addons">
+                      <div className="control">
+                        <input
+                          className="input is-primary is-outlined has-text-primary"
+                          type="text"
+                          placeholder="Je suis .."
+                          value={newParticipant}
+                          onChange={(e) => setNewParticipant(e.target.value)}
+                        />
+                      </div>
+                      <div className="control">
+                        <button className="button is-primary is-outlined">
+                          Ajouter
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                )}
               </div>
             </div>
           </div>
