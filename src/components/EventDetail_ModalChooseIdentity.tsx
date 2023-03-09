@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 
 interface ModalProps {
   closeModal: () => void;
@@ -22,11 +22,25 @@ const EventDetail_ModalChooseIdentity: React.FC<ModalProps> = ({
 
   const [showFormAddParticipant, setShowFormAddParticipant] = useState(false);
   const [newParticipant, setNewParticipant] = useState("");
+  const inputRef = useRef<HTMLInputElement>(null);
 
-  const handleAddParticipant = () => {
-    // Ajoutez ici la logique pour ajouter un participant
+  const handleAddParticipant = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (!newParticipant) {
+      // Set input from blue to pink
+      inputRef.current?.classList.remove("is-primary");
+      inputRef.current?.classList.add("is-link");
+
+      // Set text from blue to pink
+      inputRef.current?.classList.remove("has-text-primary");
+      inputRef.current?.classList.add("has-text-link");
+
+      return;
+    }
+
     console.log("Ajout d'un participant", newParticipant);
     setShowFormAddParticipant(false);
+    setNewParticipant("");
   };
 
   return (
@@ -79,6 +93,7 @@ const EventDetail_ModalChooseIdentity: React.FC<ModalProps> = ({
                           value={newParticipant}
                           onChange={(e) => setNewParticipant(e.target.value)}
                           autoFocus
+                          ref={inputRef}
                         />
                       </div>
                       <div className="control">
