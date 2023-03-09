@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import LoginPage from "./components/LoginPage";
 import EventDetail from "./components/EventDetail";
+import LandingNoAuth from "./components/LandingNoAuth/LandingNoAuth";
 import "./style.scss";
 
 function App() {
@@ -8,8 +8,8 @@ function App() {
     <div className="App">
       <Router>
         <Routes>
-          <Route path="" element={<LoginPage />} />
-          <Route path="/" element={<LoginPage />} />
+          <Route path="" element={<LandingNoAuth />} />
+          <Route path="/" element={<LandingNoAuth />} />
           <Route path="/events/:eventId" element={<EventDetail />} />
         </Routes>
       </Router>
