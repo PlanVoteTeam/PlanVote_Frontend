@@ -41,7 +41,7 @@ const EventDetail_ModalChooseIdentity: React.FC<ModalProps> = ({
             {/* Add participant
 
           - [x] Modal
-          - [ ] Fetch all user
+          - [x] Fetch all user
           - [ ] Add user
           - [ ] If isn't in local storage
           - [ ] Button validate : save choice in local storage
@@ -78,6 +78,7 @@ const EventDetail_ModalChooseIdentity: React.FC<ModalProps> = ({
                           placeholder="Je suis .."
                           value={newParticipant}
                           onChange={(e) => setNewParticipant(e.target.value)}
+                          autoFocus
                         />
                       </div>
                       <div className="control">
