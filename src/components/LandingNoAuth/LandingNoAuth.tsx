@@ -9,7 +9,8 @@ const LandingNoAuth = () => {
     setNameEvent(event.currentTarget.value)
   }
 
-  const handleSumbit = () => {
+  const handleSumbit = (event: any) => {
+    event.preventDefault();
     alert(nameEvent)
   }
 
