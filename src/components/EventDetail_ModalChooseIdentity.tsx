@@ -90,16 +90,9 @@ const EventDetail_ModalChooseIdentity: React.FC<ModalProps> = ({
         </header>
         <section className="modal-card-body">
           <div className="content">
-            {/* Add participant
-          - [x] Modal
-          - [x] Fetch all user
-          - [x] Add user
-          - [ ] If isn't in local storage
-          - [ ] Button validate : save choice in local storage
-          - [x] Button cancel : close pop up
-        */}
             <div id="ChooseYourIdentity">
               <div className="buttons">
+                {/* Display list of participants of event */}
                 {participantsList.map((participant) => (
                   <button
                     className="button is-primary is-outlined"
@@ -113,6 +106,7 @@ const EventDetail_ModalChooseIdentity: React.FC<ModalProps> = ({
                   </button>
                 ))}
 
+                {/* Show button to add a new participant */}
                 {!showFormAddParticipant && (
                   <button
                     className="button is-primary is-outlined"
@@ -122,6 +116,7 @@ const EventDetail_ModalChooseIdentity: React.FC<ModalProps> = ({
                   </button>
                 )}
 
+                {/* Show form to add a new participant */}
                 {showFormAddParticipant && (
                   <form onSubmit={handleAddParticipant}>
                     <div className="field has-addons">
