@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import axios from "axios";
 import EventDetail_ModalChooseidentity from "./EventDetail_ModalChooseIdentity";
 import { apiUrl } from "../../config";
+import { isLocalStorageAvailable } from "../utils/localStorageUtils";
 
 interface Event {
-  id: number;
+  _id: string;
   name: string;
   description: string;
   participants: Participant[];
@@ -13,7 +13,7 @@ interface Event {
 }
 
 interface Participant {
-  id: number;
+  _id: number;
   name: string;
 }
 
@@ -22,23 +22,57 @@ const EventDetail = () => {
   // Fetch event data using eventId
 
   const [event, setEvent] = useState<Event | null>(null);
+  const [participantsList, setParticipantsList] = useState<Participant[]>([]);
+  const [currentParticipant, setCurrentParticipant] =
+    useState<Participant | null>(null);
   const [modalState, setModalState] = useState(true);
 
   useEffect(() => {
+    // Fetch event data using eventId from params
     fetch(apiUrl + `events/${eventId}`, { mode: "cors" })
       .then((blob) => blob.json())
       .then((response) => {
         setEvent(response);
+        setParticipantsList(response.participants);
       })
       .catch((error) => {
         console.error(error);
       });
   }, [eventId]);
 
+  // Toggle modal
   const toggleModal = () => {
     setModalState(!modalState);
   };
 
+  // Add currentParticipant to localStorage
+  function setCurrentParticipantLocalStorage(
+    currentParticipant: Participant | null
+  ) {
+    if (isLocalStorageAvailable() && currentParticipant) {
+      localStorage.setItem(
+        "currentParticipant",
+        JSON.stringify(currentParticipant)
+      );
+    }
+  }
+
+  // Get currentParticipant from localStorage
+  function getCurrentParticipantLocalStorage(): Participant | null {
+    const storedParticipant = localStorage.getItem("currentParticipant");
+    if (storedParticipant) {
+      return JSON.parse(storedParticipant);
+    }
+    return null;
+  }
+
+  // Handle change of currentParticipant
+  function handleParticipantChange(currentParticipant: Participant) {
+    setCurrentParticipant(currentParticipant);
+    setCurrentParticipantLocalStorage(currentParticipant);
+  }
+
+  // If event is null, display loading
   if (!event) {
     return (
       <section className="section">
@@ -64,6 +98,13 @@ const EventDetail = () => {
     <section className="section">
       <div className="container">
         <div className="content">
+          {/* Display current participant from local storage */}
+          {getCurrentParticipantLocalStorage() != null && (
+            <p className="subtitle">
+              Utilisateur courant : {getCurrentParticipantLocalStorage()?.name}
+            </p>
+          )}
+
           {/* Title of page */}
           <p className="title">
             <span>Votre évenement : </span>
@@ -104,7 +145,10 @@ const EventDetail = () => {
       <EventDetail_ModalChooseidentity
         closeModal={toggleModal}
         modalState={modalState}
-        participantsList={event.participants}
+        eventId={eventId!}
+        participantsList={participantsList!}
+        setParticipantsList={setParticipantsList}
+        handleParticipantChange={handleParticipantChange}
       ></EventDetail_ModalChooseidentity>
     </section>
   );
