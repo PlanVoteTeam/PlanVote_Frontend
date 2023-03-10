@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import EventDetail_ModalChooseidentity from "./EventDetail_ModalChooseIdentity";
 import { apiUrl } from "../../config";
+import { isLocalStorageAvailable } from "../utils/localStorageUtils";
 
 interface Event {
   _id: string;
@@ -41,6 +42,23 @@ const EventDetail = () => {
   const toggleModal = () => {
     setModalState(!modalState);
   };
+
+  // Add currentParticipant to localStorage
+  function setCurrentParticipantLocalStorage(
+    currentParticipant: Participant | null
+  ) {
+    if (isLocalStorageAvailable() && currentParticipant) {
+      localStorage.setItem(
+        "currentParticipant",
+        JSON.stringify(currentParticipant)
+      );
+    }
+  }
+
+  function handleParticipantChange(currentParticipant: Participant) {
+    setCurrentParticipant(currentParticipant);
+    setCurrentParticipantLocalStorage(currentParticipant);
+  }
 
   if (!event) {
     return (
@@ -115,7 +133,7 @@ const EventDetail = () => {
         eventId={eventId!}
         participantsList={participantsList!}
         setParticipantsList={setParticipantsList}
-        setCurrentParticipant={setCurrentParticipant}
+        handleParticipantChange={handleParticipantChange}
       ></EventDetail_ModalChooseidentity>
     </section>
   );
