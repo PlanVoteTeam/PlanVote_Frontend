@@ -26,6 +26,9 @@ const EventDetail = () => {
   const [currentParticipant, setCurrentParticipant] =
     useState<Participant | null>(null);
   const [modalState, setModalState] = useState(true);
+  const [isEventDescriptionEditing, setIsEventDescriptionEditing] =
+    useState(false);
+  const [eventDescription, setEventDescription] = useState("");
 
   useEffect(() => {
     // Fetch event data using eventId from params
@@ -34,6 +37,7 @@ const EventDetail = () => {
       .then((response) => {
         setEvent(response);
         setParticipantsList(response.participants);
+        setEventDescription(response.description);
       })
       .catch((error) => {
         console.error(error);
@@ -70,6 +74,21 @@ const EventDetail = () => {
   function handleParticipantChange(currentParticipant: Participant) {
     setCurrentParticipant(currentParticipant);
     setCurrentParticipantLocalStorage(currentParticipant);
+  }
+
+  function handleEditEventDescriptionClick() {
+    setIsEventDescriptionEditing(true);
+  }
+
+  function handleCancelEditEventDescriptionClick() {
+    if (event?.description) setEventDescription(event.description);
+    setIsEventDescriptionEditing(false);
+  }
+
+  async function handleUpdateDescriptionEvent(
+    eventId: string,
+    newDescription: string
+  ) {
   }
 
   // If event is null, display loading
@@ -113,16 +132,46 @@ const EventDetail = () => {
             </span>
           </p>
 
-          {/* Description of event
-            Todo add on clic method
-            - On click : balise a to input text
-            - Add Button cancel
-            - Add button Validate -> axios.patch
-          */}
-          <a className="subtitle mt-5">
-            La description de votre évenement... modifie la maintenant
-            {event.description}
-          </a>
+          {/* Description of event */}
+          {isEventDescriptionEditing ? (
+            <div>
+              <form onSubmit={handleUpdateDescriptionEvent}>
+                <div className="field has-addons">
+                  <div className="control">
+                    <input
+                      type="text"
+                      className="input is-primary  has-text-primary"
+                      autoFocus
+                      value={eventDescription}
+                      onChange={(e) => setEventDescription(e.target.value)}
+                    />
+                  </div>
+                  <div className="control">
+                    <button className="button is-primary is-outlined mr-2">
+                      Enregistrer
+                    </button>
+                  </div>
+                  <div className="control">
+                    <button
+                      className="button is-danger is-outlined"
+                      onClick={handleCancelEditEventDescriptionClick}
+                    >
+                      Annuler
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          ) : (
+            <div>
+              <a
+                className="subtitle mt-5"
+                onClick={handleEditEventDescriptionClick}
+              >
+                {event.description} s
+              </a>
+            </div>
+          )}
 
           <hr />
 
