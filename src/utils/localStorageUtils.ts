@@ -1,3 +1,4 @@
+// Check if local storage is available
 export function isLocalStorageAvailable(): boolean {
   try {
     const testKey = "test";

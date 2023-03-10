@@ -28,6 +28,7 @@ const EventDetail = () => {
   const [modalState, setModalState] = useState(true);
 
   useEffect(() => {
+    // Fetch event data using eventId from params
     fetch(apiUrl + `events/${eventId}`, { mode: "cors" })
       .then((blob) => blob.json())
       .then((response) => {
@@ -39,6 +40,7 @@ const EventDetail = () => {
       });
   }, [eventId]);
 
+  // Toggle modal
   const toggleModal = () => {
     setModalState(!modalState);
   };
@@ -55,11 +57,22 @@ const EventDetail = () => {
     }
   }
 
+  // Get currentParticipant from localStorage
+  function getCurrentParticipantLocalStorage(): Participant | null {
+    const storedParticipant = localStorage.getItem("currentParticipant");
+    if (storedParticipant) {
+      return JSON.parse(storedParticipant);
+    }
+    return null;
+  }
+
+  // Handle change of currentParticipant
   function handleParticipantChange(currentParticipant: Participant) {
     setCurrentParticipant(currentParticipant);
     setCurrentParticipantLocalStorage(currentParticipant);
   }
 
+  // If event is null, display loading
   if (!event) {
     return (
       <section className="section">
@@ -85,11 +98,13 @@ const EventDetail = () => {
     <section className="section">
       <div className="container">
         <div className="content">
-          {currentParticipant && (
-            <div className="field">
-              JE SUIS AUTHENTIFIÉ : {currentParticipant.name}
-            </div>
+          {/* Display current participant from local storage */}
+          {getCurrentParticipantLocalStorage() != null && (
+            <p className="subtitle">
+              Utilisateur courant : {getCurrentParticipantLocalStorage()?.name}
+            </p>
           )}
+
           {/* Title of page */}
           <p className="title">
             <span>Votre évenement : </span>
