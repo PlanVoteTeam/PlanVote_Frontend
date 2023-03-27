@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import EventDetail_ModalChooseidentity from "./EventDetail_ModalChooseIdentity";
 import { apiUrl } from "../../config";
 import { isLocalStorageAvailable } from "../utils/localStorageUtils";
+import { EVENT_DESCRIPTION_BLANK_MESSAGE } from "../utils/constants";
 
 interface Event {
   _id: string;
@@ -195,7 +196,7 @@ const EventDetail = () => {
               >
                 {event.description
                   ? event.description
-                  : "Mettre à jour la description maintenant"}
+                  : EVENT_DESCRIPTION_BLANK_MESSAGE}
               </a>
             </div>
           )}
