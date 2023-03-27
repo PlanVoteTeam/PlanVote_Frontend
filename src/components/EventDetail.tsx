@@ -89,6 +89,25 @@ const EventDetail = () => {
     eventId: string,
     newDescription: string
   ) {
+    try {
+      const response = await fetch(apiUrl + `events/${eventId}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ description: newDescription }),
+      });
+      if (!response.ok) {
+        throw new Error(
+          `Failed to update event description: ${response.status} ${response.statusText}`
+        );
+      }
+      const updatedEvent = await response.json();
+      setEvent(updatedEvent);
+      setIsEventDescriptionEditing(false);
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   // If event is null, display loading
