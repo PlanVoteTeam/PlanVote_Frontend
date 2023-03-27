@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import { apiUrl } from "../../config";
 import { getRandomColor } from "../utils/utils";
+import { IS_COLOR_EVENT_PARTICIPANT_LIST } from "../utils/constants";
 
 interface ModalProps {
   closeModal: () => void;
@@ -96,19 +97,25 @@ const EventDetail_ModalChooseIdentity: React.FC<ModalProps> = ({
             <div id="ChooseYourIdentity">
               <div className="buttons">
                 {/* Display list of participants of event */}
-                {participantsList.map((participant) => (
-                  <button
-                    // className="button is-primary is-outlined"
-                    className={`button ${getRandomColor()} is-outlined`}
-                    key={participant._id}
-                    onClick={() => {
-                      handleParticipantChange(participant);
-                      closeModal();
-                    }}
-                  >
-                    {participant.name}
-                  </button>
-                ))}
+                {participantsList &&
+                  participantsList.length > 0 &&
+                  participantsList.map((participant) => (
+                    <button
+                      //className={`button ${getRandomColor()} is-outlined`}
+                      className={`button ${
+                        IS_COLOR_EVENT_PARTICIPANT_LIST
+                          ? getRandomColor()
+                          : "is-primary"
+                      } is-outlined`}
+                      key={participant._id}
+                      onClick={() => {
+                        handleParticipantChange(participant);
+                        closeModal();
+                      }}
+                    >
+                      {participant.name}
+                    </button>
+                  ))}
 
                 {/* Show button to add a new participant */}
                 {!showFormAddParticipant && (
