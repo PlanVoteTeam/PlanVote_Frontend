@@ -140,7 +140,7 @@ const EventDetail = () => {
                   <div className="control">
                     <input
                       type="text"
-                      className="input is-primary  has-text-primary"
+                      className="input is-primary has-text-primary"
                       autoFocus
                       value={eventDescription}
                       onChange={(e) => setEventDescription(e.target.value)}
@@ -168,7 +168,7 @@ const EventDetail = () => {
                 className="subtitle mt-5"
                 onClick={handleEditEventDescriptionClick}
               >
-                {event.description} s
+                {event.description}
               </a>
             </div>
           )}
