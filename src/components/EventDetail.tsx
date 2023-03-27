@@ -193,7 +193,9 @@ const EventDetail = () => {
                 className="subtitle mt-5"
                 onClick={handleEditEventDescriptionClick}
               >
-                {event.description}
+                {event.description
+                  ? event.description
+                  : "Mettre à jour la description maintenant"}
               </a>
             </div>
           )}
