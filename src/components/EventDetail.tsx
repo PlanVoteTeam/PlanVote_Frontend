@@ -154,7 +154,13 @@ const EventDetail = () => {
           {/* Description of event */}
           {isEventDescriptionEditing ? (
             <div>
-              <form onSubmit={handleUpdateDescriptionEvent}>
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault(); // empêche la soumission du formulaire
+                  if (eventId)
+                    handleUpdateDescriptionEvent(eventId, eventDescription);
+                }}
+              >
                 <div className="field has-addons">
                   <div className="control">
                     <input
