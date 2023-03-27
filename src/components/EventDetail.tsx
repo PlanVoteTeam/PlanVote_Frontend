@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import EventDetail_ModalChooseidentity from "./EventDetail_ModalChooseIdentity";
+import ModalChooseidentity from "./EventDetail_ModalChooseIdentity";
 import ButtonShareEvent from "./EventDetail_ButtonShareEvent";
 import { apiUrl } from "../../config";
 import { isLocalStorageAvailable } from "../utils/localStorageUtils";
@@ -220,14 +220,14 @@ const EventDetail = () => {
       </div>
 
       {/* Modal */}
-      <EventDetail_ModalChooseidentity
+      <ModalChooseidentity
         closeModal={toggleModal}
         modalState={modalState}
         eventId={eventId!}
         participantsList={participantsList!}
         setParticipantsList={setParticipantsList}
         handleParticipantChange={handleParticipantChange}
-      ></EventDetail_ModalChooseidentity>
+      ></ModalChooseidentity>
     </section>
   );
 };
