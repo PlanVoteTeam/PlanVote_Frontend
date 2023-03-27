@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import EventDetail_ModalChooseidentity from "./EventDetail_ModalChooseIdentity";
+import ButtonShareEvent from "./EventDetail_ButtonShareEvent";
 import { apiUrl } from "../../config";
 import { isLocalStorageAvailable } from "../utils/localStorageUtils";
 import { EVENT_DESCRIPTION_BLANK_MESSAGE } from "../utils/constants";
@@ -213,7 +214,7 @@ const EventDetail = () => {
             <button className="button is-primary" onClick={toggleModal}>
               Choose your identity
             </button>
-            <button className="button is-primary">Partager 🏹</button>
+            <ButtonShareEvent eventId={eventId!}></ButtonShareEvent>
           </div>
         </div>
       </div>
