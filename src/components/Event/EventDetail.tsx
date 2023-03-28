@@ -127,7 +127,7 @@ const EventDetail = () => {
           <div className="buttons">
             {/* Choose Identity / Open Modal */}
             <button className="button is-primary" onClick={toggleModal}>
-              Choose your identity
+              Qui es-tu ?
             </button>
 
             {/* Share Event
