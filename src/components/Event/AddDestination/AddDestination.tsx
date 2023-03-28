@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { apiUrl } from "../../../../config";
 import "./AddDestination.scss";
+import { EVENT_ADD_DESTINATION_PLACEHOLDER } from "../../../utils/constants";
 
 interface Participant {
   _id: number;
@@ -14,6 +15,7 @@ const AddDestination = () => {
   const [listDestination, setListDestination] = useState<Array<string>>([]);
   const [nameDestination, setNameDestination] = useState<string>("");
   const [isError, setIsError] = useState<boolean>(false);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     fetch(apiUrl + `events/${eventId}`, { mode: "cors" })
@@ -43,8 +45,27 @@ const AddDestination = () => {
     setNameDestination(event.currentTarget.value);
   };
 
-  const handleSumbit = (event: any) => {
+  const handleSumbit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (!nameDestination) {
+      // Set input from blue to pink
+      inputRef.current?.classList.remove("is-primary");
+      inputRef.current?.classList.add("is-link");
+
+      // Set text from blue to pink
+      inputRef.current?.classList.remove("has-text-primary");
+      inputRef.current?.classList.add("has-text-link");
+
+      return;
+    }
+
+    // Reset input from pink to blue
+    inputRef.current?.classList.remove("is-link");
+    inputRef.current?.classList.add("is-primary");
+
+    // Reset text from pink to blue
+    inputRef.current?.classList.remove("has-text-link");
+    inputRef.current?.classList.add("has-text-primary");
 
     const idParticipant = getCurrentParticipantLocalStorage()?._id;
 
@@ -113,12 +134,13 @@ const AddDestination = () => {
         <input
           className="input is-primary mr-3"
           type="text"
-          placeholder="Rome"
+          placeholder={EVENT_ADD_DESTINATION_PLACEHOLDER}
           value={nameDestination}
           onChange={handleChangeEvent}
+          ref={inputRef}
         ></input>
         <button className="button is-primary" type="submit">
-          Ajout destination
+          Ajouter une destination
         </button>
       </form>
     </div>

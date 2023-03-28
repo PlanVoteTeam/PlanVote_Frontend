@@ -112,7 +112,7 @@ function ManageDescription({
             onClick={handleEditEventDescriptionClick}
           >
             {/* If event description is blank, display a message */}
-            {event.description
+            {event && event.description
               ? event.description
               : EVENT_DESCRIPTION_BLANK_MESSAGE}
           </a>
