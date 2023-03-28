@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { apiUrl } from "../../../../config";
 import "./AddDestination.scss";
+import { EVENT_ADD_DESTINATION_PLACEHOLDER } from "../../../utils/constants";
 
 interface Participant {
   _id: number;
@@ -133,13 +134,13 @@ const AddDestination = () => {
         <input
           className="input is-primary mr-3"
           type="text"
-          placeholder="Rome"
+          placeholder={EVENT_ADD_DESTINATION_PLACEHOLDER}
           value={nameDestination}
           onChange={handleChangeEvent}
           ref={inputRef}
         ></input>
         <button className="button is-primary" type="submit">
-          Ajout destination
+          Ajouter une destination
         </button>
       </form>
     </div>
