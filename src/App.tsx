@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import EventDetail from "./components/EventDetail";
+import EventDetail from "./components/Event/EventDetail";
 import LandingNoAuth from "./components/LandingNoAuth/LandingNoAuth";
 import "./style.scss";
 
