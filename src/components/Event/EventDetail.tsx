@@ -7,6 +7,7 @@ import { isLocalStorageAvailable } from "../../utils/localStorageUtils";
 import { EVENT_DESCRIPTION_BLANK_MESSAGE } from "../../utils/constants";
 import AddDestination from "./AddDestination/AddDestination";
 import ManageDescription from "./ManageDescription/ManageDescription";
+import LoadingPage from "../LoadingPage";
 
 interface Event {
   _id: string;
@@ -80,22 +81,10 @@ const EventDetail = () => {
   // If event is null, display loading
   if (!event) {
     return (
-      <section className="section">
-        <div className="container">
-          <div className="content">
-            {/* Title of page */}
-            <p className="title">
-              <span>Votre évenement : </span>
-              <span className="has-text-primary	is-large is-lowercase">
-                chargement ...
-              </span>
-            </p>
-            <progress className="progress is-large is-info" max="100">
-              60%
-            </progress>
-          </div>
-        </div>
-      </section>
+      <LoadingPage
+        title1="Votre évenement : "
+        title2="chargement ..."
+      ></LoadingPage>
     );
   }
 
@@ -135,16 +124,17 @@ const EventDetail = () => {
 
           <AddDestination />
 
-          {/* Share Event
-            - [ ] Générate magic link
-            - [ ] Copy To ClipBoard
-            - [ ] Share on social media
-          */}
           <div className="buttons">
             {/* Choose Identity / Open Modal */}
             <button className="button is-primary" onClick={toggleModal}>
               Choose your identity
             </button>
+
+            {/* Share Event
+            - [ ] Générate magic link
+            - [ ] Copy To ClipBoard
+            - [ ] Share on social media
+            */}
             <ButtonShareEvent eventId={eventId!}></ButtonShareEvent>
           </div>
         </div>
