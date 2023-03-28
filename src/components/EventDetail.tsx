@@ -5,6 +5,7 @@ import ButtonShareEvent from "./EventDetail_ButtonShareEvent";
 import { apiUrl } from "../../config";
 import { isLocalStorageAvailable } from "../utils/localStorageUtils";
 import { EVENT_DESCRIPTION_BLANK_MESSAGE } from "../utils/constants";
+import AddDestination from "./AddDestination/AddDestination";
 
 interface Event {
   _id: string;
@@ -203,6 +204,8 @@ const EventDetail = () => {
           )}
 
           <hr />
+
+          <AddDestination/>
 
           {/* Share Event
             - [ ] Générate magic link
