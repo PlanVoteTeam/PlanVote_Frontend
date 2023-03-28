@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import ModalChooseidentity from "./EventDetail_ModalChooseIdentity";
-import ButtonShareEvent from "./EventDetail_ButtonShareEvent";
-import { apiUrl } from "../../config";
-import { isLocalStorageAvailable } from "../utils/localStorageUtils";
-import { EVENT_DESCRIPTION_BLANK_MESSAGE } from "../utils/constants";
+import ModalChooseidentity from "./ChooseIdentity/ModalChooseIdentity";
+import ButtonShareEvent from "./ShareEvent/ButtonShareEvent";
+import { apiUrl } from "../../../config";
+import { isLocalStorageAvailable } from "../../utils/localStorageUtils";
+import { EVENT_DESCRIPTION_BLANK_MESSAGE } from "../../utils/constants";
 import AddDestination from "./AddDestination/AddDestination";
 
 interface Event {
@@ -205,7 +205,7 @@ const EventDetail = () => {
 
           <hr />
 
-          <AddDestination/>
+          <AddDestination />
 
           {/* Share Event
             - [ ] Générate magic link
