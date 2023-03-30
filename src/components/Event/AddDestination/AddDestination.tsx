@@ -135,21 +135,25 @@ function AddDestination({
         <div></div>
       )}
       <div className="addDestination__wrapper-card">
-        {listDestination.map((dest) => (
-          <div className="card">
-            <div className="card-image">
-              <figure className="image is-128x128">
-                <img
-                  src="https://bulma.io/images/placeholders/128x128.png"
-                  alt="Placeholder image"
-                />
-              </figure>
+        {destinationsList && destinationsList.length > 0 ? (
+          destinationsList.map((destination) => (
+            <div className="card">
+              <div className="card-image">
+                <figure className="image is-128x128">
+                  <img
+                    src="https://bulma.io/images/placeholders/128x128.png"
+                    alt="Placeholder "
+                  />
+                </figure>
+              </div>
+              <div className="card-content">
+                <div className="content">{destination.name}</div>
+              </div>
             </div>
-            <div className="card-content">
-              <div className="content">{dest}</div>
-            </div>
-          </div>
-        ))}
+          ))
+        ) : (
+          <div>No destinations found.</div>
+        )}
       </div>
 
       <form
@@ -170,6 +174,6 @@ function AddDestination({
       </form>
     </div>
   );
-};
+}
 
 export default AddDestination;
