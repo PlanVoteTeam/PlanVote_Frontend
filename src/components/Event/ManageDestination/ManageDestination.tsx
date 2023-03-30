@@ -82,19 +82,6 @@ function ManageDestination({
 
       const data = await response.json();
       setDestinationsList(data.destinations);
-
-      // const destinations = data.destinations;
-      // const lastDestination = destinations[destinations.length - 1];
-
-      // const updatedDestinationsList = [
-      //   ...destinationsList,
-      //   {
-      //     _id: lastDestination._id,
-      //     name: lastDestination.name,
-      //     img: lastDestination.img,
-      //   },
-      // ];
-      // setDestinationsList(updatedDestinationsList);
     } catch (error) {
       console.error(
         "Erreur lors de l'ajout de la destination à l'événement",
