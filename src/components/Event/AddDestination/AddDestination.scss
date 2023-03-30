@@ -1,13 +1,13 @@
 .addDestination {
-    &__wrapper-card {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 12px;
-        justify-content: center;
-        margin-bottom: 16px;
-    }
+  &__wrapper-card {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    margin-bottom: 16px;
+  }
 
-    &__form {
-        margin-bottom: 16px;
-    }
+  &__form {
+    margin-bottom: 16px;
+  }
 }
