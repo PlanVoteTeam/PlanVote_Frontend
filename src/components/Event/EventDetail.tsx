@@ -17,8 +17,15 @@ interface Event {
 }
 
 interface Participant {
-  _id: number;
+  _id: string;
   name: string;
+  destinations: Destination[];
+}
+
+interface Destination {
+  _id: string;
+  name: string;
+  img: string;
 }
 
 const EventDetail = () => {
@@ -31,20 +38,30 @@ const EventDetail = () => {
   const [currentParticipant, setCurrentParticipant] =
     useState<Participant | null>(null);
   const [modalState, setModalState] = useState(true);
+  //Event.destinations
+  const [destinationsList, setDestinationsList] = useState<Destination[]>([]);
+  const [nameDestination, setNameDestination] = useState<string>("");
 
+  // Fetch event data using eventId from params
   useEffect(() => {
-    // Fetch event data using eventId from params
     fetch(apiUrl + `events/${eventId}`, { mode: "cors" })
       .then((blob) => blob.json())
       .then((response) => {
         setEvent(response);
-        setParticipantsList(response.participants);
         setEventDescription(response.description);
+        setParticipantsList(response.participants);
       })
       .catch((error) => {
         console.error(error);
       });
   }, [eventId]);
+
+  // Update destinationList when participantList is updated
+  useEffect(() => {
+    setDestinationsList(
+      participantsList.flatMap((participant) => participant.destinations)
+    );
+  }, [participantsList]);
 
   // Toggle modal
   const toggleModal = () => {
