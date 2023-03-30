@@ -89,11 +89,13 @@ function ManageDescription({
                   onChange={(e) => setEventDescription(e.target.value)}
                 />
               </div>
+
               <div className="control">
                 <button className="button is-primary is-outlined mr-2">
                   Enregistrer
                 </button>
               </div>
+
               <div className="control">
                 <button
                   className="button is-danger is-outlined"
@@ -113,7 +115,7 @@ function ManageDescription({
           >
             {/* If event description is blank, display a message */}
             {event && event.description
-              ? event.description
+              ? "🖋️ " + event.description
               : EVENT_DESCRIPTION_BLANK_MESSAGE}
           </a>
         </div>
