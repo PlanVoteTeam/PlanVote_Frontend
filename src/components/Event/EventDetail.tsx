@@ -22,15 +22,15 @@ interface Participant {
 }
 
 const EventDetail = () => {
+  //Event
   const { eventId } = useParams();
-  // Fetch event data using eventId
-
   const [event, setEvent] = useState<Event | null>(null);
+  const [eventDescription, setEventDescription] = useState("");
+  //Event.participants
   const [participantsList, setParticipantsList] = useState<Participant[]>([]);
   const [currentParticipant, setCurrentParticipant] =
     useState<Participant | null>(null);
   const [modalState, setModalState] = useState(true);
-  const [eventDescription, setEventDescription] = useState("");
 
   useEffect(() => {
     // Fetch event data using eventId from params
