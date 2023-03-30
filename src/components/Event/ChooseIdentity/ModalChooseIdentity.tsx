@@ -69,14 +69,7 @@ const EventDetail_ModalChooseIdentity: React.FC<ModalProps> = ({
       });
 
       const data = await response.json();
-      const participants = data.participants;
-      const lastParticipant = participants[participants.length - 1];
-
-      const updatedParticipantsList = [
-        ...participantsList,
-        { _id: lastParticipant._id, name: lastParticipant.name },
-      ];
-      setParticipantsList(updatedParticipantsList);
+      setParticipantsList(data.participants);
     } catch (error) {
       console.error(
         "Erreur lors de l'ajout du participant à l'événement",
