@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { apiUrl } from "../../../../config";
-import "./AddDestination.scss";
+import "./ManageDestination.scss";
 import { EVENT_ADD_DESTINATION_PLACEHOLDER } from "../../../utils/constants";
 
 interface Participant {
@@ -16,17 +16,17 @@ interface Destination {
   img: string;
 }
 
-interface AddDestinationProps {
+interface ManageDestinationProps {
   eventId: string;
   destinationsList: Destination[];
   setDestinationsList: React.Dispatch<React.SetStateAction<Destination[]>>;
 }
 
-function AddDestination({
+function ManageDestination({
   eventId,
   destinationsList,
   setDestinationsList,
-}: AddDestinationProps) {
+}: ManageDestinationProps) {
   const [nameDestination, setNameDestination] = useState<string>("");
   const [isError, setIsError] = useState<boolean>(false);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -176,4 +176,4 @@ function AddDestination({
   );
 }
 
-export default AddDestination;
+export default ManageDestination;

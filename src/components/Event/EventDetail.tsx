@@ -5,7 +5,7 @@ import ButtonShareEvent from "./ShareEvent/ButtonShareEvent";
 import { apiUrl } from "../../../config";
 import { isLocalStorageAvailable } from "../../utils/localStorageUtils";
 import { EVENT_DESCRIPTION_BLANK_MESSAGE } from "../../utils/constants";
-import AddDestination from "./AddDestination/AddDestination";
+import ManageDestination from "./ManageDestination/ManageDestination";
 import ManageDescription from "./ManageDescription/ManageDescription";
 import LoadingPage from "../LoadingPage";
 
@@ -139,11 +139,11 @@ const EventDetail = () => {
 
           <hr />
 
-          <AddDestination
+          <ManageDestination
             eventId={eventId!}
             destinationsList={destinationsList!}
             setDestinationsList={setDestinationsList}
-          ></AddDestination>
+          ></ManageDestination>
 
           <div className="buttons">
             {/* Choose Identity / Open Modal */}
