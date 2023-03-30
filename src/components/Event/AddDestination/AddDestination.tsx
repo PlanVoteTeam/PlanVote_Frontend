@@ -17,22 +17,6 @@ const AddDestination = () => {
   const [isError, setIsError] = useState<boolean>(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  useEffect(() => {
-    fetch(apiUrl + `events/${eventId}`, { mode: "cors" })
-      .then((blob) => blob.json())
-      .then((response) => {
-        const participants = response.participants;
-        participants.map((participant: { destinations: any }) => {
-          participant.destinations.map((dest: { name: any }) => {
-            listDestination.push(dest.name);
-          });
-        });
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, [eventId]);
-
   const getCurrentParticipantLocalStorage = (): Participant | null => {
     const storedParticipant = localStorage.getItem("currentParticipant");
     if (storedParticipant) {
@@ -48,56 +32,83 @@ const AddDestination = () => {
   const handleSumbit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!nameDestination) {
-      // Set input from blue to pink
-      inputRef.current?.classList.remove("is-primary");
-      inputRef.current?.classList.add("is-link");
-
-      // Set text from blue to pink
-      inputRef.current?.classList.remove("has-text-primary");
-      inputRef.current?.classList.add("has-text-link");
-
+      changeColorInputRefFromBlueToPink();
       return;
     }
 
-    // Reset input from pink to blue
-    inputRef.current?.classList.remove("is-link");
-    inputRef.current?.classList.add("is-primary");
-
-    // Reset text from pink to blue
-    inputRef.current?.classList.remove("has-text-link");
-    inputRef.current?.classList.add("has-text-primary");
+    changeColorInputRefFromPinkToBlue();
 
     const idParticipant = getCurrentParticipantLocalStorage()?._id;
-
     const formData = new URLSearchParams();
     formData.append("name", nameDestination);
     formData.append("img", "image");
+    if (eventId && idParticipant && formData) {
+      addDestinationToEvent(eventId, idParticipant, formData);
+    }
+  };
 
-    fetch(
-      apiUrl + `events/${eventId}/participants/${idParticipant}/destinations`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
-        },
-        body: formData.toString(),
-        mode: "cors",
-      }
-    )
-      .then((response) => response.json())
-      .then((response) => {
-        if (response.sucess === false) {
-          setIsError(true);
-        } else {
-          setIsError(false);
-          const updateListDestination = [...listDestination, nameDestination];
-          setListDestination(updateListDestination);
-          setNameDestination("");
+  // Add new destination to event
+  const addDestinationToEvent = async (
+    eventId: string,
+    participantId: string,
+    formData: URLSearchParams
+  ) => {
+    try {
+      const response = await fetch(
+        apiUrl + `events/${eventId}/participants/${participantId}/destinations`,
+        {
+          mode: "cors",
+          method: "POST",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+          },
+          body: formData.toString(),
         }
-      })
-      .catch((error) => {
-        setIsError(true);
-      });
+      );
+
+      const data = await response.json();
+      setDestinationsList(data.destinations);
+
+      // const destinations = data.destinations;
+      // const lastDestination = destinations[destinations.length - 1];
+
+      // const updatedDestinationsList = [
+      //   ...destinationsList,
+      //   {
+      //     _id: lastDestination._id,
+      //     name: lastDestination.name,
+      //     img: lastDestination.img,
+      //   },
+      // ];
+      // setDestinationsList(updatedDestinationsList);
+    } catch (error) {
+      console.error(
+        "Erreur lors de l'ajout de la destination à l'événement",
+        error
+      );
+    }
+  };
+
+  // change color of inputref to pink
+  const changeColorInputRefFromBlueToPink = () => {
+    // Set input from blue to pink
+    inputRef.current?.classList.remove("is-primary");
+    inputRef.current?.classList.add("is-link");
+
+    // Set text from blue to pink
+    inputRef.current?.classList.remove("has-text-primary");
+    inputRef.current?.classList.add("has-text-link");
+  };
+
+  // change color of inputref to blue
+  const changeColorInputRefFromPinkToBlue = () => {
+    // Set input from blue to pink
+    inputRef.current?.classList.remove("is-primary");
+    inputRef.current?.classList.add("is-link");
+
+    // Set text from blue to pink
+    inputRef.current?.classList.remove("has-text-primary");
+    inputRef.current?.classList.add("has-text-link");
   };
 
   return (
