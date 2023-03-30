@@ -5,14 +5,28 @@ import "./AddDestination.scss";
 import { EVENT_ADD_DESTINATION_PLACEHOLDER } from "../../../utils/constants";
 
 interface Participant {
-  _id: number;
+  _id: string;
   name: string;
+  destinations: Destination[];
 }
 
-const AddDestination = () => {
-  const { eventId } = useParams();
+interface Destination {
+  _id: string;
+  name: string;
+  img: string;
+}
 
-  const [listDestination, setListDestination] = useState<Array<string>>([]);
+interface AddDestinationProps {
+  eventId: string;
+  destinationsList: Destination[];
+  setDestinationsList: React.Dispatch<React.SetStateAction<Destination[]>>;
+}
+
+function AddDestination({
+  eventId,
+  destinationsList,
+  setDestinationsList,
+}: AddDestinationProps) {
   const [nameDestination, setNameDestination] = useState<string>("");
   const [isError, setIsError] = useState<boolean>(false);
   const inputRef = useRef<HTMLInputElement>(null);

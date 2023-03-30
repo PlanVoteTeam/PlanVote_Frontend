@@ -122,7 +122,11 @@ const EventDetail = () => {
 
           <hr />
 
-          <AddDestination />
+          <AddDestination
+            eventId={eventId!}
+            destinationsList={destinationsList!}
+            setDestinationsList={setDestinationsList}
+          ></AddDestination>
 
           <div className="buttons">
             {/* Choose Identity / Open Modal */}
