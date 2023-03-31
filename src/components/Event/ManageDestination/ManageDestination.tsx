@@ -9,12 +9,16 @@ interface ManageDestinationProps {
   eventId: string;
   destinationsList: IDestination[];
   setDestinationsList: React.Dispatch<React.SetStateAction<IDestination[]>>;
+  participantsList: IParticipant[];
+  setParticipantsList: React.Dispatch<React.SetStateAction<IParticipant[]>>;
 }
 
 function ManageDestination({
   eventId,
   destinationsList,
   setDestinationsList,
+  participantsList,
+  setParticipantsList,
 }: ManageDestinationProps) {
   const [nameDestination, setNameDestination] = useState<string>("");
   const [isError, setIsError] = useState<boolean>(false);
@@ -68,9 +72,11 @@ function ManageDestination({
           body: formData.toString(),
         }
       );
+
       const data = await response.json();
+      setParticipantsList(data.participants);
       setDestinationsList(
-        data.participants.flatMap((participant) => participant.destinations)
+        participantsList.flatMap((participant) => participant.destinations)
       );
     } catch (error) {
       console.error(

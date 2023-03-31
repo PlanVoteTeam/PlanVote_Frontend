@@ -125,6 +125,8 @@ const EventDetail = () => {
             eventId={eventId!}
             destinationsList={destinationsList!}
             setDestinationsList={setDestinationsList}
+            participantsList={participantsList!}
+            setParticipantsList={setParticipantsList}
           ></ManageDestination>
 
           <div className="buttons">
