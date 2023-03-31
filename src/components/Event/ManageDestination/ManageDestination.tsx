@@ -68,9 +68,10 @@ function ManageDestination({
           body: formData.toString(),
         }
       );
-
       const data = await response.json();
-      setDestinationsList(data.destinations);
+      setDestinationsList(
+        data.participants.flatMap((participant) => participant.destinations)
+      );
     } catch (error) {
       console.error(
         "Erreur lors de l'ajout de la destination à l'événement",
