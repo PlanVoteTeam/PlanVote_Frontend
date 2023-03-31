@@ -9,7 +9,7 @@ import ManageDestination from "./ManageDestination/ManageDestination";
 import ManageDescription from "./ManageDescription/ManageDescription";
 import LoadingPage from "../LoadingPage";
 
-interface Event {
+interface IEvent {
   _id: string;
   name: string;
   description: string;
@@ -31,7 +31,7 @@ interface Destination {
 const EventDetail = () => {
   //Event
   const { eventId } = useParams();
-  const [event, setEvent] = useState<Event | null>(null);
+  const [event, setEvent] = useState<IEvent | null>(null);
   const [eventDescription, setEventDescription] = useState("");
   //Event.participants
   const [participantsList, setParticipantsList] = useState<Participant[]>([]);
