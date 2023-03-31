@@ -1,10 +1,39 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
 import { apiUrl } from "../../../../config"
+import './Vote.scss';
 
 const Vote = (props) => {
   const { eventId } = useParams()
-  const [isError, setIsError] = useState<boolean>(false);
+  const [destVote, setDestVote] = useState<Array<string>>([]);
+  const [numberStar, setNumberStar] = useState<Array<number>>([1, 2, 3, 4, 5])
+
+  useEffect(() => {
+    if (props.idParticipant !== undefined) {
+      fetch(
+        apiUrl + `events/${eventId}/participants/${props.idParticipant}/votes`,
+        {
+          method: "GET",
+          headers: {
+
+          },
+          mode: "cors"
+        }
+      )
+        .then((response) => response.json())
+        .then((response) => {
+          if (response.length !== 0) {
+            response[0].destinations.map((vote: any) => {
+              destVote.push(vote._id);
+              for (let i = 1; i <= vote.votes.note; i++) {
+                document.getElementById(vote.name + i)?.classList.add('has-text-warning')
+              }
+            })
+          }
+        })
+    }
+
+  }, [props.idParticipant])
 
   const vote = (index: string, idDestination: string) => {
     for (let i = Number(index.slice(-1)); i >= 1; i--) {
@@ -27,53 +56,70 @@ const Vote = (props) => {
     formData.append("participantId", props.idParticipant);
     formData.append("note", index.slice(-1));
 
-    fetch(
-      apiUrl + `events/${eventId}/participants/${idParticipantCreateur}/destinations/${idDestination}/votes`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
-        },
-        body: formData.toString(),
-        mode: "cors",
+    let isNewVote = true;
+    destVote.map((idDestationVote) => {
+      console.log(idDestationVote, idDestination)
+      if (idDestationVote === idDestination) {
+        isNewVote = false;
       }
-    )
-      .then((response) => response.json())
-      .then((response) => {
-        console.log(response)
-      })
-      .catch((error) => {
-        setIsError(true);
-      });
+    })
+
+    if (isNewVote) {
+      fetch(
+        apiUrl + `events/${eventId}/participants/${idParticipantCreateur}/destinations/${idDestination}/votes`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+          },
+          body: formData.toString(),
+          mode: "cors",
+        }
+      )
+        .then((response) => response.json())
+        .then((response) => {
+          destVote.push(idDestination)
+        })
+        .catch((error) => {
+          console.log(error)
+        });
+    }
+    else {
+      fetch(
+        apiUrl + `events/${eventId}/participants/${idParticipantCreateur}/destinations/${idDestination}/votes`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+          },
+          body: formData.toString(),
+          mode: "cors",
+        }
+      )
+        .then((response) => response.json())
+        .then((response) => {
+          console.log(response)
+        })
+        .catch((error) => {
+          console.log(error)
+        });
+    }
+
   }
 
   return (
-    <div>
-      {isError ? (
-        <div className="notification is-danger">
-          Une erreur est survenu, veuillez réessayer plus tard.
-        </div>
-      ) : (
-        <div></div>
-      )}
-
-      <span className="icon-text">
-        <button className="vote_button" id={props.dest.name + "1"} onClick={() => vote(props.dest.name + "1", props.dest._id)} className="icon">
-          <i className="fas fa-star"></i>
-        </button>
-        <button className="vote_button" id={props.dest.name + "2"} onClick={() => vote(props.dest.name + "2", props.dest._id)} className="icon">
-          <i className="fas fa-star"></i>
-        </button>
-        <button className="vote_button" id={props.dest.name + "3"} onClick={() => vote(props.dest.name + "3", props.dest._id)} className="icon">
-          <i className="fas fa-star"></i>
-        </button>
-        <button className="vote_button" id={props.dest.name + "4"} onClick={() => vote(props.dest.name + "4", props.dest._id)} className="icon">
-          <i className="fas fa-star"></i>
-        </button>
-        <button className="vote_button" id={props.dest.name + "5"} onClick={() => vote(props.dest.name + "5", props.dest._id)} className="icon">
-          <i className="fas fa-star"></i>
-        </button>
-      </span>
+    <div key={props.dest._id}>
+      <div className="icon-text">
+        {
+          numberStar.map(star => {
+            return (
+              <button key={props.dest.name + star} className="vote__button icon" id={props.dest.name + star} onClick={() => vote(props.dest.name + star, props.dest._id)}>
+                <i className="fas fa-star"></i>
+              </button>
+            )
+          })
+        }
+      </div>
     </div>
   )
 }

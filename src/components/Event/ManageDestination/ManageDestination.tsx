@@ -4,6 +4,7 @@ import { apiUrl } from "../../../../config";
 import "./ManageDestination.scss";
 import { EVENT_ADD_DESTINATION_PLACEHOLDER } from "../../../utils/constants";
 import { IParticipant, IDestination } from "../../../utils/interface";
+import Vote from "../Vote/Vote";
 
 interface ManageDestinationProps {
   eventId: string;
@@ -11,6 +12,7 @@ interface ManageDestinationProps {
   setDestinationsList: React.Dispatch<React.SetStateAction<IDestination[]>>;
   participantsList: IParticipant[];
   setParticipantsList: React.Dispatch<React.SetStateAction<IParticipant[]>>;
+  idParticipant: string;
 }
 
 function ManageDestination({
@@ -19,6 +21,7 @@ function ManageDestination({
   setDestinationsList,
   participantsList,
   setParticipantsList,
+  idParticipant
 }: ManageDestinationProps) {
   const [nameDestination, setNameDestination] = useState<string>("");
   const [isError, setIsError] = useState<boolean>(false);
@@ -133,6 +136,7 @@ function ManageDestination({
               </div>
               <div className="card-content">
                 <div className="content">{destination.name}</div>
+                <Vote key={destination.name + destination._id} dest={destination} participants={participantsList} idParticipant={idParticipant} />
               </div>
             </div>
           ))
