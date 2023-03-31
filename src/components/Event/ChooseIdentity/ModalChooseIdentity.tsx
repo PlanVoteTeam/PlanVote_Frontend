@@ -32,6 +32,7 @@ const EventDetail_ModalChooseIdentity: React.FC<ModalProps> = ({
   const [showFormAddParticipant, setShowFormAddParticipant] = useState(false);
   const [newParticipant, setNewParticipant] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
+  const [isEdit, setIsEdit] = useState(false);
 
   // Handle form submit to add a new participant
   const handleAddParticipant = (event: React.FormEvent<HTMLFormElement>) => {
@@ -88,6 +89,24 @@ const EventDetail_ModalChooseIdentity: React.FC<ModalProps> = ({
       <div className="modal-card">
         <header className="modal-card-head">
           <p className="modal-card-title">Qui est-tu ? 👀</p>
+          {!isEdit && (
+            <button
+              className="button is-warning is-light is-outlined has-text-warning"
+              onClick={() => setIsEdit(true)}
+            >
+              Éditer
+            </button>
+          )}
+
+          {isEdit && (
+            <button
+              className="button is-danger is-light is-outlined has-text-danger"
+              //onClick={() => setIsEdit(false)}
+              onClick={() => setIsEdit(false)}
+            >
+              Annuler
+            </button>
+          )}
         </header>
         <section className="modal-card-body">
           <div className="content">
