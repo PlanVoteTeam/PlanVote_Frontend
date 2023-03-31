@@ -9,12 +9,16 @@ interface ManageDestinationProps {
   eventId: string;
   destinationsList: IDestination[];
   setDestinationsList: React.Dispatch<React.SetStateAction<IDestination[]>>;
+  participantsList: IParticipant[];
+  setParticipantsList: React.Dispatch<React.SetStateAction<IParticipant[]>>;
 }
 
 function ManageDestination({
   eventId,
   destinationsList,
   setDestinationsList,
+  participantsList,
+  setParticipantsList,
 }: ManageDestinationProps) {
   const [nameDestination, setNameDestination] = useState<string>("");
   const [isError, setIsError] = useState<boolean>(false);
@@ -70,7 +74,12 @@ function ManageDestination({
       );
 
       const data = await response.json();
-      setDestinationsList(data.destinations);
+      setParticipantsList(data.participants);
+      setDestinationsList(
+        participantsList.flatMap((participant) => participant.destinations)
+      );
+
+      setNameDestination("");
     } catch (error) {
       console.error(
         "Erreur lors de l'ajout de la destination à l'événement",
@@ -93,12 +102,12 @@ function ManageDestination({
   // change color of inputref to blue
   const changeColorInputRefFromPinkToBlue = () => {
     // Set input from blue to pink
-    inputRef.current?.classList.remove("is-primary");
-    inputRef.current?.classList.add("is-link");
+    inputRef.current?.classList.remove("is-link");
+    inputRef.current?.classList.add("is-primary");
 
     // Set text from blue to pink
-    inputRef.current?.classList.remove("has-text-primary");
-    inputRef.current?.classList.add("has-text-link");
+    inputRef.current?.classList.remove("has-text-link");
+    inputRef.current?.classList.add("has-text-primary");
   };
 
   return (
