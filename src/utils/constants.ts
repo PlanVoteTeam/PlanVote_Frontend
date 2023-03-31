@@ -1,3 +1,6 @@
+// Message to display when the event name is blank
+export const EVENT_NAME_BLANK_MESSAGE = "🖋️ Donne lui un nom ! ";
+
 // Message to display when the event description is blank
 export const EVENT_DESCRIPTION_BLANK_MESSAGE =
   "🖋️ Met à jour la description maintenant ! ";

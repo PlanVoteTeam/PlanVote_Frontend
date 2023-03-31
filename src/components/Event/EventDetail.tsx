@@ -5,6 +5,7 @@ import ButtonShareEvent from "./ShareEvent/ButtonShareEvent";
 import { apiUrl } from "../../../config";
 import ManageDestination from "./ManageDestination/ManageDestination";
 import ManageDescription from "./ManageDescription/ManageDescription";
+import ManageName from "./ManageName/ManageName";
 import LayoutFooter from "../Layout/LayoutFooter";
 import LoadingPage from "../LoadingPage";
 import { IEvent, IParticipant, IDestination } from "../../utils/interface";
@@ -13,6 +14,7 @@ const EventDetail = () => {
   //Event
   const { eventId } = useParams();
   const [event, setEvent] = useState<IEvent | null>(null);
+  const [eventName, setEventName] = useState("");
   const [eventDescription, setEventDescription] = useState("");
   //Event.participants
   const [participantsList, setParticipantsList] = useState<IParticipant[]>([]);
@@ -29,6 +31,7 @@ const EventDetail = () => {
       .then((blob) => blob.json())
       .then((response) => {
         setEvent(response);
+        setEventName(response.name);
         setEventDescription(response.description);
         setParticipantsList(response.participants);
       })
@@ -76,13 +79,18 @@ const EventDetail = () => {
               </p>
             )}
 
-            {/* Title of page */}
-            <p className="title">
-              <span>Votre évenement : </span>
-              <span className="has-text-primary	is-large is-lowercase">
-                {event.name}
-              </span>
-            </p>
+            {/* Title with edit */}
+            <ManageName
+              eventId={event._id}
+              eventName={event.name}
+              event={event}
+              setEvent={setEvent}
+              setEventName={(name: string) =>
+                setEvent((prevEvent) =>
+                  prevEvent ? { ...prevEvent, name } : prevEvent
+                )
+              }
+            ></ManageName>
 
             {/* Description of event */}
             <ManageDescription
