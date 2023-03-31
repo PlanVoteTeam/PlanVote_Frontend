@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import { apiUrl } from "../../../../config";
 import { getRandomColor } from "../../../utils/utils";
 import { IS_COLOR_EVENT_PARTICIPANT_LIST } from "../../../utils/constants";
-import { IParticipant, IDestination } from "../../../utils/interface";
+import { IParticipant } from "../../../utils/interface";
 
 interface ModalProps {
   closeModal: () => void;
@@ -11,6 +11,9 @@ interface ModalProps {
   participantsList: IParticipant[];
   setParticipantsList: React.Dispatch<React.SetStateAction<IParticipant[]>>;
   handleParticipantChange: (currentParticipant: IParticipant) => void;
+  setCurrentParticipant: React.Dispatch<
+    React.SetStateAction<IParticipant | null>
+  >;
 }
 
 const EventDetail_ModalChooseIdentity: React.FC<ModalProps> = ({
@@ -20,6 +23,7 @@ const EventDetail_ModalChooseIdentity: React.FC<ModalProps> = ({
   participantsList,
   setParticipantsList,
   handleParticipantChange,
+  setCurrentParticipant,
 }) => {
   if (!modalState) {
     return null;
@@ -103,6 +107,7 @@ const EventDetail_ModalChooseIdentity: React.FC<ModalProps> = ({
                       key={participant._id}
                       onClick={() => {
                         handleParticipantChange(participant);
+                        setCurrentParticipant(participant);
                         closeModal();
                       }}
                     >

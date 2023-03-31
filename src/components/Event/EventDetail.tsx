@@ -1,10 +1,8 @@
 import { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import ModalChooseidentity from "./ChooseIdentity/ModalChooseIdentity";
 import ButtonShareEvent from "./ShareEvent/ButtonShareEvent";
 import { apiUrl } from "../../../config";
-import { isLocalStorageAvailable } from "../../utils/localStorageUtils";
-import { EVENT_DESCRIPTION_BLANK_MESSAGE } from "../../utils/constants";
 import ManageDestination from "./ManageDestination/ManageDestination";
 import ManageDescription from "./ManageDescription/ManageDescription";
 import LoadingPage from "../LoadingPage";
@@ -50,31 +48,9 @@ const EventDetail = () => {
     setModalState(!modalState);
   };
 
-  // Add currentParticipant to localStorage
-  function setCurrentParticipantLocalStorage(
-    currentParticipant: IParticipant | null
-  ) {
-    if (isLocalStorageAvailable() && currentParticipant) {
-      localStorage.setItem(
-        "currentParticipant",
-        JSON.stringify(currentParticipant)
-      );
-    }
-  }
-
-  // Get currentParticipant from localStorage
-  function getCurrentParticipantLocalStorage(): IParticipant | null {
-    const storedParticipant = localStorage.getItem("currentParticipant");
-    if (storedParticipant) {
-      return JSON.parse(storedParticipant);
-    }
-    return null;
-  }
-
   // Handle change of currentParticipant
   function handleParticipantChange(currentParticipant: IParticipant) {
     setCurrentParticipant(currentParticipant);
-    setCurrentParticipantLocalStorage(currentParticipant);
   }
 
   // If event is null, display loading
@@ -92,9 +68,9 @@ const EventDetail = () => {
       <div className="container">
         <div className="content">
           {/* Display current participant from local storage */}
-          {getCurrentParticipantLocalStorage() != null && (
+          {currentParticipant != null && (
             <p className="subtitle">
-              Utilisateur courant : {getCurrentParticipantLocalStorage()?.name}
+              Utilisateur courant CODE: {currentParticipant?.name}
             </p>
           )}
 
@@ -123,6 +99,7 @@ const EventDetail = () => {
 
           <ManageDestination
             eventId={eventId!}
+            currentParticipant={currentParticipant}
             destinationsList={destinationsList!}
             setDestinationsList={setDestinationsList}
             participantsList={participantsList!}
@@ -153,6 +130,7 @@ const EventDetail = () => {
         participantsList={participantsList!}
         setParticipantsList={setParticipantsList}
         handleParticipantChange={handleParticipantChange}
+        setCurrentParticipant={setCurrentParticipant}
       ></ModalChooseidentity>
     </section>
   );
