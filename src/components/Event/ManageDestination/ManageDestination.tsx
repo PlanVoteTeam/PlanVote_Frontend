@@ -6,6 +6,7 @@ import { IParticipant, IDestination } from "../../../utils/interface";
 
 interface ManageDestinationProps {
   eventId: string;
+  currentParticipant: IParticipant | null;
   destinationsList: IDestination[];
   setDestinationsList: React.Dispatch<React.SetStateAction<IDestination[]>>;
   participantsList: IParticipant[];
@@ -14,6 +15,7 @@ interface ManageDestinationProps {
 
 function ManageDestination({
   eventId,
+  currentParticipant,
   destinationsList,
   setDestinationsList,
   participantsList,
@@ -22,14 +24,6 @@ function ManageDestination({
   const [nameDestination, setNameDestination] = useState<string>("");
   const [isError, setIsError] = useState<boolean>(false);
   const inputRef = useRef<HTMLInputElement>(null);
-
-  const getCurrentParticipantLocalStorage = (): IParticipant | null => {
-    const storedParticipant = localStorage.getItem("currentParticipant");
-    if (storedParticipant) {
-      return JSON.parse(storedParticipant);
-    }
-    return null;
-  };
 
   const handleChangeEvent = (event: any) => {
     setNameDestination(event.currentTarget.value);
@@ -44,12 +38,14 @@ function ManageDestination({
 
     changeColorInputRefFromPinkToBlue();
 
-    const idParticipant = getCurrentParticipantLocalStorage()?._id;
-    const formData = new URLSearchParams();
-    formData.append("name", nameDestination);
-    formData.append("img", "image");
-    if (eventId && idParticipant && formData) {
-      addDestinationToEvent(eventId, idParticipant, formData);
+    if (currentParticipant != null) {
+      const idParticipant = currentParticipant?._id;
+      const formData = new URLSearchParams();
+      formData.append("name", nameDestination);
+      formData.append("img", "image");
+      if (eventId && idParticipant && formData) {
+        addDestinationToEvent(eventId, idParticipant, formData);
+      }
     }
   };
 
