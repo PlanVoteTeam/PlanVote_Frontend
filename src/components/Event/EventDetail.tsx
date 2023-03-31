@@ -97,14 +97,17 @@ const EventDetail = () => {
 
           <hr />
 
-          <ManageDestination
-            eventId={eventId!}
-            currentParticipant={currentParticipant}
-            destinationsList={destinationsList!}
-            setDestinationsList={setDestinationsList}
-            participantsList={participantsList!}
-            setParticipantsList={setParticipantsList}
-          ></ManageDestination>
+          {currentParticipant && (
+            <ManageDestination
+              eventId={eventId!}
+              currentParticipant={currentParticipant}
+              destinationsList={destinationsList!}
+              setDestinationsList={setDestinationsList}
+              participantsList={participantsList!}
+              setParticipantsList={setParticipantsList}
+              idParticipant={currentParticipant._id}
+            ></ManageDestination>
+          )}
 
           <div className="buttons">
             {/* Choose Identity / Open Modal */}
