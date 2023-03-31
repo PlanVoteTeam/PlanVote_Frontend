@@ -2,15 +2,15 @@ import React, { useState, useRef } from "react";
 import { apiUrl } from "../../../../config";
 import { getRandomColor } from "../../../utils/utils";
 import { IS_COLOR_EVENT_PARTICIPANT_LIST } from "../../../utils/constants";
-import { Participant, Destination } from "../../../utils/interface";
+import { IParticipant, IDestination } from "../../../utils/interface";
 
 interface ModalProps {
   closeModal: () => void;
   modalState: boolean;
   eventId: string;
-  participantsList: Participant[];
-  setParticipantsList: React.Dispatch<React.SetStateAction<Participant[]>>;
-  handleParticipantChange: (currentParticipant: Participant) => void;
+  participantsList: IParticipant[];
+  setParticipantsList: React.Dispatch<React.SetStateAction<IParticipant[]>>;
+  handleParticipantChange: (currentParticipant: IParticipant) => void;
 }
 
 const EventDetail_ModalChooseIdentity: React.FC<ModalProps> = ({
