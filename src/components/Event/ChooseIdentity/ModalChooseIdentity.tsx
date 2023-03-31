@@ -13,8 +13,15 @@ interface ModalProps {
 }
 
 interface Participant {
-  _id: number;
+  _id: string;
   name: string;
+  destinations: Destination[];
+}
+
+interface Destination {
+  _id: string;
+  name: string;
+  img: string;
 }
 
 const EventDetail_ModalChooseIdentity: React.FC<ModalProps> = ({

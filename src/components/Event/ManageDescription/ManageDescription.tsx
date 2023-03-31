@@ -2,7 +2,7 @@ import { useState } from "react";
 import { apiUrl } from "../../../../config";
 import { EVENT_DESCRIPTION_BLANK_MESSAGE } from "../../../utils/constants";
 
-interface Event {
+interface IEvent {
   _id: string;
   name: string;
   description: string;
@@ -10,23 +10,30 @@ interface Event {
 }
 
 interface Participant {
-  _id: number;
+  _id: string;
   name: string;
+  destinations: Destination[];
+}
+
+interface Destination {
+  _id: string;
+  name: string;
+  img: string;
 }
 
 interface ManageDescriptionProps {
   eventId: string;
   eventDescription: string;
-  event: Event | null;
-  setEvent: React.Dispatch<React.SetStateAction<Event | null>>;
+  event: IEvent | null;
+  setEvent?: React.Dispatch<React.SetStateAction<IEvent | null>>;
   setEventDescription: (description: string) => void;
 }
 
 function ManageDescription({
   eventId,
   eventDescription,
-  event,
-  setEvent,
+  event: eventObject,
+  setEvent: setEventFunction,
   setEventDescription,
 }: ManageDescriptionProps) {
   const [isEventDescriptionEditing, setIsEventDescriptionEditing] =
@@ -50,7 +57,11 @@ function ManageDescription({
         );
       }
       const updatedEvent = await response.json();
-      setEvent(updatedEvent);
+
+      if (setEventFunction) {
+        setEventFunction(updatedEvent);
+      }
+
       setEventDescription(updatedEvent.description);
       setIsEventDescriptionEditing(false);
     } catch (error) {
@@ -59,7 +70,7 @@ function ManageDescription({
   }
 
   function handleCancelEditEventDescriptionClick() {
-    if (event?.description) setEventDescription(event.description);
+    if (eventObject?.description) setEventDescription(eventObject.description);
     setIsEventDescriptionEditing(false);
   }
 
@@ -114,8 +125,8 @@ function ManageDescription({
             onClick={handleEditEventDescriptionClick}
           >
             {/* If event description is blank, display a message */}
-            {event && event.description
-              ? "🖋️ " + event.description
+            {eventObject && eventObject.description
+              ? "🖋️ " + eventObject.description
               : EVENT_DESCRIPTION_BLANK_MESSAGE}
           </a>
         </div>

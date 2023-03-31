@@ -5,11 +5,11 @@ import ButtonShareEvent from "./ShareEvent/ButtonShareEvent";
 import { apiUrl } from "../../../config";
 import { isLocalStorageAvailable } from "../../utils/localStorageUtils";
 import { EVENT_DESCRIPTION_BLANK_MESSAGE } from "../../utils/constants";
-import AddDestination from "./AddDestination/AddDestination";
+import ManageDestination from "./ManageDestination/ManageDestination";
 import ManageDescription from "./ManageDescription/ManageDescription";
 import LoadingPage from "../LoadingPage";
 
-interface Event {
+interface IEvent {
   _id: string;
   name: string;
   description: string;
@@ -17,34 +17,51 @@ interface Event {
 }
 
 interface Participant {
-  _id: number;
+  _id: string;
   name: string;
+  destinations: Destination[];
+}
+
+interface Destination {
+  _id: string;
+  name: string;
+  img: string;
 }
 
 const EventDetail = () => {
+  //Event
   const { eventId } = useParams();
-  // Fetch event data using eventId
-
-  const [event, setEvent] = useState<Event | null>(null);
+  const [event, setEvent] = useState<IEvent | null>(null);
+  const [eventDescription, setEventDescription] = useState("");
+  //Event.participants
   const [participantsList, setParticipantsList] = useState<Participant[]>([]);
   const [currentParticipant, setCurrentParticipant] =
     useState<Participant | null>(null);
   const [modalState, setModalState] = useState(true);
-  const [eventDescription, setEventDescription] = useState("");
+  //Event.destinations
+  const [destinationsList, setDestinationsList] = useState<Destination[]>([]);
+  const [nameDestination, setNameDestination] = useState<string>("");
 
+  // Fetch event data using eventId from params
   useEffect(() => {
-    // Fetch event data using eventId from params
     fetch(apiUrl + `events/${eventId}`, { mode: "cors" })
       .then((blob) => blob.json())
       .then((response) => {
         setEvent(response);
-        setParticipantsList(response.participants);
         setEventDescription(response.description);
+        setParticipantsList(response.participants);
       })
       .catch((error) => {
         console.error(error);
       });
   }, [eventId]);
+
+  // Update destinationList when participantList is updated
+  useEffect(() => {
+    setDestinationsList(
+      participantsList.flatMap((participant) => participant.destinations)
+    );
+  }, [participantsList]);
 
   // Toggle modal
   const toggleModal = () => {
@@ -122,7 +139,11 @@ const EventDetail = () => {
 
           <hr />
 
-          <AddDestination />
+          <ManageDestination
+            eventId={eventId!}
+            destinationsList={destinationsList!}
+            setDestinationsList={setDestinationsList}
+          ></ManageDestination>
 
           <div className="buttons">
             {/* Choose Identity / Open Modal */}
