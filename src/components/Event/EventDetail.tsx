@@ -121,13 +121,16 @@ const EventDetail = () => {
 
           <hr />
 
-          <ManageDestination
+          {getCurrentParticipantLocalStorage() != null && (
+            <ManageDestination
             eventId={eventId!}
             destinationsList={destinationsList!}
             setDestinationsList={setDestinationsList}
             participantsList={participantsList!}
             setParticipantsList={setParticipantsList}
+            idParticipant={getCurrentParticipantLocalStorage()?._id}
           ></ManageDestination>
+          )}
 
           <div className="buttons">
             {/* Choose Identity / Open Modal */}

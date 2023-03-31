@@ -1,17 +1,24 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
 import { apiUrl } from "../../../../config"
+import { IDestination, IParticipant } from "../../../utils/interface";
 import './Vote.scss';
 
-const Vote = (props) => {
+interface VoteProps {
+  dest: IDestination,
+  participants:IParticipant[],
+  idParticipant: string 
+}
+
+const Vote = ({dest, participants, idParticipant}: VoteProps) => {
   const { eventId } = useParams()
   const [destVote, setDestVote] = useState<Array<string>>([]);
   const [numberStar, setNumberStar] = useState<Array<number>>([1, 2, 3, 4, 5])
 
   useEffect(() => {
-    if (props.idParticipant !== undefined) {
+    if (idParticipant !== undefined) {
       fetch(
-        apiUrl + `events/${eventId}/participants/${props.idParticipant}/votes`,
+        apiUrl + `events/${eventId}/participants/${idParticipant}/votes`,
         {
           method: "GET",
           headers: {
@@ -33,7 +40,7 @@ const Vote = (props) => {
         })
     }
 
-  }, [props.idParticipant])
+  }, [idParticipant])
 
   const vote = (index: string, idDestination: string) => {
     for (let i = Number(index.slice(-1)); i >= 1; i--) {
@@ -44,7 +51,7 @@ const Vote = (props) => {
     }
 
     let idParticipantCreateur = ''
-    props.participants.map((participant: { destinations: any[]; _id: string; }) => {
+    participants.map((participant: { destinations: any[]; _id: string; }) => {
       participant.destinations.map((dest) => {
         if (dest._id === idDestination) {
           idParticipantCreateur = participant._id
@@ -53,12 +60,11 @@ const Vote = (props) => {
     })
 
     const formData = new URLSearchParams();
-    formData.append("participantId", props.idParticipant);
+    formData.append("participantId", idParticipant);
     formData.append("note", index.slice(-1));
 
     let isNewVote = true;
     destVote.map((idDestationVote) => {
-      console.log(idDestationVote, idDestination)
       if (idDestationVote === idDestination) {
         isNewVote = false;
       }
@@ -108,12 +114,12 @@ const Vote = (props) => {
   }
 
   return (
-    <div key={props.dest._id}>
+    <div key={dest._id}>
       <div className="icon-text">
         {
           numberStar.map(star => {
             return (
-              <button key={props.dest.name + star} className="vote__button icon" id={props.dest.name + star} onClick={() => vote(props.dest.name + star, props.dest._id)}>
+              <button key={dest.name + star} className="vote__button icon" id={dest.name + star} onClick={() => vote(dest.name + star, dest._id)}>
                 <i className="fas fa-star"></i>
               </button>
             )

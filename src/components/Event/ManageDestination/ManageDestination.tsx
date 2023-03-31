@@ -12,7 +12,7 @@ interface ManageDestinationProps {
   setDestinationsList: React.Dispatch<React.SetStateAction<IDestination[]>>;
   participantsList: IParticipant[];
   setParticipantsList: React.Dispatch<React.SetStateAction<IParticipant[]>>;
-  idParticipant: string;
+  idParticipant: string | undefined;
 }
 
 function ManageDestination({
