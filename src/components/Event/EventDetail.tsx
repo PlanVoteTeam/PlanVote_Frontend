@@ -8,25 +8,7 @@ import { EVENT_DESCRIPTION_BLANK_MESSAGE } from "../../utils/constants";
 import ManageDestination from "./ManageDestination/ManageDestination";
 import ManageDescription from "./ManageDescription/ManageDescription";
 import LoadingPage from "../LoadingPage";
-
-interface IEvent {
-  _id: string;
-  name: string;
-  description: string;
-  participants: Participant[];
-}
-
-interface Participant {
-  _id: string;
-  name: string;
-  destinations: Destination[];
-}
-
-interface Destination {
-  _id: string;
-  name: string;
-  img: string;
-}
+import { IEvent, Participant, Destination } from "../../utils/interface";
 
 const EventDetail = () => {
   //Event
