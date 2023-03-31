@@ -117,7 +117,7 @@ function ManageDestination({
       <div className="addDestination__wrapper-card">
         {destinationsList && destinationsList.length > 0 ? (
           destinationsList.map((destination) => (
-            <div className="card">
+            <div className="card" key={destination._id}>
               <div className="card-image">
                 <figure className="image is-128x128">
                   <img
