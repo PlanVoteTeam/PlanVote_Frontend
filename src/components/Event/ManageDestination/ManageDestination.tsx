@@ -78,6 +78,8 @@ function ManageDestination({
       setDestinationsList(
         participantsList.flatMap((participant) => participant.destinations)
       );
+
+      setNameDestination("");
     } catch (error) {
       console.error(
         "Erreur lors de l'ajout de la destination à l'événement",
