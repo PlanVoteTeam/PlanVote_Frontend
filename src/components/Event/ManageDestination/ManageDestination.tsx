@@ -141,7 +141,7 @@ function ManageDestination({
             </div>
           ))
         ) : (
-          <div>No destinations found.</div>
+          <div>Pas encore de destination 😮</div>
         )}
       </div>
 

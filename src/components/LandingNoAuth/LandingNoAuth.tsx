@@ -47,56 +47,52 @@ const LandingNoAuth = () => {
         )}
         <div className="px-5 is-flex is-flex-direction-column is-justify-content-center  landing__wrapper">
           {/* Header */}
-          <h1 className="mb-6 title is-1">
+          {/* <h1 className="mb-6 title is-1">
             Plan
             <span className="has-text-primary	is-large is-lowercase">
               &nbsp;&&nbsp;
             </span>
             Vote
-          </h1>
+          </h1> */}
 
           {/* Titre */}
           <h1 className="mb-5 title is-1 is-black">
             <span>Créer un&nbsp;</span>
-            <span className="has-text-primary	is-large is-lowercase">
-              événement&nbsp;
-            </span>
+            <span className="has-text-primary	is-large">événement&nbsp;</span>
             <span>et invite&nbsp;</span>
-            <span className="has-text-primary	is-large is-lowercase">
-              tes amis&nbsp;
-            </span>
+            <span className="has-text-primary	is-large">tes amis&nbsp;</span>
             <span>pour décider vote prochain rassemblement !</span>
           </h1>
 
           {/* Sous Titre */}
-          <p className="mb-5 content is-medium has-text-weight-light ">
+          <p className="mb-5 content is-medium has-text-weight-light">
             Organiser des vacances entre amis c'est compliqué. C'est pourquoi
-            nous avons conçu Plan & Vote, la solution idéale pour planifier des
-            vacances.
+            nous avons conçu
+            <span className="has-text-primary is-large has-text-weight-semibold	">
+              &nbsp;Plan & Vote
+            </span>
+            , la solution idéale pour planifier des vacances.
           </p>
 
           {/* Form création événement */}
-          <div>
+          <div className="pt-3">
             <div>
               <form
                 className="is-flex is-flex-direction-row"
                 onSubmit={handleSumbit}
               >
                 <input
-                  className="input is-primary mr-3 is-medium"
+                  className="input is-primary mr-3 p-5"
                   type="text"
-                  placeholder="Nom de l'évènement"
+                  placeholder="Nom de l'événement"
                   onChange={handleChangeEvent}
                 ></input>
-                <button
-                  className="button is-primary is-medium text is-small"
-                  type="submit"
-                >
-                  Créez votre évènement
+                <button className="button is-primary p-5" type="submit">
+                  Créer ton événement
                 </button>
               </form>
             </div>
-            <div>Gratuit et sans inscription !</div>
+            <div className="mt-1 ml-1">Gratuit et sans inscription !</div>
           </div>
         </div>
       </div>
