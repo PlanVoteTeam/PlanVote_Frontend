@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import { apiUrl } from "../../../../config";
 import { getRandomColor } from "../../../utils/utils";
 import { IS_COLOR_EVENT_PARTICIPANT_LIST } from "../../../utils/constants";
+import { Participant, Destination } from "../../../utils/interface";
 
 interface ModalProps {
   closeModal: () => void;
@@ -10,18 +11,6 @@ interface ModalProps {
   participantsList: Participant[];
   setParticipantsList: React.Dispatch<React.SetStateAction<Participant[]>>;
   handleParticipantChange: (currentParticipant: Participant) => void;
-}
-
-interface Participant {
-  _id: string;
-  name: string;
-  destinations: Destination[];
-}
-
-interface Destination {
-  _id: string;
-  name: string;
-  img: string;
 }
 
 const EventDetail_ModalChooseIdentity: React.FC<ModalProps> = ({

@@ -3,18 +3,7 @@ import { useParams } from "react-router-dom";
 import { apiUrl } from "../../../../config";
 import "./ManageDestination.scss";
 import { EVENT_ADD_DESTINATION_PLACEHOLDER } from "../../../utils/constants";
-
-interface Participant {
-  _id: string;
-  name: string;
-  destinations: Destination[];
-}
-
-interface Destination {
-  _id: string;
-  name: string;
-  img: string;
-}
+import { Participant, Destination } from "../../../utils/interface";
 
 interface ManageDestinationProps {
   eventId: string;
