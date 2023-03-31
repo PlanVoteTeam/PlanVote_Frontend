@@ -5,6 +5,7 @@ import ButtonShareEvent from "./ShareEvent/ButtonShareEvent";
 import { apiUrl } from "../../../config";
 import ManageDestination from "./ManageDestination/ManageDestination";
 import ManageDescription from "./ManageDescription/ManageDescription";
+import LayoutFooter from "../Layout/LayoutFooter";
 import LoadingPage from "../LoadingPage";
 import { IEvent, IParticipant, IDestination } from "../../utils/interface";
 
@@ -71,6 +72,7 @@ const EventDetail = () => {
           {currentParticipant != null && (
             <p className="subtitle">
               Utilisateur courant CODE: {currentParticipant?.name}
+    <>
             </p>
           )}
 
@@ -136,6 +138,10 @@ const EventDetail = () => {
         setCurrentParticipant={setCurrentParticipant}
       ></ModalChooseidentity>
     </section>
+
+      {/* Footer */}
+      <LayoutFooter />
+    </>
   );
 };
 
