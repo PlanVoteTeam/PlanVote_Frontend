@@ -2,16 +2,16 @@ export interface IEvent {
   _id: string;
   name: string;
   description: string;
-  participants: Participant[];
+  participants: IParticipant[];
 }
 
-export interface Participant {
+export interface IParticipant {
   _id: string;
   name: string;
-  destinations: Destination[];
+  destinations: IDestination[];
 }
 
-export interface Destination {
+export interface IDestination {
   _id: string;
   name: string;
   img: string;

@@ -8,7 +8,7 @@ import { EVENT_DESCRIPTION_BLANK_MESSAGE } from "../../utils/constants";
 import ManageDestination from "./ManageDestination/ManageDestination";
 import ManageDescription from "./ManageDescription/ManageDescription";
 import LoadingPage from "../LoadingPage";
-import { IEvent, Participant, Destination } from "../../utils/interface";
+import { IEvent, IParticipant, IDestination } from "../../utils/interface";
 
 const EventDetail = () => {
   //Event
@@ -16,12 +16,12 @@ const EventDetail = () => {
   const [event, setEvent] = useState<IEvent | null>(null);
   const [eventDescription, setEventDescription] = useState("");
   //Event.participants
-  const [participantsList, setParticipantsList] = useState<Participant[]>([]);
+  const [participantsList, setParticipantsList] = useState<IParticipant[]>([]);
   const [currentParticipant, setCurrentParticipant] =
-    useState<Participant | null>(null);
+    useState<IParticipant | null>(null);
   const [modalState, setModalState] = useState(true);
   //Event.destinations
-  const [destinationsList, setDestinationsList] = useState<Destination[]>([]);
+  const [destinationsList, setDestinationsList] = useState<IDestination[]>([]);
   const [nameDestination, setNameDestination] = useState<string>("");
 
   // Fetch event data using eventId from params
@@ -52,7 +52,7 @@ const EventDetail = () => {
 
   // Add currentParticipant to localStorage
   function setCurrentParticipantLocalStorage(
-    currentParticipant: Participant | null
+    currentParticipant: IParticipant | null
   ) {
     if (isLocalStorageAvailable() && currentParticipant) {
       localStorage.setItem(
@@ -63,7 +63,7 @@ const EventDetail = () => {
   }
 
   // Get currentParticipant from localStorage
-  function getCurrentParticipantLocalStorage(): Participant | null {
+  function getCurrentParticipantLocalStorage(): IParticipant | null {
     const storedParticipant = localStorage.getItem("currentParticipant");
     if (storedParticipant) {
       return JSON.parse(storedParticipant);
@@ -72,7 +72,7 @@ const EventDetail = () => {
   }
 
   // Handle change of currentParticipant
-  function handleParticipantChange(currentParticipant: Participant) {
+  function handleParticipantChange(currentParticipant: IParticipant) {
     setCurrentParticipant(currentParticipant);
     setCurrentParticipantLocalStorage(currentParticipant);
   }

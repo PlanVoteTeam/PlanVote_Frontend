@@ -3,12 +3,12 @@ import { useParams } from "react-router-dom";
 import { apiUrl } from "../../../../config";
 import "./ManageDestination.scss";
 import { EVENT_ADD_DESTINATION_PLACEHOLDER } from "../../../utils/constants";
-import { Participant, Destination } from "../../../utils/interface";
+import { IParticipant, IDestination } from "../../../utils/interface";
 
 interface ManageDestinationProps {
   eventId: string;
-  destinationsList: Destination[];
-  setDestinationsList: React.Dispatch<React.SetStateAction<Destination[]>>;
+  destinationsList: IDestination[];
+  setDestinationsList: React.Dispatch<React.SetStateAction<IDestination[]>>;
 }
 
 function ManageDestination({
@@ -20,7 +20,7 @@ function ManageDestination({
   const [isError, setIsError] = useState<boolean>(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const getCurrentParticipantLocalStorage = (): Participant | null => {
+  const getCurrentParticipantLocalStorage = (): IParticipant | null => {
     const storedParticipant = localStorage.getItem("currentParticipant");
     if (storedParticipant) {
       return JSON.parse(storedParticipant);
