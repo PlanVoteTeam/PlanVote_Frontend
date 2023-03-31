@@ -1,5 +1,4 @@
-import { useEffect, useState, useRef } from "react";
-import { useParams } from "react-router-dom";
+import { useState, useRef } from "react";
 import { apiUrl } from "../../../../config";
 import "./ManageDestination.scss";
 import { EVENT_ADD_DESTINATION_PLACEHOLDER } from "../../../utils/constants";

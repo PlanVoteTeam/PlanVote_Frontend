@@ -1,10 +1,9 @@
 import { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import ModalChooseidentity from "./ChooseIdentity/ModalChooseIdentity";
 import ButtonShareEvent from "./ShareEvent/ButtonShareEvent";
 import { apiUrl } from "../../../config";
 import { isLocalStorageAvailable } from "../../utils/localStorageUtils";
-import { EVENT_DESCRIPTION_BLANK_MESSAGE } from "../../utils/constants";
 import ManageDestination from "./ManageDestination/ManageDestination";
 import ManageDescription from "./ManageDescription/ManageDescription";
 import LoadingPage from "../LoadingPage";
