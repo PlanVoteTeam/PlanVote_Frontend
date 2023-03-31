@@ -47,6 +47,11 @@ const EventDetail_ModalChooseIdentity: React.FC<ModalProps> = ({
     setNewParticipant("");
   };
 
+  // Handle form submit to remove a participant
+  const handleRemoveParticipant = (eventId: string, participantId: string) => {
+    removeParticipantOfEvent(eventId, participantId);
+  };
+
   // change color of inputref from blue to pink
   const changeColorInputRefFromBlueToPink = () => {
     // Set input from blue to pink
@@ -78,6 +83,33 @@ const EventDetail_ModalChooseIdentity: React.FC<ModalProps> = ({
     } catch (error) {
       console.error(
         "Erreur lors de l'ajout du participant à l'événement",
+        error
+      );
+    }
+  };
+
+  // Remove participant of event
+  const removeParticipantOfEvent = async (
+    eventId: string,
+    participantId: string
+  ) => {
+    try {
+      const response = await fetch(
+        apiUrl + `events/${eventId}/participants/${participantId}`,
+        {
+          mode: "cors",
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      const data = await response.json();
+      setParticipantsList(data.participants);
+    } catch (error) {
+      console.error(
+        "Erreur lors de l'exclusion du participant de l'événement",
         error
       );
     }
