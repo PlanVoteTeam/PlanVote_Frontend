@@ -5,6 +5,7 @@ import ButtonShareEvent from "./ShareEvent/ButtonShareEvent";
 import { apiUrl } from "../../../config";
 import ManageDestination from "./ManageDestination/ManageDestination";
 import ManageDescription from "./ManageDescription/ManageDescription";
+import LayoutFooter from "../Layout/LayoutFooter";
 import LoadingPage from "../LoadingPage";
 import { IEvent, IParticipant, IDestination } from "../../utils/interface";
 
@@ -64,78 +65,83 @@ const EventDetail = () => {
   }
 
   return (
-    <section className="section">
-      <div className="container">
-        <div className="content">
-          {/* Display current participant from local storage */}
-          {currentParticipant != null && (
-            <p className="subtitle">
-              Utilisateur courant CODE: {currentParticipant?.name}
+    <>
+      <section className="section">
+        <div className="container">
+          <div className="content">
+            {/* Display current participant from local storage */}
+            {currentParticipant != null && (
+              <p className="subtitle">
+                Utilisateur courant: {currentParticipant?.name}
+              </p>
+            )}
+
+            {/* Title of page */}
+            <p className="title">
+              <span>Votre évenement : </span>
+              <span className="has-text-primary	is-large is-lowercase">
+                {event.name}
+              </span>
             </p>
-          )}
 
-          {/* Title of page */}
-          <p className="title">
-            <span>Votre évenement : </span>
-            <span className="has-text-primary	is-large is-lowercase">
-              {event.name}
-            </span>
-          </p>
+            {/* Description of event */}
+            <ManageDescription
+              eventId={event._id}
+              eventDescription={event.description}
+              event={event}
+              setEvent={setEvent}
+              setEventDescription={(description: string) =>
+                setEvent((prevEvent) =>
+                  prevEvent ? { ...prevEvent, description } : prevEvent
+                )
+              }
+            ></ManageDescription>
 
-          {/* Description of event */}
-          <ManageDescription
-            eventId={event._id}
-            eventDescription={event.description}
-            event={event}
-            setEvent={setEvent}
-            setEventDescription={(description: string) =>
-              setEvent((prevEvent) =>
-                prevEvent ? { ...prevEvent, description } : prevEvent
-              )
-            }
-          ></ManageDescription>
+            <hr />
 
-          <hr />
+            {currentParticipant && (
+              <ManageDestination
+                eventId={eventId!}
+                currentParticipant={currentParticipant}
+                destinationsList={destinationsList!}
+                setDestinationsList={setDestinationsList}
+                participantsList={participantsList!}
+                setParticipantsList={setParticipantsList}
+                idParticipant={currentParticipant._id}
+              ></ManageDestination>
+            )}
 
-          {currentParticipant && (
-            <ManageDestination
-              eventId={eventId!}
-              currentParticipant={currentParticipant}
-              destinationsList={destinationsList!}
-              setDestinationsList={setDestinationsList}
-              participantsList={participantsList!}
-              setParticipantsList={setParticipantsList}
-              idParticipant={currentParticipant._id}
-            ></ManageDestination>
-          )}
+            <div className="buttons">
+              {/* Choose Identity / Open Modal */}
+              <button className="button is-primary" onClick={toggleModal}>
+                Qui es-tu ?
+              </button>
 
-          <div className="buttons">
-            {/* Choose Identity / Open Modal */}
-            <button className="button is-primary" onClick={toggleModal}>
-              Qui es-tu ?
-            </button>
-
-            {/* Share Event
+              {/* Share Event
             - [ ] Générate magic link
             - [ ] Copy To ClipBoard
             - [ ] Share on social media
             */}
-            <ButtonShareEvent eventId={eventId!}></ButtonShareEvent>
+              <ButtonShareEvent eventId={eventId!}></ButtonShareEvent>
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Modal */}
-      <ModalChooseidentity
-        closeModal={toggleModal}
-        modalState={modalState}
-        eventId={eventId!}
-        participantsList={participantsList!}
-        setParticipantsList={setParticipantsList}
-        handleParticipantChange={handleParticipantChange}
-        setCurrentParticipant={setCurrentParticipant}
-      ></ModalChooseidentity>
-    </section>
+        {/* Modal */}
+        <ModalChooseidentity
+          closeModal={toggleModal}
+          modalState={modalState}
+          eventId={eventId!}
+          participantsList={participantsList!}
+          setParticipantsList={setParticipantsList}
+          handleParticipantChange={handleParticipantChange}
+          setCurrentParticipant={setCurrentParticipant}
+        ></ModalChooseidentity>
+      </section>
+
+      {/* Footer */}
+      <LayoutFooter />
+    </>
   );
 };
 

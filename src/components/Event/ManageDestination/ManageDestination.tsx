@@ -22,7 +22,7 @@ function ManageDestination({
   setDestinationsList,
   participantsList,
   setParticipantsList,
-  idParticipant
+  idParticipant,
 }: ManageDestinationProps) {
   const [nameDestination, setNameDestination] = useState<string>("");
   const [isError, setIsError] = useState<boolean>(false);
@@ -131,12 +131,17 @@ function ManageDestination({
               </div>
               <div className="card-content">
                 <div className="content">{destination.name}</div>
-                <Vote key={destination.name + destination._id} dest={destination} participants={participantsList} idParticipant={idParticipant} />
+                <Vote
+                  key={destination.name + destination._id}
+                  dest={destination}
+                  participants={participantsList}
+                  idParticipant={idParticipant}
+                />
               </div>
             </div>
           ))
         ) : (
-          <div>No destinations found.</div>
+          <div>Pas encore de destination 😮</div>
         )}
       </div>
 
