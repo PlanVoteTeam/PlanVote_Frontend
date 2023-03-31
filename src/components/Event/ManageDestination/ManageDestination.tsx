@@ -1,5 +1,4 @@
-import { useEffect, useState, useRef } from "react";
-import { useParams } from "react-router-dom";
+import { useState, useRef } from "react";
 import { apiUrl } from "../../../../config";
 import "./ManageDestination.scss";
 import { EVENT_ADD_DESTINATION_PLACEHOLDER } from "../../../utils/constants";
@@ -8,6 +7,7 @@ import Vote from "../Vote/Vote";
 
 interface ManageDestinationProps {
   eventId: string;
+  currentParticipant: IParticipant | null;
   destinationsList: IDestination[];
   setDestinationsList: React.Dispatch<React.SetStateAction<IDestination[]>>;
   participantsList: IParticipant[];
@@ -17,6 +17,7 @@ interface ManageDestinationProps {
 
 function ManageDestination({
   eventId,
+  currentParticipant,
   destinationsList,
   setDestinationsList,
   participantsList,
@@ -26,14 +27,6 @@ function ManageDestination({
   const [nameDestination, setNameDestination] = useState<string>("");
   const [isError, setIsError] = useState<boolean>(false);
   const inputRef = useRef<HTMLInputElement>(null);
-
-  const getCurrentParticipantLocalStorage = (): IParticipant | null => {
-    const storedParticipant = localStorage.getItem("currentParticipant");
-    if (storedParticipant) {
-      return JSON.parse(storedParticipant);
-    }
-    return null;
-  };
 
   const handleChangeEvent = (event: any) => {
     setNameDestination(event.currentTarget.value);
@@ -48,12 +41,14 @@ function ManageDestination({
 
     changeColorInputRefFromPinkToBlue();
 
-    const idParticipant = getCurrentParticipantLocalStorage()?._id;
-    const formData = new URLSearchParams();
-    formData.append("name", nameDestination);
-    formData.append("img", "image");
-    if (eventId && idParticipant && formData) {
-      addDestinationToEvent(eventId, idParticipant, formData);
+    if (currentParticipant != null) {
+      const idParticipant = currentParticipant?._id;
+      const formData = new URLSearchParams();
+      formData.append("name", nameDestination);
+      formData.append("img", "image");
+      if (eventId && idParticipant && formData) {
+        addDestinationToEvent(eventId, idParticipant, formData);
+      }
     }
   };
 
@@ -125,7 +120,7 @@ function ManageDestination({
       <div className="addDestination__wrapper-card">
         {destinationsList && destinationsList.length > 0 ? (
           destinationsList.map((destination) => (
-            <div className="card">
+            <div className="card" key={destination._id}>
               <div className="card-image">
                 <figure className="image is-128x128">
                   <img

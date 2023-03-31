@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { apiUrl } from "../../../../config";
 import { EVENT_DESCRIPTION_BLANK_MESSAGE } from "../../../utils/constants";
-import { IEvent, IParticipant, IDestination } from "../../../utils/interface";
+import { IEvent } from "../../../utils/interface";
 
 interface ManageDescriptionProps {
   eventId: string;
