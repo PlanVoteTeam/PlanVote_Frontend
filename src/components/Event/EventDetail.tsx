@@ -97,16 +97,16 @@ const EventDetail = () => {
 
           <hr />
 
-          {getCurrentParticipantLocalStorage() != null && (
+          {currentParticipant && (
             <ManageDestination
-            eventId={eventId!}
-            currentParticipant={currentParticipant}
-            destinationsList={destinationsList!}
-            setDestinationsList={setDestinationsList}
-            participantsList={participantsList!}
-            setParticipantsList={setParticipantsList}
-            idParticipant={getCurrentParticipantLocalStorage()?._id}
-          ></ManageDestination>
+              eventId={eventId!}
+              currentParticipant={currentParticipant}
+              destinationsList={destinationsList!}
+              setDestinationsList={setDestinationsList}
+              participantsList={participantsList!}
+              setParticipantsList={setParticipantsList}
+              idParticipant={currentParticipant._id}
+            ></ManageDestination>
           )}
 
           <div className="buttons">
