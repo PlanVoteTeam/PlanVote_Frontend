@@ -189,12 +189,19 @@ const EventDetail_ModalChooseIdentity: React.FC<ModalProps> = ({
 
                 {/* Show button to add a new participant */}
                 {!showFormAddParticipant && (
-                  <button
-                    className="button is-primary is-outlined"
-                    onClick={() => setShowFormAddParticipant(true)}
+                  <div
+                    style={{ marginBottom: "0.5rem" }}
+                    className="field has-addons mr-4"
                   >
-                    +
-                  </button>
+                    <div className="control">
+                      <button
+                        className="button is-primary is-outlined"
+                        onClick={() => setShowFormAddParticipant(true)}
+                      >
+                        +
+                      </button>
+                    </div>
+                  </div>
                 )}
 
                 {/* Show form to add a new participant */}
