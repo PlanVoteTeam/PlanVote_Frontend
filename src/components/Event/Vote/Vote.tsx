@@ -5,9 +5,9 @@ import { IDestination, IParticipant } from "../../../utils/interface";
 import "./Vote.scss";
 
 interface VoteProps {
-  idParticipant: string 
   dest: IDestination;
   participants: IParticipant[];
+  idParticipant: string | undefined;
 }
 
 const Vote = ({ dest, participants, idParticipant }: VoteProps) => {
