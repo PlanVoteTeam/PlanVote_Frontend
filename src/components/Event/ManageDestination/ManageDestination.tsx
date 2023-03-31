@@ -93,12 +93,12 @@ function ManageDestination({
   // change color of inputref to blue
   const changeColorInputRefFromPinkToBlue = () => {
     // Set input from blue to pink
-    inputRef.current?.classList.remove("is-primary");
-    inputRef.current?.classList.add("is-link");
+    inputRef.current?.classList.remove("is-link");
+    inputRef.current?.classList.add("is-primary");
 
     // Set text from blue to pink
-    inputRef.current?.classList.remove("has-text-primary");
-    inputRef.current?.classList.add("has-text-link");
+    inputRef.current?.classList.remove("has-text-link");
+    inputRef.current?.classList.add("has-text-primary");
   };
 
   return (
