@@ -116,22 +116,43 @@ const EventDetail_ModalChooseIdentity: React.FC<ModalProps> = ({
                 {participantsList &&
                   participantsList.length > 0 &&
                   participantsList.map((participant) => (
-                    <button
-                      //className={`button ${getRandomColor()} is-outlined`}
-                      className={`button ${
-                        IS_COLOR_EVENT_PARTICIPANT_LIST
-                          ? getRandomColor()
-                          : "is-primary"
-                      } is-outlined`}
-                      key={participant._id}
-                      onClick={() => {
-                        handleParticipantChange(participant);
-                        setCurrentParticipant(participant);
-                        closeModal();
-                      }}
-                    >
-                      {participant.name}
-                    </button>
+                    <>
+                      <div className="field has-addons mr-4">
+                        <div className="control">
+                          <button
+                            //className={`button ${getRandomColor()} is-outlined`}
+                            className={`button ${
+                              IS_COLOR_EVENT_PARTICIPANT_LIST
+                                ? getRandomColor()
+                                : "is-primary"
+                            } is-outlined`}
+                            key={participant._id}
+                            onClick={() => {
+                              handleParticipantChange(participant);
+                              setCurrentParticipant(participant);
+                              closeModal();
+                            }}
+                          >
+                            {participant.name}
+                          </button>
+                        </div>
+                        {isEdit && (
+                          <div className="control">
+                            <button
+                              className="button is-link is-outlined"
+                              onClick={() => {
+                                handleRemoveParticipant(
+                                  eventId,
+                                  participant._id
+                                );
+                              }}
+                            >
+                              🗑️
+                            </button>
+                          </div>
+                        )}
+                      </div>
+                    </>
                   ))}
 
                 {/* Show button to add a new participant */}
