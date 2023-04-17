@@ -25,7 +25,7 @@ function ManageDestination({
   idParticipant,
 }: ManageDestinationProps) {
   const [nameDestination, setNameDestination] = useState<string>("");
-  const [isError, setIsError] = useState<boolean>(false);
+  const [isError] = useState<boolean>(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleChangeEvent = (event: any) => {

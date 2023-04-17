@@ -12,8 +12,8 @@ interface VoteProps {
 
 const Vote = ({ dest, participants, idParticipant }: VoteProps) => {
   const { eventId } = useParams();
-  const [destVote, setDestVote] = useState<Array<string>>([]);
-  const [numberStar, setNumberStar] = useState<Array<number>>([1, 2, 3, 4, 5]);
+  const [destVote] = useState<Array<string>>([]);
+  const [numberStar] = useState<Array<number>>([1, 2, 3, 4, 5]);
 
   useEffect(() => {
     if (idParticipant !== undefined) {
