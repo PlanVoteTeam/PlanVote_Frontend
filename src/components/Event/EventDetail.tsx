@@ -14,8 +14,8 @@ const EventDetail = () => {
   //Event
   const { eventId } = useParams();
   const [event, setEvent] = useState<IEvent | null>(null);
-  const [eventName, setEventName] = useState("");
-  const [eventDescription, setEventDescription] = useState("");
+  const [, setEventName] = useState("");
+  const [, setEventDescription] = useState("");
   //Event.participants
   const [participantsList, setParticipantsList] = useState<IParticipant[]>([]);
   const [currentParticipant, setCurrentParticipant] =
@@ -23,7 +23,6 @@ const EventDetail = () => {
   const [modalState, setModalState] = useState(true);
   //Event.destinations
   const [destinationsList, setDestinationsList] = useState<IDestination[]>([]);
-  const [nameDestination, setNameDestination] = useState<string>("");
 
   // Fetch event data using eventId from params
   useEffect(() => {
