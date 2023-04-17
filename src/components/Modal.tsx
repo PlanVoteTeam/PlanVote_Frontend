@@ -26,10 +26,7 @@ const Modal: React.FC<ModalProps> = ({
           <button className="delete" onClick={closeModal} />
         </header>
         <section className="modal-card-body">
-          <div className="content">
-            {/* {children} */}
-            Contenu Here
-          </div>
+          <div className="content">Contenu Here</div>
         </section>
         <footer className="modal-card-foot">
           <a className="button" onClick={closeModal}>
