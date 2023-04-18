@@ -1,5 +1,5 @@
 # 🚀 Plan & Vote
-
+[![Code quality ✨](https://github.com/PlanVoteTeam/PlanVote_Frontend/actions/workflows/main-workflow.yml/badge.svg)](https://github.com/PlanVoteTeam/PlanVote_Frontend/actions/workflows/main-workflow.yml)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/ef59391d-76eb-499d-8652-b17c753ad8db/deploy-status)](https://planvote.netlify.app/)
 
 The objective of **_Plan & Vote_** is to help you in the organisation of your holidays by concentrating only on the essentials, namely: participants, places and slots.
