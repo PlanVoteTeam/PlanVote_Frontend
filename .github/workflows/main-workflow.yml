@@ -63,7 +63,7 @@ jobs:
             ${{ runner.os }}-
 
       - name: Build
-        run: yarn run build --if-present
+        run: yarn build
 
   linter:
     needs: install-dependencies
