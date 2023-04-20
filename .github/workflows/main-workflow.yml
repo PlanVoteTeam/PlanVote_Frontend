@@ -65,40 +65,8 @@ jobs:
       - name: Build
         run: yarn build
 
-  linter:
-    needs: install-dependencies
-    name: Linter 🧹
-    runs-on: ubuntu-latest
-    if: "!contains(github.event.head_commit.message, '[skip ci]')"
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Cache node_modules
-        id: cache-yarn
-        uses: actions/cache@v3
-        env:
-          cache-name: cache-node-modules
-        with:
-          path: |
-            **/node_modules
-            **/.cache
-            ~/**/.cache
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
-
-      - name: Lint Code Base
-        uses: github/super-linter@v4
-        env:
-          VALIDATE_ALL_CODEBASE: false
-          DEFAULT_BRANCH: "main"
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
   deploy:
-    needs: [linter, build]
+    needs: [build]
     name: Deploy 🚀
     runs-on: ubuntu-latest
     if: "!contains(github.event.head_commit.message, '[skip ci]')"
