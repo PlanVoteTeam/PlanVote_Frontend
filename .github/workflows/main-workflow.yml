@@ -125,5 +125,8 @@ jobs:
             ${{ runner.os }}-build-
             ${{ runner.os }}-
 
+      - name: Build
+        run: yarn build
+
       - name: Deploy to Netlify
         run: npx netlify-cli deploy --prod
