@@ -108,7 +108,9 @@ function ManageDescription({
           >
             {/* If event description is blank, display a message */}
             {eventObject && eventObject.description
-              ? "🖋️ " + eventObject.description.charAt(0).toUpperCase() + eventObject.description.slice(1)
+              ? "🖋️ " +
+                eventObject.description.charAt(0).toUpperCase() +
+                eventObject.description.slice(1)
               : EVENT_DESCRIPTION_BLANK_MESSAGE}
           </a>
         </div>
