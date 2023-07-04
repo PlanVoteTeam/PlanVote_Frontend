@@ -9,6 +9,8 @@ import ManageName from "./ManageName/ManageName";
 import LayoutFooter from "../Layout/LayoutFooter";
 import LoadingPage from "../LoadingPage";
 import { IEvent, IParticipant, IDestination } from "../../utils/interface";
+import ManageDuration from "./ManageDuration/ManageDuration";
+import "./EventDetail.scss"
 
 const EventDetail = () => {
   //Event
@@ -91,6 +93,7 @@ const EventDetail = () => {
               }
             ></ManageName>
 
+            <div className="is-flex is-justify-content-space-between mobile-desc-dur">
             {/* Description of event */}
             <ManageDescription
               eventId={event._id}
@@ -103,6 +106,24 @@ const EventDetail = () => {
                 )
               }
             ></ManageDescription>
+
+            {/* Duration of event */}
+            <ManageDuration 
+              eventId={event._id} eventDurationMin={event.minDuration} eventDurationMax={event.maxDuration}
+              event={event}
+              setEvent={setEvent}
+              setEventDurationMin={(minDuration: number) =>
+                setEvent((prevEvent) =>
+                  prevEvent ? { ...prevEvent, minDuration } : prevEvent
+                )
+              }
+              setEventDurationMax={(maxDuration: number) =>
+                setEvent((prevEvent) =>
+                  prevEvent ? { ...prevEvent, maxDuration } : prevEvent
+                )
+              }
+            ></ManageDuration>
+            </div>
 
             <hr />
 

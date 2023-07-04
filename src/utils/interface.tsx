@@ -3,6 +3,8 @@ export interface IEvent {
   name: string;
   description: string;
   participants: IParticipant[];
+  minDuration: number;
+  maxDuration: number;
 }
 
 export interface IParticipant {

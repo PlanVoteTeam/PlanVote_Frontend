@@ -43,7 +43,6 @@ function ManageDescription({
       if (setEventFunction) {
         setEventFunction(updatedEvent);
       }
-
       setEventDescription(updatedEvent.description);
       setIsEventDescriptionEditing(false);
     } catch (error) {
@@ -72,8 +71,9 @@ function ManageDescription({
                 handleUpdateDescriptionEvent(eventId, eventDescription);
             }}
           >
-            <div className="field has-addons">
+            <div className="field has-addons is-align-items-flex-end">
               <div className="control">
+                <label>Description de l'évenement </label>
                 <input
                   type="text"
                   className="input is-primary has-text-primary"
@@ -108,7 +108,9 @@ function ManageDescription({
           >
             {/* If event description is blank, display a message */}
             {eventObject && eventObject.description
-              ? "🖋️ " + eventObject.description
+              ? "🖋️ " +
+                eventObject.description.charAt(0).toUpperCase() +
+                eventObject.description.slice(1)
               : EVENT_DESCRIPTION_BLANK_MESSAGE}
           </a>
         </div>
