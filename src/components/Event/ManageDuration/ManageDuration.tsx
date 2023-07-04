@@ -88,7 +88,7 @@ function ManageDuration({
           >
             <div className="field has-addons is-align-items-flex-end">
               <div className="control input-width">
-                <label>Durée min </label>
+                <label>Durée min ➖ </label>
                 <input
                   type="number"
                   className="input is-primary has-text-primary "
@@ -100,7 +100,7 @@ function ManageDuration({
                 />
               </div>
               <div className="control input-width">
-                <label>Durée max </label>
+                <label>Durée max ➕ </label>
                 <input
                   type="number"
                   className="input is-primary has-text-primary"

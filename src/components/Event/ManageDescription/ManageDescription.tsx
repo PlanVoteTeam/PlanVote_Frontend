@@ -73,7 +73,7 @@ function ManageDescription({
           >
             <div className="field has-addons is-align-items-flex-end">
               <div className="control">
-                <label>Destination </label>
+                <label>Description de l'évenement </label>
                 <input
                   type="text"
                   className="input is-primary has-text-primary"

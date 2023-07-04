@@ -120,7 +120,7 @@ const EventDetail_ModalChooseIdentity: React.FC<ModalProps> = ({
       <div className="modal-background" />
       <div className="modal-card">
         <header className="modal-card-head">
-          <p className="modal-card-title">Qui est-tu ? 👀</p>
+          <p className="modal-card-title">Qui es-tu ? 👀</p>
           {!isEdit && (
             <button
               className="button is-warning is-light is-outlined has-text-warning"
