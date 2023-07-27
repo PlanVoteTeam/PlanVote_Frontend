@@ -16,3 +16,7 @@ export const EVENT_ADD_DESTINATION_PLACEHOLDER = "Propose une ville, un pays !";
 
 // Boolean to determine if the event participant list should be colored
 export const IS_COLOR_EVENT_PARTICIPANT_LIST = false;
+// E R R O R S   M E S S A G E S \\
+
+// Destination
+export const REQUIRED_DESTINATION_NAME = "Le nom de la destination est requis";

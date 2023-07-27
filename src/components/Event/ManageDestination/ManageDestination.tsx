@@ -1,7 +1,10 @@
 import { useState, useRef } from "react";
 import { apiUrl } from "../../../../config";
 import "./ManageDestination.scss";
-import { EVENT_ADD_DESTINATION_PLACEHOLDER } from "../../../utils/constants";
+import {
+  REQUIRED_DESTINATION_NAME,
+  EVENT_ADD_DESTINATION_PLACEHOLDER,
+} from "../../../utils/constants";
 import { IParticipant, IDestination } from "../../../utils/interface";
 import Vote from "../Vote/Vote";
 
@@ -26,6 +29,8 @@ function ManageDestination({
 }: ManageDestinationProps) {
   const [nameDestination, setNameDestination] = useState<string>("");
   const [isError] = useState<boolean>(false);
+  const [isErrorForm, setIsErrorFrom] = useState<boolean>(false);
+
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleChangeEvent = (event: any) => {
@@ -36,10 +41,12 @@ function ManageDestination({
     event.preventDefault();
     if (!nameDestination) {
       changeColorInputRefFromBlueToRed();
+      setIsErrorFrom(true);
       return;
     }
 
     changeColorInputRefFromRedToBlue();
+    setIsErrorFrom(false);
 
     if (currentParticipant != null) {
       const idParticipant = currentParticipant?._id;
@@ -122,14 +129,22 @@ function ManageDestination({
         className="is-flex is-flex-direction-row addDestination__form"
         onSubmit={handleSumbit}
       >
-        <input
-          className="input is-primary mr-3"
-          type="text"
-          placeholder={EVENT_ADD_DESTINATION_PLACEHOLDER}
-          value={nameDestination}
-          onChange={handleChangeEvent}
-          ref={inputRef}
-        ></input>
+        <div id="input-container" className="relative">
+          <input
+            className="input is-primary mr-3"
+            type="text"
+            placeholder={EVENT_ADD_DESTINATION_PLACEHOLDER}
+            value={nameDestination}
+            onChange={handleChangeEvent}
+            ref={inputRef}
+          ></input>
+
+          {isErrorForm ? (
+            <span className="has-text-danger is-bold">
+              {REQUIRED_DESTINATION_NAME}
+            </span>
+          ) : null}
+        </div>
         <button className="button is-primary" type="submit">
           Ajouter une destination
         </button>
