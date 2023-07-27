@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { apiUrl } from "../../../../config";
-import { EVENT_DESCRIPTION_BLANK_MESSAGE } from "../../../utils/constants";
+import { EVENT_DURATION_BLANK_MESSAGE } from "../../../utils/constants";
 import { IEvent } from "../../../utils/interface";
 import "./ManageDuration.scss";
 
@@ -138,7 +138,7 @@ function ManageDuration({
                 " à " +
                 eventObject.maxDuration +
                 " jours"
-              : EVENT_DESCRIPTION_BLANK_MESSAGE}
+              : EVENT_DURATION_BLANK_MESSAGE}
           </a>
         </div>
       )}
