@@ -1,7 +1,10 @@
 import React, { useState, useRef } from "react";
 import { apiUrl } from "../../../../config";
 import { getRandomColor } from "../../../utils/utils";
-import { IS_COLOR_EVENT_PARTICIPANT_LIST } from "../../../utils/constants";
+import {
+  EMOJI_EDIT,
+  IS_COLOR_EVENT_PARTICIPANT_LIST,
+} from "../../../utils/constants";
 import { IParticipant } from "../../../utils/interface";
 
 interface ModalProps {
@@ -126,7 +129,7 @@ const EventDetail_ModalChooseIdentity: React.FC<ModalProps> = ({
               className="button is-warning is-light is-outlined has-text-warning"
               onClick={() => setIsEdit(true)}
             >
-              Éditer
+              Éditer {EMOJI_EDIT}
             </button>
           )}
 

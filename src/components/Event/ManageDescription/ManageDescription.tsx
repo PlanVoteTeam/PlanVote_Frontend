@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { apiUrl } from "../../../../config";
-import { EVENT_DESCRIPTION_BLANK_MESSAGE } from "../../../utils/constants";
+import {
+  EVENT_DESCRIPTION_BLANK_MESSAGE,
+  EMOJI_EDIT,
+} from "../../../utils/constants";
 import { IEvent } from "../../../utils/interface";
 
 interface ManageDescriptionProps {
@@ -108,7 +111,8 @@ function ManageDescription({
           >
             {/* If event description is blank, display a message */}
             {eventObject && eventObject.description
-              ? "🖋️ " +
+              ? EMOJI_EDIT +
+                " " +
                 eventObject.description.charAt(0).toUpperCase() +
                 eventObject.description.slice(1)
               : EVENT_DESCRIPTION_BLANK_MESSAGE}
