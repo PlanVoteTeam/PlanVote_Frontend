@@ -117,6 +117,24 @@ function ManageDestination({
       ) : (
         <div></div>
       )}
+
+      <form
+        className="is-flex is-flex-direction-row addDestination__form"
+        onSubmit={handleSumbit}
+      >
+        <input
+          className="input is-primary mr-3"
+          type="text"
+          placeholder={EVENT_ADD_DESTINATION_PLACEHOLDER}
+          value={nameDestination}
+          onChange={handleChangeEvent}
+          ref={inputRef}
+        ></input>
+        <button className="button is-primary" type="submit">
+          Ajouter une destination
+        </button>
+      </form>
+
       <div className="addDestination__wrapper-card">
         {destinationsList && destinationsList.length > 0 ? (
           destinationsList.map((destination) => (
@@ -144,23 +162,6 @@ function ManageDestination({
           <div>Pas encore de destination 😮</div>
         )}
       </div>
-
-      <form
-        className="is-flex is-flex-direction-row addDestination__form"
-        onSubmit={handleSumbit}
-      >
-        <input
-          className="input is-primary mr-3"
-          type="text"
-          placeholder={EVENT_ADD_DESTINATION_PLACEHOLDER}
-          value={nameDestination}
-          onChange={handleChangeEvent}
-          ref={inputRef}
-        ></input>
-        <button className="button is-primary" type="submit">
-          Ajouter une destination
-        </button>
-      </form>
     </div>
   );
 }
