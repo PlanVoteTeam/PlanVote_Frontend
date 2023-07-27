@@ -5,7 +5,10 @@ $blue-200: #c0d6df;
 $blue-300: #166088;
 $black: #191919;
 
-html, body, #root, #root>div {
+html,
+body,
+#root,
+#root > div {
   height: 100%;
   // font-family: "Poppins" ;
   color: $black;
