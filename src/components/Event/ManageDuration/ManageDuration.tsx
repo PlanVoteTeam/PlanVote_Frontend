@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { apiUrl } from "../../../../config";
-import { EVENT_DESCRIPTION_BLANK_MESSAGE } from "../../../utils/constants";
+import {
+  EMOJI_EDIT,
+  EVENT_DURATION_BLANK_MESSAGE,
+} from "../../../utils/constants";
 import { IEvent } from "../../../utils/interface";
 import "./ManageDuration.scss";
 
@@ -133,12 +136,13 @@ function ManageDuration({
           <a className="subtitle mt-5" onClick={handleEditEventDurationClick}>
             {/* If event description is blank, display a message */}
             {eventObject && eventObject.minDuration && eventObject.maxDuration
-              ? "🖋️ Durée du voyage : " +
+              ? "Durée du voyage : " +
                 eventObject.minDuration +
                 " à " +
                 eventObject.maxDuration +
-                " jours"
-              : EVENT_DESCRIPTION_BLANK_MESSAGE}
+                " jours " +
+                EMOJI_EDIT
+              : EVENT_DURATION_BLANK_MESSAGE}
           </a>
         </div>
       )}

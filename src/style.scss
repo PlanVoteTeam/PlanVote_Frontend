@@ -5,7 +5,10 @@ $blue-200: #c0d6df;
 $blue-300: #166088;
 $black: #191919;
 
-html, body, #root, #root>div {
+html,
+body,
+#root,
+#root > div {
   height: 100%;
   // font-family: "Poppins" ;
   color: $black;
@@ -14,6 +17,7 @@ html, body, #root, #root>div {
 // Set your brand colors
 $blue: #73a9df;
 $purple: #8a4d76;
+$red: #e74c3c;
 $pink: #fa7c91;
 $brown: #757763;
 $beige-light: #d0d1cd;
@@ -23,8 +27,9 @@ $beige-lighter: #eff0eb;
 $grey-dark: $brown;
 $grey-light: $beige-light;
 $primary: $blue-300;
-$warning: #fcd21c;
+$warning: #c3920b;
 $link: $pink;
+$danger: $red;
 
 // Update some of Bulma's component variables
 $input-border-color: transparent;

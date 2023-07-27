@@ -1,7 +1,10 @@
 import { useState, useRef } from "react";
 import { apiUrl } from "../../../../config";
 import "./ManageDestination.scss";
-import { EVENT_ADD_DESTINATION_PLACEHOLDER } from "../../../utils/constants";
+import {
+  REQUIRED_DESTINATION_NAME,
+  EVENT_ADD_DESTINATION_PLACEHOLDER,
+} from "../../../utils/constants";
 import { IParticipant, IDestination } from "../../../utils/interface";
 import Vote from "../Vote/Vote";
 
@@ -26,6 +29,8 @@ function ManageDestination({
 }: ManageDestinationProps) {
   const [nameDestination, setNameDestination] = useState<string>("");
   const [isError] = useState<boolean>(false);
+  const [isErrorForm, setIsErrorFrom] = useState<boolean>(false);
+
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleChangeEvent = (event: any) => {
@@ -35,11 +40,13 @@ function ManageDestination({
   const handleSumbit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!nameDestination) {
-      changeColorInputRefFromBlueToPink();
+      changeColorInputRefFromBlueToRed();
+      setIsErrorFrom(true);
       return;
     }
 
-    changeColorInputRefFromPinkToBlue();
+    changeColorInputRefFromRedToBlue();
+    setIsErrorFrom(false);
 
     if (currentParticipant != null) {
       const idParticipant = currentParticipant?._id;
@@ -86,25 +93,25 @@ function ManageDestination({
     }
   };
 
-  // change color of inputref to pink
-  const changeColorInputRefFromBlueToPink = () => {
-    // Set input from blue to pink
+  // change color of inputref to red
+  const changeColorInputRefFromBlueToRed = () => {
+    // Set input from blue to red
     inputRef.current?.classList.remove("is-primary");
-    inputRef.current?.classList.add("is-link");
+    inputRef.current?.classList.add("is-danger");
 
-    // Set text from blue to pink
+    // Set text from blue to red
     inputRef.current?.classList.remove("has-text-primary");
-    inputRef.current?.classList.add("has-text-link");
+    inputRef.current?.classList.add("has-text-danger");
   };
 
   // change color of inputref to blue
-  const changeColorInputRefFromPinkToBlue = () => {
-    // Set input from blue to pink
-    inputRef.current?.classList.remove("is-link");
+  const changeColorInputRefFromRedToBlue = () => {
+    // Set input from blue to red
+    inputRef.current?.classList.remove("is-danger");
     inputRef.current?.classList.add("is-primary");
 
-    // Set text from blue to pink
-    inputRef.current?.classList.remove("has-text-link");
+    // Set text from blue to red
+    inputRef.current?.classList.remove("has-text-danger");
     inputRef.current?.classList.add("has-text-primary");
   };
 
@@ -117,6 +124,32 @@ function ManageDestination({
       ) : (
         <div></div>
       )}
+
+      <form
+        className="is-flex is-flex-direction-row addDestination__form"
+        onSubmit={handleSumbit}
+      >
+        <div id="input-container" className="relative">
+          <input
+            className="input is-primary mr-3"
+            type="text"
+            placeholder={EVENT_ADD_DESTINATION_PLACEHOLDER}
+            value={nameDestination}
+            onChange={handleChangeEvent}
+            ref={inputRef}
+          ></input>
+
+          {isErrorForm ? (
+            <span className="has-text-danger is-bold">
+              {REQUIRED_DESTINATION_NAME}
+            </span>
+          ) : null}
+        </div>
+        <button className="button is-primary" type="submit">
+          Ajouter une destination
+        </button>
+      </form>
+
       <div className="addDestination__wrapper-card">
         {destinationsList && destinationsList.length > 0 ? (
           destinationsList.map((destination) => (
@@ -144,23 +177,6 @@ function ManageDestination({
           <div>Pas encore de destination 😮</div>
         )}
       </div>
-
-      <form
-        className="is-flex is-flex-direction-row addDestination__form"
-        onSubmit={handleSumbit}
-      >
-        <input
-          className="input is-primary mr-3"
-          type="text"
-          placeholder={EVENT_ADD_DESTINATION_PLACEHOLDER}
-          value={nameDestination}
-          onChange={handleChangeEvent}
-          ref={inputRef}
-        ></input>
-        <button className="button is-primary" type="submit">
-          Ajouter une destination
-        </button>
-      </form>
     </div>
   );
 }
