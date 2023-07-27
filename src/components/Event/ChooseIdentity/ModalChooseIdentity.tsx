@@ -41,7 +41,7 @@ const EventDetail_ModalChooseIdentity: React.FC<ModalProps> = ({
   const handleAddParticipant = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!newParticipant) {
-      changeColorInputRefFromBlueToPink();
+      changeColorInputRefFromBlueToRed();
       return;
     }
     // Call addParticipantToEvent function with event ID and newParticipant value
@@ -55,15 +55,15 @@ const EventDetail_ModalChooseIdentity: React.FC<ModalProps> = ({
     removeParticipantOfEvent(eventId, participantId);
   };
 
-  // change color of inputref from blue to pink
-  const changeColorInputRefFromBlueToPink = () => {
-    // Set input from blue to pink
+  // change color of inputref from blue to red
+  const changeColorInputRefFromBlueToRed = () => {
+    // Set input from blue to red
     inputRef.current?.classList.remove("is-primary");
-    inputRef.current?.classList.add("is-link");
+    inputRef.current?.classList.add("is-danger");
 
-    // Set text from blue to pink
+    // Set text from blue to red
     inputRef.current?.classList.remove("has-text-primary");
-    inputRef.current?.classList.add("has-text-link");
+    inputRef.current?.classList.add("has-text-danger");
   };
 
   // Add new participant to event
