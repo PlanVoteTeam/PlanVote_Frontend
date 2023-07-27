@@ -90,21 +90,21 @@ function ManageDestination({
   const changeColorInputRefFromBlueToPink = () => {
     // Set input from blue to pink
     inputRef.current?.classList.remove("is-primary");
-    inputRef.current?.classList.add("is-link");
+    inputRef.current?.classList.add("is-danger");
 
     // Set text from blue to pink
     inputRef.current?.classList.remove("has-text-primary");
-    inputRef.current?.classList.add("has-text-link");
+    inputRef.current?.classList.add("has-text-danger");
   };
 
   // change color of inputref to blue
   const changeColorInputRefFromPinkToBlue = () => {
     // Set input from blue to pink
-    inputRef.current?.classList.remove("is-link");
+    inputRef.current?.classList.remove("is-danger");
     inputRef.current?.classList.add("is-primary");
 
     // Set text from blue to pink
-    inputRef.current?.classList.remove("has-text-link");
+    inputRef.current?.classList.remove("has-text-danger");
     inputRef.current?.classList.add("has-text-primary");
   };
 

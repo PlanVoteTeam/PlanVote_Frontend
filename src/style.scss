@@ -14,6 +14,7 @@ html, body, #root, #root>div {
 // Set your brand colors
 $blue: #73a9df;
 $purple: #8a4d76;
+$red: #e74c3c;
 $pink: #fa7c91;
 $brown: #757763;
 $beige-light: #d0d1cd;
@@ -25,6 +26,7 @@ $grey-light: $beige-light;
 $primary: $blue-300;
 $warning: #fcd21c;
 $link: $pink;
+$danger: $red;
 
 // Update some of Bulma's component variables
 $input-border-color: transparent;
