@@ -35,11 +35,11 @@ function ManageDestination({
   const handleSumbit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!nameDestination) {
-      changeColorInputRefFromBlueToPink();
+      changeColorInputRefFromBlueToRed();
       return;
     }
 
-    changeColorInputRefFromPinkToBlue();
+    changeColorInputRefFromRedToBlue();
 
     if (currentParticipant != null) {
       const idParticipant = currentParticipant?._id;
@@ -86,24 +86,24 @@ function ManageDestination({
     }
   };
 
-  // change color of inputref to pink
-  const changeColorInputRefFromBlueToPink = () => {
-    // Set input from blue to pink
+  // change color of inputref to red
+  const changeColorInputRefFromBlueToRed = () => {
+    // Set input from blue to red
     inputRef.current?.classList.remove("is-primary");
     inputRef.current?.classList.add("is-danger");
 
-    // Set text from blue to pink
+    // Set text from blue to red
     inputRef.current?.classList.remove("has-text-primary");
     inputRef.current?.classList.add("has-text-danger");
   };
 
   // change color of inputref to blue
-  const changeColorInputRefFromPinkToBlue = () => {
-    // Set input from blue to pink
+  const changeColorInputRefFromRedToBlue = () => {
+    // Set input from blue to red
     inputRef.current?.classList.remove("is-danger");
     inputRef.current?.classList.add("is-primary");
 
-    // Set text from blue to pink
+    // Set text from blue to red
     inputRef.current?.classList.remove("has-text-danger");
     inputRef.current?.classList.add("has-text-primary");
   };
