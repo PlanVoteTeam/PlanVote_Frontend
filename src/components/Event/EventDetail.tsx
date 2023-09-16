@@ -109,17 +109,12 @@ const EventDetail = () => {
 
             {/* Duration of event */}
             <ManageDuration 
-              eventId={event._id} eventDurationMin={event.minDuration} eventDurationMax={event.maxDuration}
+              eventId={event._id} eventDuration={event.minDuration}
               event={event}
               setEvent={setEvent}
-              setEventDurationMin={(minDuration: number) =>
+              setEventDuration={(minDuration: number) =>
                 setEvent((prevEvent) =>
                   prevEvent ? { ...prevEvent, minDuration } : prevEvent
-                )
-              }
-              setEventDurationMax={(maxDuration: number) =>
-                setEvent((prevEvent) =>
-                  prevEvent ? { ...prevEvent, maxDuration } : prevEvent
                 )
               }
             ></ManageDuration>

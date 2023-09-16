@@ -9,29 +9,24 @@ import "./ManageDuration.scss";
 
 interface ManageDurationProps {
   eventId: string;
-  eventDurationMin: number;
-  eventDurationMax: number;
+  eventDuration: number;
   event: IEvent | null;
   setEvent?: React.Dispatch<React.SetStateAction<IEvent | null>>;
-  setEventDurationMin: (min: number) => void;
-  setEventDurationMax: (max: number) => void;
+  setEventDuration: (max: number) => void;
 }
 
 function ManageDuration({
   eventId,
-  eventDurationMin,
-  eventDurationMax,
+  eventDuration,
   event: eventObject,
   setEvent: setEventFunction,
-  setEventDurationMax,
-  setEventDurationMin,
+  setEventDuration,
 }: ManageDurationProps) {
   const [isEventDurationEditing, setIsEventDurationEditing] = useState(false);
 
   async function handleUpdateDurationEvent(
     eventId: string,
-    minDuration: number,
-    maxDuration: number
+    duration: number
   ) {
     try {
       const response = await fetch(apiUrl + `events/${eventId}`, {
@@ -40,8 +35,8 @@ function ManageDuration({
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          minDuration: minDuration,
-          maxDuration: maxDuration,
+          minDuration: duration,
+          maxDuration: duration,
         }),
       });
       if (!response.ok) {
@@ -56,8 +51,7 @@ function ManageDuration({
         setEventFunction(updatedEvent);
       }
 
-      setEventDurationMin(updatedEvent.minDuration);
-      setEventDurationMax(updatedEvent.maxDuration);
+      setEventDuration(updatedEvent.minDuration);
       setIsEventDurationEditing(false);
     } catch (error) {
       console.error(error);
@@ -65,8 +59,7 @@ function ManageDuration({
   }
 
   function handleCancelEditEventDurationClick() {
-    if (eventObject?.minDuration) setEventDurationMin(eventObject.minDuration);
-    if (eventObject?.maxDuration) setEventDurationMax(eventObject.maxDuration);
+    if (eventObject?.minDuration) setEventDuration(eventObject.minDuration);
     setIsEventDurationEditing(false);
   }
 
@@ -84,33 +77,20 @@ function ManageDuration({
               if (eventId)
                 handleUpdateDurationEvent(
                   eventId,
-                  eventDurationMin,
-                  eventDurationMax
+                  eventDuration,
                 );
             }}
           >
             <div className="field has-addons is-align-items-flex-end">
               <div className="control input-width">
-                <label>Durée min ➖ </label>
+                <label>Durée du séjour </label>
                 <input
                   type="number"
                   className="input is-primary has-text-primary "
                   autoFocus
-                  value={eventDurationMin}
+                  value={eventDuration}
                   onChange={(e) =>
-                    setEventDurationMin(parseInt(e.target.value))
-                  }
-                />
-              </div>
-              <div className="control input-width">
-                <label>Durée max ➕ </label>
-                <input
-                  type="number"
-                  className="input is-primary has-text-primary"
-                  autoFocus
-                  value={eventDurationMax}
-                  onChange={(e) =>
-                    setEventDurationMax(parseInt(e.target.value))
+                    setEventDuration(parseInt(e.target.value))
                   }
                 />
               </div>
@@ -135,11 +115,9 @@ function ManageDuration({
         <div>
           <a className="subtitle mt-5" onClick={handleEditEventDurationClick}>
             {/* If event description is blank, display a message */}
-            {eventObject && eventObject.minDuration && eventObject.maxDuration
-              ? "Durée du voyage : " +
+            {eventObject && eventObject.minDuration
+              ? "Durée du séjour : " +
                 eventObject.minDuration +
-                " à " +
-                eventObject.maxDuration +
                 " jours " +
                 EMOJI_EDIT
               : EVENT_DURATION_BLANK_MESSAGE}
