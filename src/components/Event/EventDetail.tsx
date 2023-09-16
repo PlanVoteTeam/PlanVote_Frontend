@@ -11,6 +11,7 @@ import LoadingPage from "../LoadingPage";
 import { IEvent, IParticipant, IDestination } from "../../utils/interface";
 import ManageDuration from "./ManageDuration/ManageDuration";
 import "./EventDetail.scss"
+import Creneau from "./Creneau/Creneau";
 
 const EventDetail = () => {
   //Event
@@ -121,7 +122,7 @@ const EventDetail = () => {
             </div>
 
             <hr />
-
+            <div className="wrapperCreneauDest">
             {currentParticipant && (
               <ManageDestination
                 eventId={eventId!}
@@ -133,6 +134,12 @@ const EventDetail = () => {
                 idParticipant={currentParticipant._id}
               ></ManageDestination>
             )}
+
+            {currentParticipant && (
+              <Creneau eventId={eventId!} participantId={currentParticipant._id}></Creneau>
+            )}
+
+            </div>
 
             <div className="buttons">
               {/* Choose Identity / Open Modal */}
