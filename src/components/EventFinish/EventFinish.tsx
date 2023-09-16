@@ -1,12 +1,13 @@
 
 import { useEffect, useState } from "react";
 import "./EventFinish.scss";
-import { useParams } from "react-router";
+import { useLocation, useParams } from "react-router";
 import { apiUrl } from "../../../config";
 import { Calendar } from "react-multi-date-picker";
 
 const EventFinish = () => {
 
+    const location = useLocation()
     const { eventId } = useParams();
 
     const [bestDestinations, setBestDestination] = useState()
@@ -14,6 +15,31 @@ const EventFinish = () => {
 
     useEffect(() => {
         console.log(eventId)
+        console.log(location.state)
+        if(location.state.step._id !== undefined) {
+            const stepId = location.state.step._id
+            fetch(apiUrl + `events/${eventId}/steps/${stepId}`, 
+                {
+                    method: "GET",
+                    headers: {},
+                    mode: "cors",
+                }
+            )
+            .then((response) => response.json())
+            .then((reponse) => {
+                console.log('ici',reponse)
+                setBestDestination(reponse.bestDestinations)
+                console.log(reponse.glidingWindows[0].windows)
+                setBestDate(reponse.glidingWindows[0].windows)
+            })
+        }
+        else {
+            refresh()
+        }
+    }, [eventId])
+
+
+    function refresh() {
         fetch(apiUrl + `events/${eventId}/steps`, 
         {
             method: "POST",
@@ -28,9 +54,8 @@ const EventFinish = () => {
             setBestDestination(reponse.bestDestinations)
             console.log(reponse.glidingWindows[0].windows)
             setBestDate(reponse.glidingWindows[0].windows)
-
         })
-    }, [eventId])
+    }
 
   return (
     <div>
@@ -55,6 +80,7 @@ const EventFinish = () => {
             })
             : ""
         }
+        <button className="button is-primary" onClick={refresh}>Mise à jour</button>
     </div>
   );
 };

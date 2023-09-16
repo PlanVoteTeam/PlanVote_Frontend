@@ -66,7 +66,8 @@ const EventDetail = () => {
   }
 
   function finish() {
-    navigate("/events/finish/" + eventId);
+    navigate("/events/finish/" + eventId, {state: event
+    });
   }
 
   // If event is null, display loading
