@@ -27,12 +27,24 @@ const Vote = ({ dest, participants, idParticipant }: VoteProps) => {
           if (response.length !== 0) {
             response[0].destinations.map((vote: any) => {
               destVote.push(vote._id);
+              for (let i = 1; i <= numberStar.length; i++) {
+                document
+                .getElementById(vote.name + i)
+                ?.classList.remove("has-text-warning");
+              }
               for (let i = 1; i <= vote.votes.note; i++) {
                 document
                   .getElementById(vote.name + i)
                   ?.classList.add("has-text-warning");
               }
             });
+          }
+          else {
+            for (let i = 1; i <= numberStar.length; i++) {
+              document
+              .getElementById(dest.name + i)
+              ?.classList.remove("has-text-warning");
+            }
           }
         });
     }
