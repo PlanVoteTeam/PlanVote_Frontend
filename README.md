@@ -1,4 +1,5 @@
 # 🚀 Plan & Vote
+
 [![Code quality ✨](https://github.com/PlanVoteTeam/PlanVote_Frontend/actions/workflows/main-workflow.yml/badge.svg)](https://github.com/PlanVoteTeam/PlanVote_Frontend/actions/workflows/main-workflow.yml)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/ef59391d-76eb-499d-8652-b17c753ad8db/deploy-status)](https://planvote.netlify.app/)
 
@@ -12,69 +13,86 @@ This project aims to validate our final study project.
 #
 
 ## 📒 `User Guide - en`
-This guide aims to assist you in creating and managing your first events on our "Plan & Vote" app, making group vacation planning easier and more efficient.
+
+This guide will help you easily create and manage your first events on our "Plan & Vote" app, optimizing your group vacations.
 
 ### 1 - Create an Event
 
-#### 1.1 - Define a ***Title***
+#### 1.1 - Define a **_Title_**
 
-Provide a catchy title for your event so it's easily identifiable by you and other participants.
+Give your event a title to make it easily identifiable by you and other participants.
 
-🖼️ *Image showing where and how to add a title.*
+![Define Title](docs/images/define_title.png)
 
-#### 1.2 - Provide a ***Description***
+#### 1.2 - Add **_Participants_**
+
+Add participants by entering their first names or nicknames.
+
+![Add Participant](docs/images/add_participant.png)
+
+#### 1.3 - Identify Yourself
+
+Specify who you are so that you can perform actions on the event.
+
+![Choose Participant](docs/images/choose_participant.png)
+
+#### 1.4 - Define a **_Description_**
 
 Add a brief description to give participants an idea of what the event is about.
 
-🖼️ *Image showing where and how to add a description.*
+![Define Description](docs/images/define_description.png)
 
-#### 1.3 - Add ***Participants***
+#### 1.5 - Define a **_Duration_**
 
-Invite participants by entering their email addresses or selecting them from your contacts.
+Add a duration to give participants an idea of how long the event will last.
 
-🖼️ *Image showing where and how to add participants.*
+![Define Duration](docs/images/define_duration.png)
 
-#### 1.4 - ***Share*** the Event
+#### 1.6 - **_Share_** the Event
 
-Share the event link with participants via social media or email.
+Copy and share the event link with other participants.
 
-🖼️ *Image showing where and how to share the event.*
+![Share Event](docs/images/share_event.png)
+
+#### 1.7 - **_Delete_** a Participant
+
+Copy and share the event link with other participants.
+
+![Delete Participant](docs/images/delete_participant.png)
 
 ### 2 - Interact with the Event
 
-#### 2.1 - Add More ***Participants***
-
-You can continue to add participants even after the event has been created.
-
-🖼️ *Image showing how to add more participants.*
-
-#### 2.2 - Add a ***Destination***
+#### 2.1 - Add a **_Destination_**
 
 Suggest various destinations and invite participants to vote for their favorites.
 
-🖼️ *Image showing where and how to add a destination.*
+![Add Destination](docs/images/add_destination.png)
 
-#### 2.3 - Add a ***Time Slot***
+#### 2.2 - Vote for Each **_Destination_**
 
-Specify your available time slots and invite participants to do the same to find the most suitable time for everyone.
+Vote for each suggested destination.
 
-🖼️ *Image showing where and how to add a time slot.*
+![Vote Destination](docs/images/vote_destination.png)
+
+#### 2.3 - Add a **_Time Slot_**
+
+Indicate your availability and invite participants to do the same to find the best time for everyone.
+
+![Add Time Slot](docs/images/add_creneau.png)
 
 ### 3 - View the Results
 
-#### 3.1 - View the Best ***Destination***
+#### 3.1 - View the Best **_Destination_**
 
-The system displays the top 3 destinations with the most votes to make your final choice easier.
+The system displays the top 3 destinations that received the most votes to facilitate your final choice.
 
-🖼️ *Image showing where and how to view the top 3 destinations.*
+![Display Best Destination](docs/images/display_best_creneau.png)
 
-#### 3.2 - View the Best ***Time Slot***
+#### 3.2 - View the Best **_Time Slot_**
 
-Find out the most convenient time slots for the group by viewing the top 3 time slots that received the most votes.
+Find out which time slots are most suitable for the group by looking at the top 3 time slots that received the most votes.
 
-🖼️ *Image showing where and how to view the top 3 time slots.*
-
-
+![Display Best Time Slot](docs/images/display_best_creneau.png)
 
 ## 📒 `Guide d'utilisation - fr`
 
@@ -82,63 +100,81 @@ Ce guide vous permettra de créer et de gérer facilement vos premiers événeme
 
 ### 1 - Créer un Événement
 
-#### 1.1 - Définir un ***titre***
+#### 1.1 - Définir un **_titre_**
 
-Donnez un titre accrocheur à votre événement pour qu'il soit facilement identifiable par vous et les autres participants.
+Donnez un titre à votre événement pour qu'il soit facilement identifiable par vous et les autres participants.
 
-🖼️ *Image montrant où et comment ajouter un titre.*
+![Define Title](docs/images/define_title.png)
 
-#### 1.2 - Définir une ***description***
+#### 1.2 - Ajouter des **_participants_**
 
-Ajoutez une brève description pour donner aux participants une idée de ce que l'événement concerne. 
+Ajoute des participants en entrant leurs prénoms ou surnoms.
 
-🖼️ *Image montrant où et comment ajouter une description.*
+![Add Participant](docs/images/add_participant.png)
 
-#### 1.3 - Ajouter des ***participants***
+#### 1.3 - Identifie toi
 
-Invitez des participants en entrant leurs adresses e-mail ou en sélectionnant à partir de vos contacts.
+Indique qui tu es pour pouvoir effectuer des actions sur l'événement.
 
-🖼️ *Image montrant où et comment ajouter des participants.*
+![Choose Participant](docs/images/choose_participant.png)
 
-#### 1.4 - ***Partager*** l'événement
+#### 1.4 - Définir une **_description_**
 
-Partagez le lien de l'événement avec les participants via les médias sociaux ou par e-mail.
+Ajoutez une brève description pour donner aux participants une idée de ce que l'événement concerne.
 
-🖼️ *Image montrant où et comment partager l'événement.*
+![Define Description](docs/images/define_description.png)
+
+#### 1.5 - Définir une **_durée_**
+
+Ajoutez une durée pour donner aux participants une idée de la durée de l'événement.
+
+![Define Duration](docs/images/define_duration.png)
+
+#### 1.6 - **_Partager_** l'événement
+
+Copiez et partagez le lien de l'événement avec les autres participants.
+
+![Share Event](docs/images/share_event.png)
+
+#### 1.7 - **_Supprimer_** un participant
+
+Retirer un participant.
+
+![Delete Participant](docs/images/delete_participant.png)
 
 ### 2 - Interagir avec l'Événement
 
-#### 2.1 - Ajout de ***participants***
-
-Vous pouvez continuer à ajouter des participants même après avoir créé l'événement.
-
-🖼️ *Image montrant comment ajouter des participants.*
-
-#### 2.2 - Ajout de ***destination***
+#### 2.1 - Ajout de **_destination_**
 
 Proposez différentes destinations et invitez les participants à voter pour leurs préférées.
 
-🖼️ *Image montrant où et comment ajouter une destination.*
+![Add Destination](docs/images/add_destination.png)
 
-#### 2.3 - Ajout un ***créneau***
+#### 2.2 - Vote pour chaque **_destination_**
+
+Votez pour chaque destinations ayant été suggérés.
+
+![Vote Destination](docs/images/vote_destination.png)
+
+#### 2.3 - Ajoutez un **_créneau_**
 
 Indiquez vos disponibilités et invitez les participants à faire de même pour trouver le meilleur moment pour tous.
 
-🖼️ *Image montrant où et comment ajouter un créneau.*
+![Add Creneau](docs/images/add_creneau.png)
 
 ### 3 - Consulter le Résultat
 
-#### 3.1 - Visualisation de la meilleure ***destination***
+#### 3.1 - Visualisation de la meilleure **_destination_**
 
 Le système affiche le top 3 des destinations ayant reçu le plus de votes pour faciliter votre choix final.
 
-🖼️ *Image montrant où et comment visualiser le top 3 des destinations.*
+![DIsplay Best Destination](docs/images/display_best_creneau.png)
 
-#### 3.2 - Visualisation du meilleur ***créneau***
+#### 3.2 - Visualisation du meilleur **_créneau_**
 
 Découvrez quelles sont les plages horaires qui conviennent le mieux au groupe en consultant le top 3 des créneaux ayant reçu le plus de votes.
 
-🖼️ *Image montrant où et comment visualiser le top 3 des créneaux.*
+![Display Best Creneau](docs/images/display_best_creneau.png)
 
 #
 
