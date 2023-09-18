@@ -18,7 +18,11 @@ This project aims to validate our final study project.
 
 This guide will help you easily create and manage your first events on our "Plan & Vote" app, optimizing your group vacations.
 
-### 1 - Create an Event ⛺️
+<details><summary>
+
+### ⛺️ 1 - Create an Event
+
+  </summary>
 
 #### 1.1 - Define a **_Title_**
 
@@ -62,7 +66,13 @@ Copy and share the event link with other participants.
 
 <img src="docs/images/delete_participant.png" alt="Delete Participant" width="350"/>
 
-### 2 - Interact with the Event 🏝️
+</details>
+
+<details><summary>
+
+### 🏝️ 2 - Interact with the Event
+
+  </summary>
 
 #### 2.1 - Add a **_Destination_**
 
@@ -82,7 +92,13 @@ Indicate your availability and invite participants to do the same to find the be
 
 <img src="docs/images/add_creneau.png" alt="Add Time Slot" width="250"/>
 
-### 3 - View the Results 🥇
+</details>
+
+<details><summary>
+
+### 🥇 3 - View the Results
+
+  </summary>
 
 #### 3.1 - View the Best **_Destination_**
 
@@ -97,6 +113,7 @@ Find out which time slots are most suitable for the group by looking at the top 
 <img src="docs/images/display_best_creneau" alt="Display Best Time Slot" width="350"/>
 
 </details>
+</details>
 
 #
 
@@ -108,7 +125,13 @@ Find out which time slots are most suitable for the group by looking at the top 
 
 Ce guide vous permettra de créer et de gérer facilement vos premiers événements sur notre application "Plan & Vote", optimisant ainsi vos vacances en groupe.
 
-### 1 - Créer un Événement ⛺️
+</details>
+
+<details><summary>
+
+### ⛺️ 1 - Créer un Événement
+
+  </summary>
 
 #### 1.1 - Définir un **_titre_**
 
@@ -152,7 +175,13 @@ Retirer un participant.
 
 <img src="docs/images/delete_participant.png" alt="Delete Participant" width="350"/>
 
-### 2 - Interagir avec l'Événement 🏝️
+</details>
+
+<details><summary>
+
+### 🏝️ 2 - Interagir avec l'Événement
+
+  </summary>
 
 #### 2.1 - Ajout de **_destination_**
 
@@ -172,7 +201,13 @@ Indiquez vos disponibilités et invitez les participants à faire de même pour 
 
 <img src="docs/images/add_creneau.png" alt="Add Creneau" width="250"/>
 
-### 3 - Consulter le Résultat 🥇
+</details>
+
+<details><summary>
+
+### 🥇 3 - Consulter le Résultat
+
+  </summary>
 
 #### 3.1 - Visualisation de la meilleure **_destination_**
 
