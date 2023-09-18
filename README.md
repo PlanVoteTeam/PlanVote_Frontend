@@ -12,7 +12,11 @@ This project aims to validate our final study project.
 
 #
 
-## 📒 `User Guide - en`
+## 📒 `User Guide - EN`
+
+<details>
+  <summary>
+  </summary>
 
 This guide will help you easily create and manage your first events on our "Plan & Vote" app, optimizing your group vacations.
 
@@ -94,7 +98,15 @@ Find out which time slots are most suitable for the group by looking at the top 
 
 <img src="docs/images/display_best_creneau" alt="Display Best Time Slot" width="350"/>
 
-## 📒 `Guide d'utilisation - fr`
+</details>
+
+#
+
+## 📒 `Guide d'utilisation - FR`
+
+<details>
+  <summary>
+  </summary>
 
 Ce guide vous permettra de créer et de gérer facilement vos premiers événements sur notre application "Plan & Vote", optimisant ainsi vos vacances en groupe.
 
@@ -175,6 +187,8 @@ Le système affiche le top 3 des destinations ayant reçu le plus de votes pour 
 Découvrez quelles sont les plages horaires qui conviennent le mieux au groupe en consultant le top 3 des créneaux ayant reçu le plus de votes.
 
 <img src="docs/images/display_best_creneau.png" alt="Display Best Creneau" width="350"/>
+
+</details>
 
 #
 
