@@ -105,60 +105,65 @@ const EventDetail = () => {
               }
             ></ManageName>
 
-            <div className="is-flex is-justify-content-space-between mobile-desc-dur">
-            {/* Description of event */}
-            <ManageDescription
-              eventId={event._id}
-              eventDescription={event.description}
-              event={event}
-              setEvent={setEvent}
-              setEventDescription={(description: string) =>
-                setEvent((prevEvent) =>
-                  prevEvent ? { ...prevEvent, description } : prevEvent
-                )
-              }
-            ></ManageDescription>
+            <div className="updateDataOfEvent is-flex is-justify-content-space-between mobile-desc-dur">
+              {/* Description of event */}
+              <ManageDescription
+                eventId={event._id}
+                eventDescription={event.description}
+                event={event}
+                setEvent={setEvent}
+                setEventDescription={(description: string) =>
+                  setEvent((prevEvent) =>
+                    prevEvent ? { ...prevEvent, description } : prevEvent
+                  )
+                }
+              ></ManageDescription>
 
-            {/* Duration of event */}
-            <ManageDuration 
-              eventId={event._id} eventDuration={event.minDuration}
-              event={event}
-              setEvent={setEvent}
-              setEventDuration={(minDuration: number) =>
-                setEvent((prevEvent) =>
-                  prevEvent ? { ...prevEvent, minDuration } : prevEvent
-                )
-              }
-            ></ManageDuration>
+              {/* Duration of event */}
+              <ManageDuration
+                eventId={event._id}
+                eventDuration={event.minDuration}
+                event={event}
+                setEvent={setEvent}
+                setEventDuration={(minDuration: number) =>
+                  setEvent((prevEvent) =>
+                    prevEvent ? { ...prevEvent, minDuration } : prevEvent
+                  )
+                }
+              ></ManageDuration>
             </div>
 
-            <hr />
-            <div className="wrapperCreneauDest">
-            {currentParticipant && (
-              <ManageDestination
-                eventId={eventId!}
-                currentParticipant={currentParticipant}
-                destinationsList={destinationsList!}
-                setDestinationsList={setDestinationsList}
-                participantsList={participantsList!}
-                setParticipantsList={setParticipantsList}
-                idParticipant={currentParticipant._id}
-              ></ManageDestination>
-            )}
-
-            {currentParticipant && (
-              <Creneau eventId={eventId!} participantId={currentParticipant._id}></Creneau>
-            )}
-
-            </div>
-
-            <div className="buttons">
+            <div className="buttonShare">
               {/* Share Event
             - [ ] Générate magic link
             - [ ] Copy To ClipBoard
             - [ ] Share on social media
             */}
               <ButtonShareEvent eventId={eventId!}></ButtonShareEvent>
+            </div>
+
+            <hr />
+            <div className="container">
+              <div className="wrapperCreneauDest">
+                {currentParticipant && (
+                  <ManageDestination
+                    eventId={eventId!}
+                    currentParticipant={currentParticipant}
+                    destinationsList={destinationsList!}
+                    setDestinationsList={setDestinationsList}
+                    participantsList={participantsList!}
+                    setParticipantsList={setParticipantsList}
+                    idParticipant={currentParticipant._id}
+                  ></ManageDestination>
+                )}
+
+                {currentParticipant && (
+                  <Creneau
+                    eventId={eventId!}
+                    participantId={currentParticipant._id}
+                  ></Creneau>
+                )}
+              </div>
             </div>
           </div>
         </div>
