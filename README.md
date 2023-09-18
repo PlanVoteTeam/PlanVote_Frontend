@@ -16,7 +16,7 @@ This project aims to validate our final study project.
 
 This guide will help you easily create and manage your first events on our "Plan & Vote" app, optimizing your group vacations.
 
-### 1 - Create an Event
+### 1 - Create an Event ⛺️
 
 #### 1.1 - Define a **_Title_**
 
@@ -40,19 +40,19 @@ Specify who you are so that you can perform actions on the event.
 
 Add a brief description to give participants an idea of what the event is about.
 
-<img src="docs/images/define_description.png" alt="Define Description" width="350"/>
+<img src="docs/images/define_description.png" alt="Define Description" width="250"/>
 
 #### 1.5 - Define a **_Duration_**
 
 Add a duration to give participants an idea of how long the event will last.
 
-<img src="docs/images/define_duration.png" alt="Define Duration" width="350"/>
+<img src="docs/images/define_duration.png" alt="Define Duration" width="250"/>
 
 #### 1.6 - **_Share_** the Event
 
 Copy and share the event link with other participants.
 
-<img src="docs/images/share_event.png" alt="Share Event" width="350"/>
+<img src="docs/images/share_event.png" alt="Share Event" width="100"/>
 
 #### 1.7 - **_Delete_** a Participant
 
@@ -60,39 +60,39 @@ Copy and share the event link with other participants.
 
 <img src="docs/images/delete_participant.png" alt="Delete Participant" width="350"/>
 
-### 2 - Interact with the Event
+### 2 - Interact with the Event 🏝️
 
 #### 2.1 - Add a **_Destination_**
 
 Suggest various destinations and invite participants to vote for their favorites.
 
-<img src="docs/images/add_destination.png" alt="Add Destination" width="350"/>
+<img src="docs/images/add_destination.png" alt="Add Destination" width="250"/>
 
 #### 2.2 - Vote for Each **_Destination_**
 
 Vote for each suggested destination.
 
-<img src="docs/images/vote_destination.png" alt="Vote Destination" width="350"/>
+<img src="docs/images/vote_destination.png" alt="Vote Destination" width="150"/>
 
 #### 2.3 - Add a **_Time Slot_**
 
 Indicate your availability and invite participants to do the same to find the best time for everyone.
 
-<img src="docs/images/add_creneau.png" alt="Add Time Slot" width="350"/>
+<img src="docs/images/add_creneau.png" alt="Add Time Slot" width="250"/>
 
-### 3 - View the Results
+### 3 - View the Results 🥇
 
 #### 3.1 - View the Best **_Destination_**
 
 The system displays the top 3 destinations that received the most votes to facilitate your final choice.
 
-<img src="" alt="Display Best Destination" widtalt="Display Besth="350"/>
+<img src="docs/images/display_best_destination" alt="Display Best Destination" width="350"/>
 
 #### 3.2 - View the Best **_Time Slot_**
 
 Find out which time slots are most suitable for the group by looking at the top 3 time slots that received the most votes.
 
-<img src="" alt="Display Best Time Slotalt="Display Best" width="350"/>)
+<img src="docs/images/display_best_creneau" alt="Display Best Time Slot" width="350"/>
 
 ## 📒 `Guide d'utilisation - fr`
 
