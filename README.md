@@ -222,6 +222,7 @@ Découvrez quelles sont les plages horaires qui conviennent le mieux au groupe e
 <img src="docs/images/display_best_creneau.png" alt="Display Best Creneau" width="350"/>
 
 </details>
+</details>
 
 #
 
