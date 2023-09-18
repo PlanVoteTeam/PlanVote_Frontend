@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { Calendar } from "react-multi-date-picker";
+import { SetStateAction, useEffect, useState } from "react";
+import { Calendar, DateObject } from "react-multi-date-picker";
 import { apiUrl } from "../../../../config";
 import "./Creneau.scss"
 
@@ -9,8 +9,8 @@ interface CreneauProps {
 }
 
 function Creneau({eventId, participantId}: CreneauProps) {
-    const [values, setValues] = useState()
-    const [inital, setInitial] = useState()
+    const [values, setValues] = useState<DateObject[]>([])
+    const [inital, setInitial] = useState([])
 
     useEffect(() => {
       console.log('cocuou')
@@ -23,29 +23,36 @@ function Creneau({eventId, participantId}: CreneauProps) {
         .then((response) => response.json())
         .then((response) => {
           if (response.length != 0) {
-            const tab = []
+            const tab: any = []
             response.forEach((element: any) => {
               tab.push([new Date(element.startDate), new Date(element.endDate)])
             });
             setValues(tab)
             setInitial(tab)
           }
+          else {
+            setValues([])
+          }
         })
       }
     }, [participantId])
 
+    const handleChangeDate = (event: any) => {
+      setValues(event);
+    };
+
     const addCreneau = () => {
       let newTab = []
-      if(inital !== undefined) {
+      if(inital.length !== 0) {
         const numberNew = values.length - inital.length
         newTab = values.slice(-numberNew);
       }
       else {
         newTab = values
       }
+
     
-      newTab.forEach(async (element: Array<any>) => {
-            console.log(element[0].month.number, )
+      newTab.forEach(async (element: any) => {
             const startDate = element[0].year + "-" + (element[0].month.number.toString().length === 1 ? 0 + element[0].month.number.toString() : element[0].month.number)
                 + "-" + (element[0].day.toString().length === 1 ? 0 + element[0].day.toString() : element[0].day)
                             
@@ -71,7 +78,7 @@ function Creneau({eventId, participantId}: CreneauProps) {
 
   return (
     <div>
-      <Calendar range multiple value={values} onChange={setValues} className="calendar"/>
+      <Calendar range multiple value={values} onChange={handleChangeDate} className="calendar"/>
       <button className="button is-primary" onClick={addCreneau}>Sauvegarder</button>
     </div>
   )
