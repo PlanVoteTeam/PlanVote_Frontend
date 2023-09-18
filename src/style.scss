@@ -12,9 +12,11 @@ body,
   height: 100%;
   // font-family: "Poppins" ;
   color: $black;
+  background-color: #f5f5f7;
 }
 
 // Set your brand colors
+$white: #f5f5f7;
 $blue: #73a9df;
 $purple: #8a4d76;
 $red: #e74c3c;
@@ -34,6 +36,8 @@ $danger: $red;
 // Update some of Bulma's component variables
 $input-border-color: transparent;
 $input-shadow: none;
+$footer-background-color: #f5f5f7;
+$footer-padding: 1rem 3.5rem 0rem;
 
 // Import only what you need from Bulma
 @import "../node_modules/bulma/sass/utilities/_all.sass";
