@@ -9,14 +9,19 @@
     gap: 50px;
     text-align: center;
 
-    @media (max-width: 950px) {
-        flex-direction: column;
-        align-items: center;
-    }
-}.buttonShare {
+  @media (max-width: 950px) {
+    flex-direction: column;
+    align-items: center;
+  }
+}
 
 .buttonShare {
   position: fixed;
   top: 0 + 1rem;
   right: 0 + 1rem;
+}
+
+.updateDataOfEvent {
+  padding-bottom: 3rem;
+  border-bottom: 1px solid #194e83;
 }
