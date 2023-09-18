@@ -1,0 +1,28 @@
+.wrapper {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.title {
+    text-align: center;
+}
+
+.informations {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 24px;
+}
+
+.classement {
+    display: flex;
+    gap: 4px;
+}
+
+.element {
+    display: flex;
+    flex-direction: column;
+}
+
+.box {
+    color:#191919;
+}
