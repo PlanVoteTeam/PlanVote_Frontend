@@ -10,8 +10,12 @@ import LayoutFooter from "../Layout/LayoutFooter";
 import LoadingPage from "../LoadingPage";
 import { IEvent, IParticipant, IDestination } from "../../utils/interface";
 import ManageDuration from "./ManageDuration/ManageDuration";
-import "./EventDetail.scss"
+import "./EventDetail.scss";
 import Creneau from "./Creneau/Creneau";
+import {
+  EVENT_CURRENT_PARTICIPANT_BLANK_MESSAGE,
+  EMOJI_EDIT,
+} from "../../utils/constants";
 
 const EventDetail = () => {
   //Event
@@ -76,9 +80,16 @@ const EventDetail = () => {
           <div className="content">
             {/* Display current participant from local storage */}
             {currentParticipant != null && (
-              <p className="subtitle">
-                Utilisateur courant: {currentParticipant?.name}
-              </p>
+              <a className="subtitle mt-5" onClick={toggleModal}>
+                {/* If event description is blank, display a message */}
+                {currentParticipant && currentParticipant?.name
+                  ? "Utilisateur courant : " +
+                    currentParticipant?.name.charAt(0).toUpperCase() +
+                    currentParticipant?.name.slice(1) +
+                    " " +
+                    EMOJI_EDIT
+                  : EVENT_CURRENT_PARTICIPANT_BLANK_MESSAGE}
+              </a>
             )}
 
             {/* Title with edit */}
@@ -142,11 +153,6 @@ const EventDetail = () => {
             </div>
 
             <div className="buttons">
-              {/* Choose Identity / Open Modal */}
-              <button className="button is-primary" onClick={toggleModal}>
-                Qui es-tu ?
-              </button>
-
               {/* Share Event
             - [ ] Générate magic link
             - [ ] Copy To ClipBoard

@@ -5,6 +5,9 @@ export const IS_COLOR_EVENT_PARTICIPANT_LIST = false;
 
 // L A B E L S \\
 export const EMOJI_EDIT = "🖋️";
+// Message to display when the current ser is blank
+export const EVENT_CURRENT_PARTICIPANT_BLANK_MESSAGE =
+  "Qui es-tu ? " + EMOJI_EDIT;
 // Message to display when the event name is blank
 export const EVENT_NAME_BLANK_MESSAGE = "Donne lui un nom ! " + EMOJI_EDIT;
 // Message to display when the event description is blank
