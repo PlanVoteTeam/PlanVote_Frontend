@@ -6,16 +6,14 @@
 The objective of **_Plan & Vote_** is to help you in the organisation of your holidays by concentrating only on the essentials, namely: participants, places and slots.
 And to accompany you in your decision making.
 
-The features are as follows: [features](#-features)
-
 This project aims to validate our final study project.
 
 #
 
+<details><summary>
+
 ## 📒 `User Guide - EN`
 
-<details>
-  <summary>
   </summary>
 
 This guide will help you easily create and manage your first events on our "Plan & Vote" app, optimizing your group vacations.
@@ -102,10 +100,10 @@ Find out which time slots are most suitable for the group by looking at the top 
 
 #
 
+<details><summary>
+
 ## 📒 `Guide d'utilisation - FR`
 
-<details>
-  <summary>
   </summary>
 
 Ce guide vous permettra de créer et de gérer facilement vos premiers événements sur notre application "Plan & Vote", optimisant ainsi vos vacances en groupe.
@@ -192,7 +190,11 @@ Découvrez quelles sont les plages horaires qui conviennent le mieux au groupe e
 
 #
 
+<details><summary>
+
 ## 🏗️ `Getting started`
+
+  </summary>
 
 ### install all dependencies
 
@@ -206,9 +208,15 @@ yarn install
 yarn dev
 ```
 
+</details>
+
 #
 
+<details><summary>
+
 ## 🧑🏽‍💻 `Developpement Context`
+
+  </summary>
 
 ### _Team :_
 
@@ -225,9 +233,15 @@ yarn dev
 
 - Discord
 
+</details>
+
 #
 
+<details><summary>
+
 ## 🧱 `Features`
+
+  </summary>
 
 ### ⚓️ `Module Landing`
 
@@ -244,9 +258,15 @@ yarn dev
 - ⏳ Define a time slot
 - ⏳ View the best time slot
 
+</details>
+
 #
 
+<details><summary>
+
 ## 🏛️ `Technology used`
+
+  </summary>
 
 - Web app
 - PWA
@@ -254,3 +274,6 @@ yarn dev
 - React
 - TypeScript
 - [Netlify](https://planvote.netlify.app/)
+
+</details>
+
