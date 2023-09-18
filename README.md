@@ -125,8 +125,6 @@ Find out which time slots are most suitable for the group by looking at the top 
 
 Ce guide vous permettra de créer et de gérer facilement vos premiers événements sur notre application "Plan & Vote", optimisant ainsi vos vacances en groupe.
 
-</details>
-
 <details><summary>
 
 ### ⛺️ 1 - Créer un Événement
