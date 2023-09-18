@@ -152,7 +152,7 @@ const EventDetail = () => {
 
             </div>
 
-            <div className="buttons">
+            <div className="buttonShare">
               {/* Share Event
             - [ ] Générate magic link
             - [ ] Copy To ClipBoard
