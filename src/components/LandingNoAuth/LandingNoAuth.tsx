@@ -56,11 +56,15 @@ const LandingNoAuth = () => {
           </h1> */}
 
           {/* Titre */}
-          <h1 className="mb-5 title is-1 is-black">
-            <span>Créer un&nbsp;</span>
-            <span className="has-text-primary	is-large">événement&nbsp;</span>
-            <span>et invite&nbsp;</span>
-            <span className="has-text-primary	is-large">tes amis&nbsp;</span>
+          <h1 className="mb-5 title is-black is-1 has-text-left">
+            <span>Créer un</span>
+            <span>&nbsp;</span>
+            <span className="has-text-primary	is-large">événement</span>
+            <span>&nbsp;</span>
+            <span>et invite</span>
+            <span>&nbsp;</span>
+            <span className="has-text-primary	is-large">tes amis</span>
+            <span>&nbsp;</span>
             <span>pour décider vote prochain rassemblement !</span>
           </h1>
 

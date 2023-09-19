@@ -132,7 +132,7 @@ const Vote = ({ dest, participants, idParticipant }: VoteProps) => {
 
   return (
     <div key={dest._id}>
-      <div className="icon-text">
+      <div className="icon-text is-justify-content-center	">
         {numberStar.map((star) => {
           return (
             <button
