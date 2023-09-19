@@ -7,6 +7,7 @@ import {
 } from "../../../utils/constants";
 import { IParticipant, IDestination } from "../../../utils/interface";
 import Vote from "../Vote/Vote";
+import Picker from "emoji-picker-react";
 
 interface ManageDestinationProps {
   eventId: string;
