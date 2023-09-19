@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { apiUrl } from "../../../../config";
 import "./ManageDestination.scss";
 import {
@@ -58,7 +58,6 @@ function ManageDestination({
     setNameDestination(event.currentTarget.value);
   };
 
-
   const onEmojiClick = (event: any) => {
     setChosenEmoji(event.emoji);
     setShowEmojiPicker(false);
@@ -111,6 +110,7 @@ function ManageDestination({
       );
 
       setNameDestination("");
+      setChosenEmoji("");
     } catch (error) {
       console.error(
         "Erreur lors de l'ajout de la destination à l'événement",
@@ -158,6 +158,11 @@ function ManageDestination({
         className="is-flex is-flex-direction-row is-align-items-center addDestination__form"
         onSubmit={handleSumbit}
       >
+        {showEmojiPicker && (
+          <div ref={emojiPickerRef}>
+            <Picker onEmojiClick={onEmojiClick} />
+          </div>
+        )}
         <div>
           {chosenEmoji ? (
             <span
@@ -169,37 +174,46 @@ function ManageDestination({
           ) : null}
         </div>
 
-        <div id="input-container" className="relative">
-          {!chosenEmoji ? (
-            <a onClick={() => setShowEmojiPicker(!showEmojiPicker)}>
-              🙂 Ajouter une icône
-            </a>
-          ) : null}
+        <div className="field has-addons is-align-items-flex-end">
+          <div className="control">
+            <label>
+              {!chosenEmoji ? (
+                <a onClick={() => setShowEmojiPicker(!showEmojiPicker)}>
+                  🙂 Ajouter une icône
+                </a>
+              ) : null}
+            </label>
 
-          {showEmojiPicker && (
-            <div ref={emojiPickerRef}>
-              <Picker onEmojiClick={onEmojiClick} />
-            </div>
-          )}
-          <input
-            className="input is-primary mr-3"
-            type="text"
-            placeholder={EVENT_ADD_DESTINATION_PLACEHOLDER}
-            value={nameDestination}
-            onChange={handleChangeEvent}
-            ref={inputRef}
-          ></input>
+            <input
+              type="text"
+              className="input is-primary has-text-primary"
+              placeholder={EVENT_ADD_DESTINATION_PLACEHOLDER}
+              value={nameDestination}
+              onChange={handleChangeEvent}
+              ref={inputRef}
+              autoFocus
+            />
+            {isErrorForm ? (
+              <span className="has-text-danger is-bold">
+                {REQUIRED_DESTINATION_NAME}
+              </span>
+            ) : null}
+          </div>
 
-          {isErrorForm ? (
-            <span className="has-text-danger is-bold">
-              {REQUIRED_DESTINATION_NAME}
-            </span>
-          ) : null}
+          <div className="control">
+            <button
+              className="button is-primary is-outlined mr-2"
+              type="submit"
+            >
+              Ajouter une destination
+            </button>
+          </div>
         </div>
-        <button className="button is-primary" type="submit">
-          Ajouter une destination
-        </button>
       </form>
+
+      <h3 className="title mgt-medium mgb-medium">
+        Liste des destinations proposées :
+      </h3>
 
       {/* Display list of destinations */}
       <div className="addDestination__wrapper-card">
@@ -207,13 +221,13 @@ function ManageDestination({
           destinationsList.map((destination) => (
             <div className="card" key={destination._id}>
               <div className="card-image">
-                <figure className="image is-128x128">
-                  <img
-                    src="https://bulma.io/images/placeholders/128x128.png"
-                    alt="Placeholder "
-                  />
+                <figure className="image is-size-1">
+                  <div className="content">
+                    {destination.img ? destination.img : "🌄"}
+                  </div>
                 </figure>
               </div>
+
               <div className="card-content">
                 <div className="content">{destination.name}</div>
                 <Vote
