@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { apiUrl } from "../../../../config";
+import { apiUrl, requestMode } from "../../../../config";
 import {
   EMOJI_EDIT,
   EVENT_DURATION_BLANK_MESSAGE,
@@ -28,7 +28,7 @@ function ManageDuration({
     try {
       const response = await fetch(apiUrl + `events/${eventId}`, {
         method: "PATCH",
-        mode: "cors",
+        mode: requestMode,
         headers: {
           "Content-Type": "application/json",
         },

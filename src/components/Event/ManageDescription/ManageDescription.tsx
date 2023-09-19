@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { apiUrl } from "../../../../config";
+import { apiUrl, requestMode } from "../../../../config";
 import {
   EVENT_DESCRIPTION_BLANK_MESSAGE,
   EMOJI_EDIT,
@@ -31,7 +31,7 @@ function ManageDescription({
     try {
       const response = await fetch(apiUrl + `events/${eventId}`, {
         method: "PATCH",
-        mode: "cors",
+        mode: requestMode,
         headers: {
           "Content-Type": "application/json",
         },

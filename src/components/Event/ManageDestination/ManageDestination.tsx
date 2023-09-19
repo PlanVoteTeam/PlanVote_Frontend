@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { apiUrl } from "../../../../config";
+import { apiUrl, requestMode } from "../../../../config";
 import "./ManageDestination.scss";
 import {
   REQUIRED_DESTINATION_NAME,
@@ -95,7 +95,7 @@ function ManageDestination({
         apiUrl + `events/${eventId}/participants/${participantId}/destinations`,
         {
           method: "POST",
-          mode: "cors",
+          mode: requestMode,
           headers: {
             "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
           },

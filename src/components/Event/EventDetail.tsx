@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import ModalChooseidentity from "./ChooseIdentity/ModalChooseIdentity";
 import ButtonShareEvent from "./ShareEvent/ButtonShareEvent";
-import { apiUrl } from "../../../config";
+import { apiUrl, requestMode } from "../../../config";
 import ManageDestination from "./ManageDestination/ManageDestination";
 import ManageDescription from "./ManageDescription/ManageDescription";
 import ManageName from "./ManageName/ManageName";
@@ -35,7 +35,7 @@ const EventDetail = () => {
 
   // Fetch event data using eventId from params
   useEffect(() => {
-    fetch(apiUrl + `events/${eventId}`, { mode: "cors" })
+    fetch(apiUrl + `events/${eventId}`, { mode: requestMode })
       .then((blob) => blob.json())
       .then((response) => {
         setEvent(response);

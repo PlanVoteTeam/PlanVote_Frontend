@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./EventFinish.scss";
 import { useLocation, useParams } from "react-router";
-import { apiUrl } from "../../../config";
+import { apiUrl, requestMode } from "../../../config";
 import LayoutFooter from "../Layout/LayoutFooter";
 import { useNavigate } from "react-router-dom";
 
@@ -20,7 +20,7 @@ const EventFinish = () => {
       const stepId = location.state.step._id;
       fetch(apiUrl + `events/${eventId}/steps/${stepId}`, {
         method: "GET",
-        mode: "cors",
+        mode: requestMode,
         headers: {},
       })
         .then((response) => response.json())
@@ -40,7 +40,7 @@ const EventFinish = () => {
       headers: {
         "Content-Type": "application/json; charset=UTF-8",
       },
-      mode: "cors",
+      mode: requestMode,
     })
       .then((blob) => blob.json())
       .then((reponse) => {

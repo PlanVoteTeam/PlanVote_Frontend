@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { apiUrl } from "../../../../config";
+import { apiUrl, requestMode } from "../../../../config";
 import { EVENT_NAME_BLANK_MESSAGE } from "../../../utils/constants";
 import { IEvent } from "../../../utils/interface";
 
@@ -24,7 +24,7 @@ function ManageName({
     try {
       const response = await fetch(apiUrl + `events/${eventId}`, {
         method: "PATCH",
-        mode: "cors",
+        mode: requestMode,
         headers: {
           "Content-Type": "application/json",
         },
