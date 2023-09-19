@@ -156,7 +156,7 @@ function ManageDestination({
         onSubmit={handleSumbit}
       >
         {showEmojiPicker && (
-          <div ref={emojiPickerRef}>
+          <div className="emoji" ref={emojiPickerRef}>
             <Picker onEmojiClick={onEmojiClick} />
           </div>
         )}
@@ -171,7 +171,7 @@ function ManageDestination({
           ) : null}
         </div>
 
-        <div className="field has-addons is-align-items-flex-end">
+        <div className="field has-addons is-align-items-flex-end mobile">
           <div className="control">
             <label>
               {!chosenEmoji ? (
@@ -197,7 +197,7 @@ function ManageDestination({
             ) : null}
           </div>
 
-          <div className="control">
+          <div className="control control__mobile">
             <button
               className="button is-primary is-outlined mr-2"
               type="submit"
