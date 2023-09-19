@@ -24,7 +24,6 @@ const LandingNoAuth = () => {
         "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
       },
       body: formData.toString(),
-      mode: "cors",
     })
       .then((blob) => blob.json())
       .then((response) => {

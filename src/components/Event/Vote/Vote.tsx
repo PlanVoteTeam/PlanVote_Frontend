@@ -20,7 +20,6 @@ const Vote = ({ dest, participants, idParticipant }: VoteProps) => {
       fetch(apiUrl + `events/${eventId}/participants/${idParticipant}/votes`, {
         method: "GET",
         headers: {},
-        mode: "cors",
       })
         .then((response) => response.json())
         .then((response) => {
@@ -29,8 +28,8 @@ const Vote = ({ dest, participants, idParticipant }: VoteProps) => {
               destVote.push(vote._id);
               for (let i = 1; i <= numberStar.length; i++) {
                 document
-                .getElementById(vote.name + i)
-                ?.classList.remove("has-text-warning");
+                  .getElementById(vote.name + i)
+                  ?.classList.remove("has-text-warning");
               }
               for (let i = 1; i <= vote.votes.note; i++) {
                 document
@@ -38,12 +37,11 @@ const Vote = ({ dest, participants, idParticipant }: VoteProps) => {
                   ?.classList.add("has-text-warning");
               }
             });
-          }
-          else {
+          } else {
             for (let i = 1; i <= numberStar.length; i++) {
               document
-              .getElementById(dest.name + i)
-              ?.classList.remove("has-text-warning");
+                .getElementById(dest.name + i)
+                ?.classList.remove("has-text-warning");
             }
           }
         });
@@ -96,7 +94,6 @@ const Vote = ({ dest, participants, idParticipant }: VoteProps) => {
                 "application/x-www-form-urlencoded; charset=UTF-8",
             },
             body: formData.toString(),
-            mode: "cors",
           }
         )
           .then((response) => response.json())
@@ -117,7 +114,6 @@ const Vote = ({ dest, participants, idParticipant }: VoteProps) => {
                 "application/x-www-form-urlencoded; charset=UTF-8",
             },
             body: formData.toString(),
-            mode: "cors",
           }
         )
           .then((response) => response.json())

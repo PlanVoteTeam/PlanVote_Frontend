@@ -69,7 +69,6 @@ function ManageDestination({
       const response = await fetch(
         apiUrl + `events/${eventId}/participants/${participantId}/destinations`,
         {
-          mode: "cors",
           method: "POST",
           headers: {
             "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
