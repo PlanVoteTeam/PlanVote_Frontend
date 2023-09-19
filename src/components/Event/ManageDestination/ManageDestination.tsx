@@ -150,7 +150,6 @@ function ManageDestination({
       ) : null}
 
       {/* Add destination form */}
-      <h2 className="title">Ajouter une destination</h2>
 
       <form
         className="is-flex is-flex-direction-row is-align-items-center addDestination__form"
