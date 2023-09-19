@@ -66,8 +66,7 @@ const EventDetail = () => {
   }
 
   function finish() {
-    navigate("/events/finish/" + eventId, {state: event
-    });
+    navigate("/events/finish/" + eventId, { state: event });
   }
 
   // If event is null, display loading
@@ -150,11 +149,12 @@ const EventDetail = () => {
             </div>
 
             <hr />
+
             <div className="container">
               <div className="wrapperCreneauDest">
                 {currentParticipant && (
                   <div>
-                    <div className="title is-4"> Destination </div>
+                    <h2 className="title">Ajouter une destination</h2>
                     <ManageDestination
                       eventId={eventId!}
                       currentParticipant={currentParticipant}
@@ -169,7 +169,7 @@ const EventDetail = () => {
 
                 {currentParticipant && (
                   <div>
-                    <div className="title is-4"> Créneau </div>
+                    <h2 className="title">Ajouter vos disponibilités</h2>
                     <Creneau
                       eventId={eventId!}
                       participantId={currentParticipant._id}
@@ -179,7 +179,9 @@ const EventDetail = () => {
               </div>
             </div>
           </div>
-          <button className="button is-primary" onClick={finish}>Organiser mon voyage</button>
+          <button className="button is-primary" onClick={finish}>
+            Organiser mon voyage
+          </button>
         </div>
 
         {/* Modal */}

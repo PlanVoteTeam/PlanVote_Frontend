@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { apiUrl } from "../../../../config";
 import "./ManageDestination.scss";
 import {
@@ -7,6 +7,7 @@ import {
 } from "../../../utils/constants";
 import { IParticipant, IDestination } from "../../../utils/interface";
 import Vote from "../Vote/Vote";
+import Picker from "emoji-picker-react";
 
 interface ManageDestinationProps {
   eventId: string;
@@ -28,15 +29,39 @@ function ManageDestination({
   idParticipant,
 }: ManageDestinationProps) {
   const [nameDestination, setNameDestination] = useState<string>("");
+  const [chosenEmoji, setChosenEmoji] = useState<string>("");
+  const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const [isError] = useState<boolean>(false);
   const [isErrorForm, setIsErrorFrom] = useState<boolean>(false);
 
   const inputRef = useRef<HTMLInputElement>(null);
+  const emojiPickerRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    // Fermer la fenêtre des émojis si on clique en dehors
+    function handleClickOutside(event: any) {
+      if (
+        emojiPickerRef.current &&
+        !emojiPickerRef.current.contains(event.target)
+      ) {
+        setShowEmojiPicker(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const handleChangeEvent = (event: any) => {
     setNameDestination(event.currentTarget.value);
   };
 
+  const onEmojiClick = (event: any) => {
+    setChosenEmoji(event.emoji);
+    setShowEmojiPicker(false);
+  };
   const handleSumbit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!nameDestination) {
@@ -52,7 +77,7 @@ function ManageDestination({
       const idParticipant = currentParticipant?._id;
       const formData = new URLSearchParams();
       formData.append("name", nameDestination);
-      formData.append("img", "image");
+      formData.append("img", chosenEmoji ? chosenEmoji : "");
       if (eventId && idParticipant && formData) {
         addDestinationToEvent(eventId, idParticipant, formData);
       }
@@ -84,6 +109,7 @@ function ManageDestination({
       );
 
       setNameDestination("");
+      setChosenEmoji("");
     } catch (error) {
       console.error(
         "Erreur lors de l'ajout de la destination à l'événement",
@@ -120,47 +146,84 @@ function ManageDestination({
         <div className="notification is-danger">
           Une erreur est survenu, veuillez réessayer plus tard.
         </div>
-      ) : (
-        <div></div>
-      )}
+      ) : null}
+
+      {/* Add destination form */}
 
       <form
-        className="is-flex is-flex-direction-row addDestination__form"
+        className="is-flex is-flex-direction-row is-align-items-center addDestination__form"
         onSubmit={handleSumbit}
       >
-        <div id="input-container" className="relative">
-          <input
-            className="input is-primary mr-3"
-            type="text"
-            placeholder={EVENT_ADD_DESTINATION_PLACEHOLDER}
-            value={nameDestination}
-            onChange={handleChangeEvent}
-            ref={inputRef}
-          ></input>
-
-          {isErrorForm ? (
-            <span className="has-text-danger is-bold">
-              {REQUIRED_DESTINATION_NAME}
+        {showEmojiPicker && (
+          <div ref={emojiPickerRef}>
+            <Picker onEmojiClick={onEmojiClick} />
+          </div>
+        )}
+        <div>
+          {chosenEmoji ? (
+            <span
+              className="m-2 is-size-2"
+              onClick={() => setShowEmojiPicker(!showEmojiPicker)}
+            >
+              {chosenEmoji}
             </span>
           ) : null}
         </div>
-        <button className="button is-primary" type="submit">
-          Ajouter une destination
-        </button>
+
+        <div className="field has-addons is-align-items-flex-end">
+          <div className="control">
+            <label>
+              {!chosenEmoji ? (
+                <a onClick={() => setShowEmojiPicker(!showEmojiPicker)}>
+                  🙂 Ajouter une icône
+                </a>
+              ) : null}
+            </label>
+
+            <input
+              type="text"
+              className="input is-primary has-text-primary"
+              placeholder={EVENT_ADD_DESTINATION_PLACEHOLDER}
+              value={nameDestination}
+              onChange={handleChangeEvent}
+              ref={inputRef}
+              autoFocus
+            />
+            {isErrorForm ? (
+              <span className="has-text-danger is-bold">
+                {REQUIRED_DESTINATION_NAME}
+              </span>
+            ) : null}
+          </div>
+
+          <div className="control">
+            <button
+              className="button is-primary is-outlined mr-2"
+              type="submit"
+            >
+              Ajouter une destination
+            </button>
+          </div>
+        </div>
       </form>
 
+      <h3 className="title mgt-medium mgb-medium">
+        Liste des destinations proposées :
+      </h3>
+
+      {/* Display list of destinations */}
       <div className="addDestination__wrapper-card">
         {destinationsList && destinationsList.length > 0 ? (
           destinationsList.map((destination) => (
             <div className="card" key={destination._id}>
               <div className="card-image">
-                <figure className="image is-128x128">
-                  <img
-                    src="https://bulma.io/images/placeholders/128x128.png"
-                    alt="Placeholder "
-                  />
+                <figure className="image is-size-1">
+                  <div className="content">
+                    {destination.img ? destination.img : "🌄"}
+                  </div>
                 </figure>
               </div>
+
               <div className="card-content">
                 <div className="content">{destination.name}</div>
                 <Vote
