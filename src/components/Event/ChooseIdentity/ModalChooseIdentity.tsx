@@ -146,7 +146,7 @@ const EventDetail_ModalChooseIdentity: React.FC<ModalProps> = ({
         <section className="modal-card-body">
           <div className="content">
             <div id="ChooseYourIdentity">
-              <div className="buttons">
+              <div className="buttons is-align-items-stretch">
                 {/* Display list of participants of event */}
                 {participantsList &&
                   participantsList.length > 0 &&
