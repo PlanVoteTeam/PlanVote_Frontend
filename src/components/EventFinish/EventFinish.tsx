@@ -20,6 +20,7 @@ const EventFinish = () => {
       const stepId = location.state.step._id;
       fetch(apiUrl + `events/${eventId}/steps/${stepId}`, {
         method: "GET",
+        mode: "cors",
         headers: {},
       })
         .then((response) => response.json())

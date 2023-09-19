@@ -20,6 +20,7 @@ const LandingNoAuth = () => {
 
     fetch(apiUrl + `events`, {
       method: "POST",
+      mode: "cors",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
       },

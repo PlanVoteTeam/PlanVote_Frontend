@@ -19,6 +19,7 @@ const Vote = ({ dest, participants, idParticipant }: VoteProps) => {
     if (idParticipant !== undefined) {
       fetch(apiUrl + `events/${eventId}/participants/${idParticipant}/votes`, {
         method: "GET",
+        mode: "cors",
         headers: {},
       })
         .then((response) => response.json())
@@ -89,6 +90,7 @@ const Vote = ({ dest, participants, idParticipant }: VoteProps) => {
             `events/${eventId}/participants/${idParticipantCreateur}/destinations/${idDestination}/votes`,
           {
             method: "POST",
+            mode: "cors",
             headers: {
               "Content-Type":
                 "application/x-www-form-urlencoded; charset=UTF-8",
@@ -109,6 +111,7 @@ const Vote = ({ dest, participants, idParticipant }: VoteProps) => {
             `events/${eventId}/participants/${idParticipantCreateur}/destinations/${idDestination}/votes`,
           {
             method: "PATCH",
+            mode: "cors",
             headers: {
               "Content-Type":
                 "application/x-www-form-urlencoded; charset=UTF-8",

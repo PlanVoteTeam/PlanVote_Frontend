@@ -31,6 +31,7 @@ function ManageDescription({
     try {
       const response = await fetch(apiUrl + `events/${eventId}`, {
         method: "PATCH",
+        mode: "cors",
         headers: {
           "Content-Type": "application/json",
         },
