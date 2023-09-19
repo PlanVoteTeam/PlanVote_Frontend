@@ -74,6 +74,7 @@ const EventDetail_ModalChooseIdentity: React.FC<ModalProps> = ({
     try {
       const response = await fetch(apiUrl + `events/${eventId}/participants`, {
         method: "POST",
+        mode: "cors",
         headers: {
           "Content-Type": "application/json",
         },
@@ -100,6 +101,7 @@ const EventDetail_ModalChooseIdentity: React.FC<ModalProps> = ({
         apiUrl + `events/${eventId}/participants/${participantId}`,
         {
           method: "DELETE",
+          mode: "cors",
           headers: {
             "Content-Type": "application/json",
           },

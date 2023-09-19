@@ -19,6 +19,7 @@ function Creneau({ eventId, participantId }: CreneauProps) {
         apiUrl + `events/${eventId}/participants/${participantId}/timeSlots`,
         {
           method: "GET",
+          mode: "cors",
           headers: {},
         }
       )
@@ -81,6 +82,7 @@ function Creneau({ eventId, participantId }: CreneauProps) {
         apiUrl + `events/${eventId}/participants/${participantId}/timeSlots`,
         {
           method: "POST",
+          mode: "cors",
           headers: {
             "Content-Type": "application/json; charset=UTF-8",
           },

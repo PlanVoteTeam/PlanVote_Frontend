@@ -24,13 +24,11 @@ function ManageDuration({
 }: ManageDurationProps) {
   const [isEventDurationEditing, setIsEventDurationEditing] = useState(false);
 
-  async function handleUpdateDurationEvent(
-    eventId: string,
-    duration: number
-  ) {
+  async function handleUpdateDurationEvent(eventId: string, duration: number) {
     try {
       const response = await fetch(apiUrl + `events/${eventId}`, {
         method: "PATCH",
+        mode: "cors",
         headers: {
           "Content-Type": "application/json",
         },
@@ -74,11 +72,7 @@ function ManageDuration({
           <form
             onSubmit={(e) => {
               e.preventDefault();
-              if (eventId)
-                handleUpdateDurationEvent(
-                  eventId,
-                  eventDuration,
-                );
+              if (eventId) handleUpdateDurationEvent(eventId, eventDuration);
             }}
           >
             <div className="field has-addons is-align-items-flex-end">
@@ -89,9 +83,7 @@ function ManageDuration({
                   className="input is-primary has-text-primary "
                   autoFocus
                   value={eventDuration}
-                  onChange={(e) =>
-                    setEventDuration(parseInt(e.target.value))
-                  }
+                  onChange={(e) => setEventDuration(parseInt(e.target.value))}
                 />
               </div>
               <div className="control">
