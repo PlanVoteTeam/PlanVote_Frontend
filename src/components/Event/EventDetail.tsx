@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import ModalChooseidentity from "./ChooseIdentity/ModalChooseIdentity";
 import ButtonShareEvent from "./ShareEvent/ButtonShareEvent";
 import { apiUrl } from "../../../config";
@@ -31,6 +31,8 @@ const EventDetail = () => {
   //Event.destinations
   const [destinationsList, setDestinationsList] = useState<IDestination[]>([]);
 
+  const navigate = useNavigate();
+
   // Fetch event data using eventId from params
   useEffect(() => {
     fetch(apiUrl + `events/${eventId}`, { mode: "cors" })
@@ -61,6 +63,11 @@ const EventDetail = () => {
   // Handle change of currentParticipant
   function handleParticipantChange(currentParticipant: IParticipant) {
     setCurrentParticipant(currentParticipant);
+  }
+
+  function finish() {
+    navigate("/events/finish/" + eventId, {state: event
+    });
   }
 
   // If event is null, display loading
@@ -146,26 +153,33 @@ const EventDetail = () => {
             <div className="container">
               <div className="wrapperCreneauDest">
                 {currentParticipant && (
-                  <ManageDestination
-                    eventId={eventId!}
-                    currentParticipant={currentParticipant}
-                    destinationsList={destinationsList!}
-                    setDestinationsList={setDestinationsList}
-                    participantsList={participantsList!}
-                    setParticipantsList={setParticipantsList}
-                    idParticipant={currentParticipant._id}
-                  ></ManageDestination>
+                  <div>
+                    <div className="title is-4"> Destination </div>
+                    <ManageDestination
+                      eventId={eventId!}
+                      currentParticipant={currentParticipant}
+                      destinationsList={destinationsList!}
+                      setDestinationsList={setDestinationsList}
+                      participantsList={participantsList!}
+                      setParticipantsList={setParticipantsList}
+                      idParticipant={currentParticipant._id}
+                    ></ManageDestination>
+                  </div>
                 )}
 
                 {currentParticipant && (
-                  <Creneau
-                    eventId={eventId!}
-                    participantId={currentParticipant._id}
-                  ></Creneau>
+                  <div>
+                    <div className="title is-4"> Créneau </div>
+                    <Creneau
+                      eventId={eventId!}
+                      participantId={currentParticipant._id}
+                    ></Creneau>
+                  </div>
                 )}
               </div>
             </div>
           </div>
+          <button className="button is-primary" onClick={finish}>Organiser mon voyage</button>
         </div>
 
         {/* Modal */}
