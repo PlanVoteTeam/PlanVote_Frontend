@@ -5,14 +5,42 @@
     gap: 12px;
     justify-content: center;
     margin-bottom: 16px;
+
+
   }
 
   &__form {
     margin-bottom: 16px;
+    position: relative;
+
+    @media (max-width: 950px) {
+      flex-direction: column ;
+      align-items: center;
+      gap: 12px;
+    }
   }
 }
 
 image {
   height: auto;
   width: auto;
+}
+
+.mobile {
+  @media (max-width: 950px) {
+  flex-direction: column;
+  }
+}
+
+.control {
+  &__mobile {
+    @media (max-width: 950px) {
+    width: 100%;
+    }
+  }
+}
+
+.emoji {
+  position: absolute;
+  z-index: 10;
 }

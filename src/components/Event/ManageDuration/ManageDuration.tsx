@@ -75,7 +75,7 @@ function ManageDuration({
               if (eventId) handleUpdateDurationEvent(eventId, eventDuration);
             }}
           >
-            <div className="field has-addons is-align-items-flex-end">
+            <div className="field has-addons is-align-items-flex-end mobile">
               <div className="control input-width">
                 <label>Durée du séjour </label>
                 <input
@@ -86,13 +86,13 @@ function ManageDuration({
                   onChange={(e) => setEventDuration(parseInt(e.target.value))}
                 />
               </div>
-              <div className="control">
+              <div className="control control__mobile">
                 <button className="button is-primary is-outlined mr-2">
                   Enregistrer
                 </button>
               </div>
 
-              <div className="control">
+              <div className="control control__mobile">
                 <button
                   className="button is-danger is-outlined"
                   onClick={handleCancelEditEventDurationClick}

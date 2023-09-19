@@ -14,40 +14,57 @@ const EventFinish = () => {
   const [bestDestinations, setBestDestination] = useState([]);
   const [bestDate, setBestDate] = useState([]);
 
-  useEffect(() => {
-    console.log(location);
-    if (location.state.step._id !== undefined) {
-      const stepId = location.state.step._id;
-      fetch(apiUrl + `events/${eventId}/steps/${stepId}`, {
-        method: "GET",
-        mode: "cors",
-        headers: {},
-      })
-        .then((response) => response.json())
-        .then((reponse) => {
-          setBestDestination(reponse.bestDestinations);
-          setBestDate(reponse.glidingWindows[0].windows);
-          console.log(bestDestinations);
-        });
-    } else {
-      refresh();
-    }
-  }, [eventId]);
+    const [errorParticipant, setErrorParticipant] = useState(false)
+    const [errorDate, setErrorDate] = useState(false)
+    const [errorVote, setErrorVote] = useState(false)
 
-  function refresh() {
-    fetch(apiUrl + `events/${eventId}/steps`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json; charset=UTF-8",
-      },
-      mode: "cors",
-    })
-      .then((blob) => blob.json())
-      .then((reponse) => {
-        setBestDestination(reponse.bestDestinations);
-        setBestDate(reponse.glidingWindows[0].windows);
-      });
-  }
+    useEffect(() => {
+        if(location.state.step._id !== undefined) {
+            const stepId = location.state.step._id
+            fetch(apiUrl + `events/${eventId}/steps/${stepId}`, 
+                {
+                    method: "GET",
+                    headers: {},
+                    mode: "cors",
+                }
+            )
+            .then((response) => response.json())
+            .then((reponse) => {
+                setBestDestination(reponse.bestDestinations)
+                setBestDate(reponse.glidingWindows[0].windows)
+            })
+        }
+        else {
+            refresh()
+        }
+    }, [eventId])
+
+
+    function refresh() {
+        fetch(apiUrl + `events/${eventId}/steps`, 
+        {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json; charset=UTF-8",
+            },
+            mode: "cors"
+        })
+        .then((blob) => blob.json())
+        .then((reponse) => {
+            console.log(reponse)
+            if (reponse.errorCode === "NOT_ENOUGH_PARTICIPANTS") {
+                setErrorParticipant(true)
+            }
+            if (reponse.errorCode === "NOT_ENOUGH_COMMON_DATES") {
+                setErrorDate(true)
+            }
+            if (reponse.errorCode === "CANT_PROCESS_AVG") {
+                setErrorVote(true)
+            }
+            setBestDestination(reponse.bestDestinations)
+            setBestDate(reponse.glidingWindows[0].windows)
+        })
+    }
 
   function retour() {
     navigate("/events/" + location.state._id);
@@ -55,15 +72,25 @@ const EventFinish = () => {
 
   return (
     <section className="section">
-      <h1 className="title">Visulation des résulats</h1>
-      <div className="mb-5 pb-5 is-flex is-justify-content-space-between informations">
-        <div>
-          <div className="title is-6">
-            Nom de l'évènement : {location.state.name}
-          </div>
-          <div className="title is-6">
-            Description de l'évènement : {location.state.description}{" "}
-          </div>
+        {
+            errorParticipant ?
+            <div className="notification is-danger">
+                Il n'y a pas assez de participant, merci de rajouter 1 participant</div> : ''
+        }
+        {
+            errorDate ?
+            <div className="notification is-danger">Il n'y a aucun créneau disponible</div> : ''
+        }
+        {
+            errorVote ?
+            <div className="notification is-danger">Une erreur s'est produite lors du traitement des destinations avec les meilleures moyennes. Veuillez vérifier qu'il y a des destinations et que certains votes ont été soumis</div> : ''
+        }
+        
+        <h1 className="title">Visulation des résulats</h1>
+        <div className="mb-5 pb-5 is-flex is-justify-content-space-between informations">
+            <div>
+        <div  className="title is-6">Nom de l'évènement : {location.state.name}</div>
+        <div  className="title is-6">Description de l'évènement : {location.state.description} </div>
         </div>
         <div>
           <button className="button is-primary mr-4" onClick={retour}>
@@ -73,8 +100,9 @@ const EventFinish = () => {
             Actualiser
           </button>
         </div>
-      </div>
-      <div className="wrapper mb-6">
+        </div>
+
+    <div className="wrapper mb-6"> 
         <div>
           <div className="title is-4 mb-5">Meilleurs destinations</div>
           {bestDestinations

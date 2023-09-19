@@ -2,6 +2,7 @@ import { useState } from "react";
 import { apiUrl } from "../../../../config";
 import { EVENT_NAME_BLANK_MESSAGE } from "../../../utils/constants";
 import { IEvent } from "../../../utils/interface";
+import './ManageName.scss'
 
 interface ManageNameProps {
   eventId: string;
@@ -60,7 +61,7 @@ function ManageName({
   return (
     <div className="mb-2">
       <p className="title">
-        <div className="is-flex">
+        <div className="is-flex mobile">
           <span>Votre évenement :&nbsp;</span>
 
           {/* Name of event */}
