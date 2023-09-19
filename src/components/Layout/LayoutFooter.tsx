@@ -8,9 +8,7 @@ function LayoutFooter() {
           <div className="column">
             <ul>
               <li>
-                <a className="footerCredit" href="/">
-                  © Plan & Vote - 2023
-                </a>
+                <a href="/">© Plan & Vote - 2023</a>
               </li>
             </ul>
           </div>
