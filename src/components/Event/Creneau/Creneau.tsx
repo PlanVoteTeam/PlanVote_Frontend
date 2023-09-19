@@ -1,6 +1,6 @@
 import { SetStateAction, useEffect, useState } from "react";
 import { Calendar, DateObject } from "react-multi-date-picker";
-import { apiUrl } from "../../../../config";
+import { apiUrl, requestMode } from "../../../../config";
 import "./Creneau.scss";
 
 interface CreneauProps {
@@ -19,7 +19,7 @@ function Creneau({ eventId, participantId }: CreneauProps) {
         apiUrl + `events/${eventId}/participants/${participantId}/timeSlots`,
         {
           method: "GET",
-          mode: "cors",
+          mode: requestMode,
           headers: {},
         }
       )
@@ -82,7 +82,7 @@ function Creneau({ eventId, participantId }: CreneauProps) {
         apiUrl + `events/${eventId}/participants/${participantId}/timeSlots`,
         {
           method: "POST",
-          mode: "cors",
+          mode: requestMode,
           headers: {
             "Content-Type": "application/json; charset=UTF-8",
           },

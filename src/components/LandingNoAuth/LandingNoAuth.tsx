@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { apiUrl } from "../../../config";
+import { apiUrl, requestMode } from "../../../config";
 import "./LandingNoAuth.scss";
 import { useNavigate } from "react-router-dom";
 
@@ -20,7 +20,7 @@ const LandingNoAuth = () => {
 
     fetch(apiUrl + `events`, {
       method: "POST",
-      mode: "cors",
+      mode: requestMode,
       headers: {
         "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
       },

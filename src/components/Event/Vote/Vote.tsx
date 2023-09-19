@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { apiUrl } from "../../../../config";
+import { apiUrl, requestMode } from "../../../../config";
 import { IDestination, IParticipant } from "../../../utils/interface";
 import "./Vote.scss";
 
@@ -19,7 +19,7 @@ const Vote = ({ dest, participants, idParticipant }: VoteProps) => {
     if (idParticipant !== undefined) {
       fetch(apiUrl + `events/${eventId}/participants/${idParticipant}/votes`, {
         method: "GET",
-        mode: "cors",
+        mode: requestMode,
         headers: {},
       })
         .then((response) => response.json())
@@ -90,7 +90,7 @@ const Vote = ({ dest, participants, idParticipant }: VoteProps) => {
             `events/${eventId}/participants/${idParticipantCreateur}/destinations/${idDestination}/votes`,
           {
             method: "POST",
-            mode: "cors",
+            mode: requestMode,
             headers: {
               "Content-Type":
                 "application/x-www-form-urlencoded; charset=UTF-8",
@@ -111,7 +111,7 @@ const Vote = ({ dest, participants, idParticipant }: VoteProps) => {
             `events/${eventId}/participants/${idParticipantCreateur}/destinations/${idDestination}/votes`,
           {
             method: "PATCH",
-            mode: "cors",
+            mode: requestMode,
             headers: {
               "Content-Type":
                 "application/x-www-form-urlencoded; charset=UTF-8",

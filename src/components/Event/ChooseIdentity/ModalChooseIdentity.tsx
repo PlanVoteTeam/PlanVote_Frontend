@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { apiUrl } from "../../../../config";
+import { apiUrl, requestMode } from "../../../../config";
 import { getRandomColor } from "../../../utils/utils";
 import {
   EMOJI_EDIT,
@@ -74,7 +74,7 @@ const EventDetail_ModalChooseIdentity: React.FC<ModalProps> = ({
     try {
       const response = await fetch(apiUrl + `events/${eventId}/participants`, {
         method: "POST",
-        mode: "cors",
+        mode: requestMode,
         headers: {
           "Content-Type": "application/json",
         },
@@ -101,7 +101,7 @@ const EventDetail_ModalChooseIdentity: React.FC<ModalProps> = ({
         apiUrl + `events/${eventId}/participants/${participantId}`,
         {
           method: "DELETE",
-          mode: "cors",
+          mode: requestMode,
           headers: {
             "Content-Type": "application/json",
           },
