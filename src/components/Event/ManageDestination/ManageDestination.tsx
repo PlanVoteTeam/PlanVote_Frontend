@@ -152,7 +152,7 @@ function ManageDestination({
       {/* Add destination form */}
 
       <form
-        className="is-flex is-flex-direction-row is-align-items-center addDestination__form"
+        className="is-flex addDestination__form"
         onSubmit={handleSumbit}
       >
         {showEmojiPicker && (

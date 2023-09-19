@@ -5,6 +5,7 @@ import {
   EMOJI_EDIT,
 } from "../../../utils/constants";
 import { IEvent } from "../../../utils/interface";
+import "./ManageDescription.scss";
 
 interface ManageDescriptionProps {
   eventId: string;
@@ -75,8 +76,8 @@ function ManageDescription({
                 handleUpdateDescriptionEvent(eventId, eventDescription);
             }}
           >
-            <div className="field has-addons is-align-items-flex-end">
-              <div className="control">
+            <div className="field has-addons is-align-items-flex-end mobile">
+              <div className="control control__mobile">
                 <label>Description de l'évenement </label>
                 <input
                   type="text"
@@ -87,13 +88,13 @@ function ManageDescription({
                 />
               </div>
 
-              <div className="control">
+              <div className="control  control__mobile">
                 <button className="button is-primary is-outlined mr-2">
                   Enregistrer
                 </button>
               </div>
 
-              <div className="control">
+              <div className="control  control__mobile">
                 <button
                   className="button is-danger is-outlined"
                   onClick={handleCancelEditEventDescriptionClick}

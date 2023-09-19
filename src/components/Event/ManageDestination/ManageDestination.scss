@@ -5,10 +5,17 @@
     gap: 12px;
     justify-content: center;
     margin-bottom: 16px;
+
   }
 
   &__form {
     margin-bottom: 16px;
+
+    @media (max-width: 950px) {
+      flex-direction: column ;
+      align-items: center;
+      gap: 12px;
+    }
   }
 }
 
