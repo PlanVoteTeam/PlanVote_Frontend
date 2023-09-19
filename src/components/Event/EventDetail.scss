@@ -6,7 +6,7 @@
 
 .wrapperCreneauDest {
     display: flex;
-    gap: 50px;
+    justify-content: space-between;
     text-align: center;
 
   @media (max-width: 950px) {

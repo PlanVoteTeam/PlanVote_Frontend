@@ -3,8 +3,11 @@ import { useEffect, useState } from "react";
 import "./EventFinish.scss";
 import { useLocation, useParams } from "react-router";
 import { apiUrl } from "../../../config";
+import LayoutFooter from "../Layout/LayoutFooter";
+import { useNavigate } from "react-router-dom";
 
 const EventFinish = () => {
+    const navigate = useNavigate();
 
     const location = useLocation()
     const { eventId } = useParams();
@@ -52,18 +55,26 @@ const EventFinish = () => {
         })
     }
 
+    function retour() {
+        navigate("/events/" + location.state._id);
+    }
+
   return (
     <section className="section">
         <h1 className="title">Visulation des résulats</h1>
-        <div className="informations">
+        <div className="mb-5 pb-5 is-flex is-justify-content-space-between informations">
             <div>
-        <div>Nom de l'évènement : {location.state.name}</div>
-        <div>Description de l'évènement : {location.state.description} </div>
+        <div  className="title is-6">Nom de l'évènement : {location.state.name}</div>
+        <div  className="title is-6">Description de l'évènement : {location.state.description} </div>
         </div>
+        <div>
+        <button className="button is-primary mr-4" onClick={retour}>Retour</button>
         <button className="button is-primary" onClick={refresh}>Actualiser</button>
         </div>
-    <div className="wrapper"> 
-        <div>Meilleurs destinations
+        </div>
+    <div className="wrapper mb-6"> 
+        <div>
+            <div className="title is-4 mb-5">Meilleurs destinations</div>
         { bestDestinations ?
             bestDestinations.map((elem: any, index) => {
                 return (
@@ -93,12 +104,13 @@ const EventFinish = () => {
         }
         </div>
         <div>
-            Meilleurs créneaux
+        <div className="title is-4 mb-5">Meilleurs créneaux</div>
         {
             bestDate ?
             bestDate.map((elem: any, index) => {
                 return (
                     <div key={index}>
+                        &#x1F4C5;
                         du {elem.startDate.slice(0, elem.startDate.length - 14)} au {elem.endDate.slice(0, elem.endDate.length - 14)}
                     </div>
                 )
@@ -107,6 +119,7 @@ const EventFinish = () => {
         }
         </div>
         </div>
+        <LayoutFooter />
     </section>
   );
 };

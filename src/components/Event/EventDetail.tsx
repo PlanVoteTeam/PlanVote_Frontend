@@ -153,22 +153,28 @@ const EventDetail = () => {
             <div className="container">
               <div className="wrapperCreneauDest">
                 {currentParticipant && (
-                  <ManageDestination
-                    eventId={eventId!}
-                    currentParticipant={currentParticipant}
-                    destinationsList={destinationsList!}
-                    setDestinationsList={setDestinationsList}
-                    participantsList={participantsList!}
-                    setParticipantsList={setParticipantsList}
-                    idParticipant={currentParticipant._id}
-                  ></ManageDestination>
+                  <div>
+                    <div className="title is-4"> Destination </div>
+                    <ManageDestination
+                      eventId={eventId!}
+                      currentParticipant={currentParticipant}
+                      destinationsList={destinationsList!}
+                      setDestinationsList={setDestinationsList}
+                      participantsList={participantsList!}
+                      setParticipantsList={setParticipantsList}
+                      idParticipant={currentParticipant._id}
+                    ></ManageDestination>
+                  </div>
                 )}
 
                 {currentParticipant && (
-                  <Creneau
-                    eventId={eventId!}
-                    participantId={currentParticipant._id}
-                  ></Creneau>
+                  <div>
+                    <div className="title is-4"> Créneau </div>
+                    <Creneau
+                      eventId={eventId!}
+                      participantId={currentParticipant._id}
+                    ></Creneau>
+                  </div>
                 )}
               </div>
             </div>

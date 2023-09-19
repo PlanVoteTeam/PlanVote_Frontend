@@ -1,6 +1,11 @@
 .wrapper {
     display: flex;
     justify-content: space-evenly;
+    @media (max-width: 950px) {
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+      }
 }
 
 .title {
@@ -8,9 +13,7 @@
 }
 
 .informations {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 24px;
+    border-bottom: 1px solid #194e83;
 }
 
 .classement {
@@ -25,4 +28,8 @@
 
 .box {
     color:#191919;
+}
+
+.is-6 {
+    text-align: left;
 }
