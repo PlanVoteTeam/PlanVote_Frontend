@@ -29,15 +29,40 @@ function ManageDestination({
   idParticipant,
 }: ManageDestinationProps) {
   const [nameDestination, setNameDestination] = useState<string>("");
+  const [chosenEmoji, setChosenEmoji] = useState<string>("");
+  const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const [isError] = useState<boolean>(false);
   const [isErrorForm, setIsErrorFrom] = useState<boolean>(false);
 
   const inputRef = useRef<HTMLInputElement>(null);
+  const emojiPickerRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    // Fermer la fenêtre des émojis si on clique en dehors
+    function handleClickOutside(event: any) {
+      if (
+        emojiPickerRef.current &&
+        !emojiPickerRef.current.contains(event.target)
+      ) {
+        setShowEmojiPicker(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const handleChangeEvent = (event: any) => {
     setNameDestination(event.currentTarget.value);
   };
 
+
+  const onEmojiClick = (event: any) => {
+    setChosenEmoji(event.emoji);
+    setShowEmojiPicker(false);
+  };
   const handleSumbit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!nameDestination) {
@@ -53,7 +78,7 @@ function ManageDestination({
       const idParticipant = currentParticipant?._id;
       const formData = new URLSearchParams();
       formData.append("name", nameDestination);
-      formData.append("img", "image");
+      formData.append("img", chosenEmoji ? chosenEmoji : "");
       if (eventId && idParticipant && formData) {
         addDestinationToEvent(eventId, idParticipant, formData);
       }
@@ -126,11 +151,36 @@ function ManageDestination({
         <div></div>
       )}
 
+      {/* Add destination form */}
+      <h2 className="title">Ajouter une destination</h2>
+
       <form
-        className="is-flex is-flex-direction-row addDestination__form"
+        className="is-flex is-flex-direction-row is-align-items-center addDestination__form"
         onSubmit={handleSumbit}
       >
+        <div>
+          {chosenEmoji ? (
+            <span
+              className="m-2 is-size-2"
+              onClick={() => setShowEmojiPicker(!showEmojiPicker)}
+            >
+              {chosenEmoji}
+            </span>
+          ) : null}
+        </div>
+
         <div id="input-container" className="relative">
+          {!chosenEmoji ? (
+            <a onClick={() => setShowEmojiPicker(!showEmojiPicker)}>
+              🙂 Ajouter une icône
+            </a>
+          ) : null}
+
+          {showEmojiPicker && (
+            <div ref={emojiPickerRef}>
+              <Picker onEmojiClick={onEmojiClick} />
+            </div>
+          )}
           <input
             className="input is-primary mr-3"
             type="text"
@@ -151,6 +201,7 @@ function ManageDestination({
         </button>
       </form>
 
+      {/* Display list of destinations */}
       <div className="addDestination__wrapper-card">
         {destinationsList && destinationsList.length > 0 ? (
           destinationsList.map((destination) => (
