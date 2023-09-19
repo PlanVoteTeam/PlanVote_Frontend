@@ -147,9 +147,7 @@ function ManageDestination({
         <div className="notification is-danger">
           Une erreur est survenu, veuillez réessayer plus tard.
         </div>
-      ) : (
-        <div></div>
-      )}
+      ) : null}
 
       {/* Add destination form */}
       <h2 className="title">Ajouter une destination</h2>
