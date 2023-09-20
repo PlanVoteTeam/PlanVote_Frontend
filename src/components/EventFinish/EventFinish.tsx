@@ -111,15 +111,15 @@ const EventFinish = () => {
                   <div key={index} className="box classement">
                     {(() => {
                       if (index === 0) {
-                        return <div>&#x1F947;</div>;
+                        return <div className="is-size-2">&#x1F947;</div>;
                       } else if (index === 1) {
-                        return <div>&#x1F948;</div>;
+                        return <div className="is-size-2">&#x1F948;</div>;
                       } else {
-                        return <div>&#x1F949;</div>;
+                        return <div className="is-size-2">&#x1F949;</div>;
                       }
                     })()}
                     <div className="element">
-                      <div>
+                      <div className="has-text-weight-bold">
                         {elem.name[0].toUpperCase() + elem.name.slice(1)}{" "}
                       </div>
                       <div>Note : {Math.trunc(elem.avgNote)} </div>
